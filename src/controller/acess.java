@@ -50,7 +50,7 @@ public class acess implements ActionListener{
   
         if(e.getSource().equals(view.btn)){
      //   System.out.println("btn");
-        
+        //conexion
          Connect_DB vgi =  new Connect_DB();
       
         }
