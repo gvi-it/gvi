@@ -7,8 +7,9 @@ package controller;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import model.message;
-import view.helloworld;
+import librerias.Placeholder;
+import model.*;
+import view.*;
 
 /**
  *
@@ -16,7 +17,7 @@ import view.helloworld;
  */
 public class Message implements ActionListener{    
     
-    helloworld view = new helloworld();
+    login view = new login();
     message model = new message();
     
     public Message(){
@@ -24,15 +25,20 @@ public class Message implements ActionListener{
     this.view = view;
     this.model = model;
     
+    this.config();
+    
     view.btn.addActionListener(this);
-    view.nord.addActionListener(this);
-    view.message.setText(model.getmessage());
         
     }
     
     public void show(){
     this.view.setVisible(true);
     this.view.setLocationRelativeTo(null);
+    }
+    
+    private void config(){
+    new Placeholder("customerservice@gerenciavirtual.net",this.view.user);  
+    new Placeholder("************",this.view.password);
     }
 
     @Override
