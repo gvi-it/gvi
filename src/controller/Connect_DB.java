@@ -30,6 +30,7 @@ public class Connect_DB {
              System.out.println("Connected to the PostgreSQL server successfully.");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            //fgfd
         }     
     }
 }
