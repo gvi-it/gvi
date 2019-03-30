@@ -10,23 +10,27 @@ import java.awt.event.ActionEvent;
 import librerias.Placeholder;
 import model.*;
 import view.*;
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 /**
  *
  * @author Preinstalleduser
  */
-public class Message implements ActionListener{    
+public class acess implements ActionListener{    
     
     login view = new login();
     message model = new message();
     
-    public Message(){
+    public acess(){
         
     this.view = view;
     this.model = model;
     
     this.config();
-    
+   
     view.btn.addActionListener(this);
         
     }
@@ -44,8 +48,12 @@ public class Message implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
   
-        if(e.getSource().equals(view.btn))
-        System.out.println("btn");
+        if(e.getSource().equals(view.btn)){
+     //   System.out.println("btn");
+        
+         Connect_DB vgi =  new Connect_DB();
+      
+        }
 
     }
 

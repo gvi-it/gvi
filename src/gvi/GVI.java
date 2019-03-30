@@ -5,7 +5,7 @@
  */
 package gvi;
 
-import controller.Message;
+import controller.acess;
 
 /**
  *
@@ -18,7 +18,7 @@ public class GVI {
      */
     public static void main(String[] args) {
         
-    Message message = new Message();
+    acess message = new acess();
 
     message.show();
     
