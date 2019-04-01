@@ -34,7 +34,7 @@ public class Connect_DB {
     public Boolean execute(){
    
         try{
-            
+            //dfsfdfsdf
         
         this.request.createStatement(ResultSet.TYPE_FORWARD_ONLY,ResultSet.CONCUR_READ_ONLY).executeQuery(server);
             
