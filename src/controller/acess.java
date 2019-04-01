@@ -21,7 +21,7 @@ import java.util.logging.Logger;
  */
 public class acess implements ActionListener{    
     
-    login view = new login();
+    other view = new other();
     message model = new message();
     
     public acess(){
@@ -52,6 +52,8 @@ public class acess implements ActionListener{
      //   System.out.println("btn");
         //conexion
          Connect_DB vgi =  new Connect_DB();
+         
+         vgi.execute();
       
         }
 
