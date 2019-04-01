@@ -5,10 +5,7 @@
  */
 package controller;
 
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 //import org.postgresql.Driver;
 
@@ -33,4 +30,20 @@ public class Connect_DB {
             //fgfd
         }     
     }
+    
+    public Boolean execute(){
+   
+        try{
+            
+        
+        this.request.createStatement(ResultSet.TYPE_FORWARD_ONLY,ResultSet.CONCUR_READ_ONLY).executeQuery(server);
+            
+        } catch(SQLException e){
+        e.printStackTrace();
+            return false;    
+        }
+        
+    return false;    
+    }
+    
 }
