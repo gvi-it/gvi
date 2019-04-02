@@ -5,6 +5,7 @@
  */
 package controller;
 
+import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import librerias.Placeholder;
@@ -13,6 +14,7 @@ import view.*;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 
 
 /**
@@ -21,7 +23,7 @@ import java.util.logging.Logger;
  */
 public class acess implements ActionListener{    
     
-    other view = new other();
+    login view = new login();
     message model = new message();
     
     public acess(){
@@ -29,9 +31,13 @@ public class acess implements ActionListener{
     this.view = view;
     this.model = model;
     
-    this.config();
+    this.view.close.setOpaque(true);
+    this.view.close.setIcon(new ImageIcon("C:\\Users\\Preinstalleduser\\Downloads\\close.png"));
+    this.view.close.addActionListener(this);
+    
+   // this.config();
    
-    view.btn.addActionListener(this);
+   // view.btn.addActionListener(this);
         
     }
     
@@ -40,22 +46,23 @@ public class acess implements ActionListener{
     this.view.setLocationRelativeTo(null);
     }
     
-    private void config(){
+   /* private void config(){
     new Placeholder("customerservice@gerenciavirtual.net",this.view.user);  
     new Placeholder("************",this.view.password);
-    }
+    }*/
 
     @Override
     public void actionPerformed(ActionEvent e) {
   
-        if(e.getSource().equals(view.btn)){
+     /*   if(e.getSource().equals(view.btn)){
      //   System.out.println("btn");
         //conexion
          Connect_DB vgi =  new Connect_DB();
          
          vgi.execute();
       
-        }
+        }*/
+      System.exit(0);
 
     }
 
