@@ -20,7 +20,7 @@ public class login extends javax.swing.JFrame {
      * Creates new form login
      */
     public login() {
-        
+        //bvcbcvbcv
          addComponentListener(new ComponentAdapter() {
             // Give the window an elliptical shape.
             // If the window is resized, the shape is recalculated here.
