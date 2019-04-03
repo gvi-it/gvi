@@ -4,11 +4,7 @@
  * and open the template in the editor.
  */
 package view;
-
-/**
- *
- * @author Preinstalleduser
- */
+        //ggh
 public class tools extends javax.swing.JFrame {
 
     /**

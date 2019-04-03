@@ -9,10 +9,6 @@ import javax.swing.JFrame;
 import javax.swing.text.View;
 import view.login;
 
-/**
- *
- * @author Preinstalleduser
- */
 public class require {
 
    login e = null;
