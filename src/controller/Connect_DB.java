@@ -31,41 +31,17 @@ public class Connect_DB {
         }     
     }
     
-    public Boolean execute(){
+    public ResultSet execute(String sql){
    
         try{
          
-        ResultSet query = this.request.createStatement(ResultSet.TYPE_FORWARD_ONLY,ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM ejecutivo WHERE id = 1");
-      
+        ResultSet query = this.request.createStatement(ResultSet.TYPE_FORWARD_ONLY,ResultSet.CONCUR_READ_ONLY).executeQuery(sql);
         
+        return query;
   
-        
-        
-/*       while(query.next()){
-      
-       if(query.getInt("id") == 1){    
-           
-       System.out.println(query.getString("name"));
-       break;
-       
-    
-       
-       }
-       
-       System.out.println(query.getString("name"));
-       
-       
-           
-       }*/   
-        
-        return true;
-        
         } catch(SQLException e){
         e.printStackTrace();
-            return false;    
+            return null;    
         }
-        
-
-    }
-    
+    } 
 }
