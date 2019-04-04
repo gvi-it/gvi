@@ -2,25 +2,22 @@ package controller;
 
 import model.*;
 import view.*;
-import java.awt.*;
-import java.sql.*;
-import java.util.*;
-import librerias.*;
-import javax.swing.ImageIcon;
+import libraries.FormV;
+import libraries.Placeholder;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import libraries.require;
 
 public class access implements ActionListener{    
     
     login view = new login();
+    FormV form = new FormV(view.getContentPane());
     executive model;
     
     public access(){
-        
-    this.view = view;
-    this.model = model;
-
+             
     this.view.close.addActionListener(this);
     this.view.btn.addActionListener(this);
     
@@ -34,21 +31,18 @@ public class access implements ActionListener{
     }
     
     private void config(){
-  //  new Placeholder("customerservice@gerenciavirtual.net",this.view.email);  
-   // new Placeholder("************",this.view.password);
-    
-    require valForm = new require(this.view);
-    valForm.placeholder(0,"customerservice@gerenciavirtual.net");
-    
-    
+    new Placeholder("customerservice@gerenciavirtual.net",this.view.email);  
+    new Placeholder("************",this.view.password);
     }
     
     @Override
     public void actionPerformed(ActionEvent e) {
   
-        if(e.getSource().equals(view.btn)){
+        if(e.getSource().equals(view.btn)) {
            
-            try {          
+            if(form.validate()){
+                
+                 try {          
                 //conexion               
                 Connect_DB vgi =  new Connect_DB();
                 
@@ -56,16 +50,19 @@ public class access implements ActionListener{
                 
                 query.next();
                 
-                if(query.getString("email") != "" && query.getString("password") != ""){
+                if(query.getString("email") != "" && query.getString("password") != "") {
                     System.out.println("Exito usuairo y password correcto");
                     new tools().setVisible(true);
                     this.view.dispose();
                 } else {
                     System.out.println("Error usuario o contraseña mal");
                 }  } catch (SQLException ex) {
-               System.out.println("error");
+                JOptionPane.showMessageDialog(null,"User or Password Incorrect");
+                System.out.println("error");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null,"Los campos son requeridos");
             }
-      
         } else  { System.exit(0); }
     }
 }

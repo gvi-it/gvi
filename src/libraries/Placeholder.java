@@ -1,4 +1,4 @@
-package librerias;
+package libraries;
 
 import java.awt.*;
 import java.awt.event.*;
