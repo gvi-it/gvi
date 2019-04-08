@@ -13,18 +13,17 @@ import java.awt.event.ActionListener;
 public class access implements ActionListener{    
     
     login view = new login();
-    FormV form = new FormV(view.getContentPane());
+    FormV form = new FormV(this.view.getContentPane());
     executive model;
     
     public access(){
-             
+    
     this.view.close.addActionListener(this);
     this.view.btn.addActionListener(this);
     
-    this.config();
-        
+    this.config();      
     }
-    
+  
     public void execute(){
     this.view.setVisible(true);
     this.view.setLocationRelativeTo(null);
@@ -52,7 +51,8 @@ public class access implements ActionListener{
                 
                 if(query.getString("email") != "" && query.getString("password") != "") {
                     System.out.println("Exito usuairo y password correcto");
-                    new tools().setVisible(true);
+                    model = new executive();
+                    new cpanel(model);
                     this.view.dispose();
                 } else {
                     System.out.println("Error usuario o contraseña mal");

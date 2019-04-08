@@ -19,4 +19,17 @@ public class executive {
     this.name = name;
     
     } 
+
+    public executive() {
+       
+    }
+    
+    public void getName(){
+        
+    }
+    
+    public int getrole(){
+        return 1;
+    }
+    
 }
