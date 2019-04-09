@@ -1,6 +1,7 @@
 package view;
 
-import javax.swing.JFrame;
+import java.awt.Color;
+import java.awt.Toolkit;
 import model.executive;
 
 public class tools extends javax.swing.JFrame {
@@ -10,55 +11,69 @@ public class tools extends javax.swing.JFrame {
         
         initComponents();
         
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.getContentPane().setBackground(Color.WHITE);
+        this.logout.setVisible(false);
+       
+        //this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         
-       /*  Toolkit tool = Toolkit.getDefaultToolkit();
+         Toolkit tool = Toolkit.getDefaultToolkit();
+         double width = tool.getScreenSize().getWidth();
+         double heigth = tool.getScreenSize().getHeight();
         
-        this.setSize(tool.getScreenSize().width,tool.getScreenSize().height);*/
+        this.setSize((int)width, (int)heigth);
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        print = new javax.swing.JLabel();
-        mitem1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        jPopupMenu2 = new javax.swing.JPopupMenu();
+        jPanel1 = new javax.swing.JPanel();
+        jLayeredPane1 = new javax.swing.JLayeredPane();
+        user_info = new javax.swing.JLabel();
+        logout = new javax.swing.JLabel();
+        jpanelview = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        print.setText("texto de prueba");
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 0, -1, -1));
 
-        jMenu1.setText("File");
+        jLayeredPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLayeredPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jMenuItem1.setText("exit");
-        jMenu1.add(jMenuItem1);
+        user_info.setBackground(new java.awt.Color(255, 255, 255));
+        user_info.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        user_info.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/user.png"))); // NOI18N
+        user_info.setText("user_name  ");
+        user_info.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        user_info.setMaximumSize(new java.awt.Dimension(200, 36));
+        user_info.setOpaque(true);
+        jLayeredPane1.add(user_info, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, 50));
 
-        mitem1.add(jMenu1);
+        logout.setBackground(new java.awt.Color(255, 255, 255));
+        logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/system/baseline_exit_to_app_black_18dp.png"))); // NOI18N
+        logout.setText("Log Out");
+        logout.setOpaque(true);
+        jLayeredPane1.add(logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 70, 30));
 
-        jMenu2.setText("Edit");
-        mitem1.add(jMenu2);
+        getContentPane().add(jLayeredPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        setJMenuBar(mitem1);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(65, 65, 65)
-                .addComponent(print)
-                .addContainerGap(258, Short.MAX_VALUE))
+        javax.swing.GroupLayout jpanelviewLayout = new javax.swing.GroupLayout(jpanelview);
+        jpanelview.setLayout(jpanelviewLayout);
+        jpanelviewLayout.setHorizontalGroup(
+            jpanelviewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 620, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addComponent(print)
-                .addContainerGap(215, Short.MAX_VALUE))
+        jpanelviewLayout.setVerticalGroup(
+            jpanelviewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
+
+        getContentPane().add(jpanelview, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, 620, 400));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -99,10 +114,12 @@ public class tools extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    public javax.swing.JMenuItem jMenuItem1;
-    public javax.swing.JMenuBar mitem1;
-    public javax.swing.JLabel print;
+    private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JPopupMenu jPopupMenu2;
+    public javax.swing.JPanel jpanelview;
+    public javax.swing.JLabel logout;
+    public javax.swing.JLabel user_info;
     // End of variables declaration//GEN-END:variables
 }

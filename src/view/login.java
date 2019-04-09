@@ -1,35 +1,11 @@
 package view;
 
-import java.awt.Color;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.awt.geom.RoundRectangle2D;
-
 public class login extends javax.swing.JFrame {
-  
-          int ban;
-    
-    public login() {
-  
-//       this.getContentPane().setBackground(new Color(0.15f, 0.45f, 0.68f, 1));
-         this.getContentPane().setBackground(new Color(0.15f, 0.45f, 0.68f, 1));
       
-   
-         addComponentListener(new ComponentAdapter() {
-
-            @Override
-            public void componentResized(ComponentEvent e) {
-                    
-                setShape(new RoundRectangle2D.Double(0, 0, getWidth(),getHeight(), 30, 30));
-            }
-        });
-        
-        initComponents();
-        
-        //this.passinfo.setVisible(false);
-        
-        
-       
+    public login() { 
+    
+    initComponents();  
+    
     }
 
     @SuppressWarnings("unchecked")
@@ -132,8 +108,6 @@ public class login extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-
-        email.getAccessibleContext().setAccessibleParent(password);
 
         jLayeredPane4.setBackground(new java.awt.Color(255, 255, 255));
         jLayeredPane4.setOpaque(true);
@@ -244,47 +218,8 @@ public class login extends javax.swing.JFrame {
 
     private void passinfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passinfoActionPerformed
         // TODO add your handling code here:
-        ban++;
-        
-        if(ban %2 == 0){
-            ban = 0;
-                                   password.setEchoChar('*');
-        } else {
-            password.setEchoChar((char) 0);
-        }
+
     }//GEN-LAST:event_passinfoActionPerformed
-
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new login().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btn;
