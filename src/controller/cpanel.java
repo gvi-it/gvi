@@ -24,6 +24,7 @@ public class cpanel implements ActionListener, ItemListener, MouseListener {
     int heigth = resource.getScreenSize().height;
     
     tools admin;
+    prueba children;
     
     public cpanel(executive model) {
         
@@ -31,23 +32,38 @@ public class cpanel implements ActionListener, ItemListener, MouseListener {
           //rtht
             case 1:
             {
-                
+                    
             this.admin = new tools();
-           
+            
+            this.admin.setResizable(false);
+            
+            this.admin.setTitle("CPanel");
+            
+            this.admin.getContentPane().setBackground(Color.white);
             
            // admin.jMenuItem1.addActionListener(this);
             
           //  admin.jMenuItem1.addItemListener(this);
             
-            admin.setSize(width, heigth);
+          //  admin.setSize(width, heigth);
             
           
-           admin.jpanelview.setSize(200,200);
+          // admin.container.setSize(200,200);
            
           // admin.jpanelview.add(new view.prueba(), javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE).addGap(0, 220, Short.MAX_VALUE);
       
             admin.setVisible(true);
-        
+            
+            children = new prueba();
+            
+            children.setSize(admin.getSize());
+            
+            children.setBackground(Color.white);
+            
+           
+            try{
+            admin.container.add(children);
+            } catch(Exception e){}
          //  admin.removeAll();
         
 
@@ -98,8 +114,11 @@ public class cpanel implements ActionListener, ItemListener, MouseListener {
        if(e.getComponent().equals(this.admin.logout)){
            
             if(JOptionPane.showConfirmDialog(null,"Deseas Salir?","Warning",JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
-            this.admin.dispose();
-            new access().execute();
+            this.admin.container.remove(this.children);
+            this.admin.container.repaint();
+            this.admin.container.revalidate();
+            //this.admin.dispose();
+            //new access().execute();
         } 
             
        }
@@ -114,6 +133,8 @@ public class cpanel implements ActionListener, ItemListener, MouseListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
+        
+        System.out.println("hola mundo");
         
         if(e.getComponent().equals(this.admin.user_info)){
             
@@ -147,7 +168,7 @@ public class cpanel implements ActionListener, ItemListener, MouseListener {
              if(this.admin.logout.getBackground().equals(new java.awt.Color(200,200,200))){
                  e.getComponent().setBackground(new java.awt.Color(200,200,200));
              } else{
-                 e.getComponent().setBackground(Color.white);
+                 e.getComponent().setBackground(new java.awt.Color(255,255,255));
              }
              
              this.admin.logout.setVisible(false);
@@ -158,9 +179,9 @@ public class cpanel implements ActionListener, ItemListener, MouseListener {
                    // this.admin.user_info.setBackground(new java.awt.Color(200,200,200));
             //e.getComponent().setBackground(new java.awt.Color(200,200,200));
         } else if(e.getComponent().equals(this.admin.logout)){
-             this.admin.user_info.setBackground(Color.white);
+             this.admin.user_info.setBackground(new java.awt.Color(255,255,255));
                      this.admin.logout.setVisible(false);
-            e.getComponent().setBackground(Color.white);
+            e.getComponent().setBackground(new java.awt.Color(255,255,255));
         }
      //    ImageIcon icon = new ImageIcon(getClass().getResource("/resources/icon/user.png"));
        //   this.admin.user_info.setIcon(icon);

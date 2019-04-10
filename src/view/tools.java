@@ -16,11 +16,17 @@ public class tools extends javax.swing.JFrame {
        
         //this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         
-         Toolkit tool = Toolkit.getDefaultToolkit();
-         double width = tool.getScreenSize().getWidth();
-         double heigth = tool.getScreenSize().getHeight();
+      /*  double width = this.menu.getSize().getWidth() + this.container.getSize().getWidth();
+        double heigth = this.menu.getSize().getHeight() + this.container.getHeight();*/
         
-        this.setSize((int)width, (int)heigth);
+        this.setLocationRelativeTo(null);
+        
+/*         Toolkit tool = Toolkit.getDefaultToolkit();
+         double width = tool.getScreenSize().getWidth();
+         double heigth = tool.getScreenSize().getHeight();*/
+         
+        
+      //  this.setSize((int)width, (int)heigth);
     }
 
     @SuppressWarnings("unchecked")
@@ -31,9 +37,11 @@ public class tools extends javax.swing.JFrame {
         jPopupMenu2 = new javax.swing.JPopupMenu();
         jPanel1 = new javax.swing.JPanel();
         jLayeredPane1 = new javax.swing.JLayeredPane();
+        container = new javax.swing.JPanel();
         user_info = new javax.swing.JLabel();
         logout = new javax.swing.JLabel();
-        jpanelview = new javax.swing.JPanel();
+        jLayeredPane2 = new javax.swing.JLayeredPane();
+        menu = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -44,36 +52,61 @@ public class tools extends javax.swing.JFrame {
 
         jLayeredPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLayeredPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(jLayeredPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        user_info.setBackground(new java.awt.Color(255, 255, 255));
-        user_info.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        container.setBackground(new java.awt.Color(255, 255, 255));
+        container.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        user_info.setBackground(new java.awt.Color(102, 153, 255));
+        user_info.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         user_info.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/user.png"))); // NOI18N
         user_info.setText("user_name  ");
         user_info.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        user_info.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         user_info.setMaximumSize(new java.awt.Dimension(200, 36));
         user_info.setOpaque(true);
-        jLayeredPane1.add(user_info, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, 50));
+        container.add(user_info, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, -1, 50));
 
-        logout.setBackground(new java.awt.Color(255, 255, 255));
+        logout.setBackground(new java.awt.Color(102, 153, 255));
         logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/system/baseline_exit_to_app_black_18dp.png"))); // NOI18N
         logout.setText("Log Out");
         logout.setOpaque(true);
-        jLayeredPane1.add(logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 70, 30));
+        container.add(logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 50, 70, 30));
 
-        getContentPane().add(jLayeredPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(container, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 560, 410));
 
-        javax.swing.GroupLayout jpanelviewLayout = new javax.swing.GroupLayout(jpanelview);
-        jpanelview.setLayout(jpanelviewLayout);
-        jpanelviewLayout.setHorizontalGroup(
-            jpanelviewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 620, Short.MAX_VALUE)
+        jLayeredPane2.setBackground(new java.awt.Color(102, 153, 255));
+        jLayeredPane2.setOpaque(true);
+
+        menu.setBackground(new java.awt.Color(102, 153, 255));
+
+        javax.swing.GroupLayout menuLayout = new javax.swing.GroupLayout(menu);
+        menu.setLayout(menuLayout);
+        menuLayout.setHorizontalGroup(
+            menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 240, Short.MAX_VALUE)
         );
-        jpanelviewLayout.setVerticalGroup(
-            jpanelviewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        menuLayout.setVerticalGroup(
+            menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 360, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jpanelview, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, 620, 400));
+        jLayeredPane2.setLayer(menu, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jLayeredPane2Layout = new javax.swing.GroupLayout(jLayeredPane2);
+        jLayeredPane2.setLayout(jLayeredPane2Layout);
+        jLayeredPane2Layout.setHorizontalGroup(
+            jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        jLayeredPane2Layout.setVerticalGroup(
+            jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jLayeredPane2Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        getContentPane().add(jLayeredPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 410));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -114,12 +147,14 @@ public class tools extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JPanel container;
     private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu jPopupMenu2;
-    public javax.swing.JPanel jpanelview;
     public javax.swing.JLabel logout;
+    private javax.swing.JPanel menu;
     public javax.swing.JLabel user_info;
     // End of variables declaration//GEN-END:variables
 }
