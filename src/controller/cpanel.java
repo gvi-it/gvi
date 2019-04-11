@@ -1,6 +1,7 @@
 package controller;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -13,8 +14,11 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import view.*;
 import model.*;
+import view.menu.admin;
 
 public class cpanel implements ActionListener, ItemListener, MouseListener {
 
@@ -25,6 +29,7 @@ public class cpanel implements ActionListener, ItemListener, MouseListener {
     
     tools admin;
     prueba children;
+    JPanel ma;
     
     public cpanel(executive model) {
         
@@ -34,6 +39,9 @@ public class cpanel implements ActionListener, ItemListener, MouseListener {
             {
                     
             this.admin = new tools();
+            
+            System.out.println(this.admin.menu.getSize().getWidth());
+           
             
             this.admin.setResizable(false);
             
@@ -52,6 +60,22 @@ public class cpanel implements ActionListener, ItemListener, MouseListener {
            
           // admin.jpanelview.add(new view.prueba(), javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE).addGap(0, 220, Short.MAX_VALUE);
       
+            ma = new admin(this.admin.container);
+            
+            ma.setVisible(true);
+           
+            ma.setSize(this.admin.menu.getSize());
+            
+           // ma.setSize(this.admin.menu.getSize());
+            
+           this.admin.menu.setViewportView(ma);
+           
+           this.admin.menu.getHorizontalScrollBar().enableInputMethods(true);
+           
+           
+           
+//            this.admin.menu.add(ma);
+          
             admin.setVisible(true);
             
             children = new prueba();
