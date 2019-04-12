@@ -20,7 +20,7 @@ import view.*;
 import model.*;
 import view.menu.admin;
 
-public class cpanel implements ActionListener, ItemListener, MouseListener {
+public class cpanel implements ActionListener, MouseListener {
 
     Toolkit resource = Toolkit.getDefaultToolkit();
     
@@ -28,75 +28,45 @@ public class cpanel implements ActionListener, ItemListener, MouseListener {
     int heigth = resource.getScreenSize().height;
     
     tools admin;
-    prueba children;
-    JPanel ma;
+    JPanel ma,children;
     
     public cpanel(executive model) {
         
         switch(model.getErole()) {
-          //rtht
+  
             case 1:
             {
                     
-            this.admin = new tools();
-            
-            System.out.println(this.admin.menu.getSize().getWidth());
-           
-            
+            this.admin = new tools();           
             this.admin.setResizable(false);
             
             this.admin.setTitle("CPanel");
             
             this.admin.getContentPane().setBackground(Color.white);
             
-           // admin.jMenuItem1.addActionListener(this);
-            
-          //  admin.jMenuItem1.addItemListener(this);
-            
-          //  admin.setSize(width, heigth);
-            
-          
-          // admin.container.setSize(200,200);
-           
-          // admin.jpanelview.add(new view.prueba(), javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE).addGap(0, 220, Short.MAX_VALUE);
-      
-            ma = new admin(this.admin.container);
+            ma = new view.menu.admin(this.admin.container);
             
             ma.setVisible(true);
            
             ma.setSize(this.admin.menu.getSize());
             
-           // ma.setSize(this.admin.menu.getSize());
-            
-           this.admin.menu.setViewportView(ma);
-           
-           this.admin.menu.getHorizontalScrollBar().enableInputMethods(true);
-           
-           
-           
-//            this.admin.menu.add(ma);
-          
-            admin.setVisible(true);
-            
-            children = new prueba();
-            
-            children.setSize(admin.getSize());
-            
-            children.setBackground(Color.white);
-            
-           
-            try{
-            admin.container.add(children);
-            } catch(Exception e){}
-         //  admin.removeAll();
-        
+            children = new view.form.admin.home();
+               
+            children.setVisible(true);
 
+            children.setSize(this.admin.menu.getSize());
+                        
+            this.admin.menu.setViewportView(ma);
+                 
+            this.admin.container.setViewportView(children);
+                
             admin.user_info.setText(model.getName()+" "+model.getLastname()+"  ");
             
             admin.user_info.addMouseListener(this);
             admin.logout.addMouseListener(this);
             
-            System.out.println("");
+            admin.setVisible(true);
+           
             break;
             }
 
@@ -118,18 +88,10 @@ public class cpanel implements ActionListener, ItemListener, MouseListener {
   
     }
 
-    @Override
-    public void itemStateChanged(ItemEvent e) {
-        
-        if(e.equals("mitem1")){
-               System.exit(0);
-        }
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-  //      throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 
     @Override
@@ -137,17 +99,12 @@ public class cpanel implements ActionListener, ItemListener, MouseListener {
         
        if(e.getComponent().equals(this.admin.logout)){
            
-            if(JOptionPane.showConfirmDialog(null,"Deseas Salir?","Warning",JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
-            this.admin.container.remove(this.children);
-            this.admin.container.repaint();
-            this.admin.container.revalidate();
-            //this.admin.dispose();
-            //new access().execute();
+            if(JOptionPane.showConfirmDialog(null,"Deseas Cerrar Sesioin?","Warning",JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+            this.admin.dispose();
+            new access().execute();
         } 
             
        }
-        
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -162,26 +119,14 @@ public class cpanel implements ActionListener, ItemListener, MouseListener {
         
         if(e.getComponent().equals(this.admin.user_info)){
             
-/*            if(this.admin.logout.getBackground().equals(new java.awt.Color(200,200,200))){
-                e.getComponent().setBackground(Color.white);
-                } else {*/
                     e.getComponent().setBackground(new java.awt.Color(200,200,200));
-               /*     this.admin.logout.setBackground(Color.white);
-                }*/
       
         } else if(e.getComponent().equals(this.admin.logout)){
-                    
-/*                if(this.admin.user_info.getBackground().equals(new java.awt.Color(200,200,200))){
-                e.getComponent().setBackground(Color.white);
-                } else {
-                    e.getComponent().setBackground(new java.awt.Color(200,200,200));
-                }*/
+                   
                e.getComponent().setBackground(new java.awt.Color(200,200,200));
                this.admin.user_info.setBackground(new java.awt.Color(200,200,200));
         }
-//        ImageIcon icon = new ImageIcon(getClass().getResource("/resources/icon/user_white.png"));
         this.admin.logout.setVisible(true);
-  //      this.admin.user_info.setIcon(icon);
     }
 
     @Override
@@ -196,21 +141,11 @@ public class cpanel implements ActionListener, ItemListener, MouseListener {
              }
              
              this.admin.logout.setVisible(false);
-                   // this.admin.user_info.setBackground(Color.white);
-                    
-                   
-                    
-                   // this.admin.user_info.setBackground(new java.awt.Color(200,200,200));
-            //e.getComponent().setBackground(new java.awt.Color(200,200,200));
+             
         } else if(e.getComponent().equals(this.admin.logout)){
              this.admin.user_info.setBackground(new java.awt.Color(255,255,255));
                      this.admin.logout.setVisible(false);
             e.getComponent().setBackground(new java.awt.Color(255,255,255));
         }
-     //    ImageIcon icon = new ImageIcon(getClass().getResource("/resources/icon/user.png"));
-       //   this.admin.user_info.setIcon(icon);
-                
-//         e.getComponent().setForeground(Color.black);
-       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -8,7 +8,7 @@ package view.menu;
 import java.awt.Dimension;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import view.form.admin.payroll;
+import view.form.executive.payroll;
 
 /**
  *

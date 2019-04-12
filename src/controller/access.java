@@ -51,7 +51,8 @@ public class access implements ActionListener, KeyListener{
     }
     
     private void config(){
-    this.view.getContentPane().setBackground(new Color(0.15f, 0.45f, 0.68f, 1));
+   // this.view.getContentPane().setBackground(new Color(0.15f, 0.45f, 0.68f, 1));
+       this.view.getContentPane().setBackground(new java.awt.Color(0,87,166));
     this.view.setShape(new RoundRectangle2D.Double(0, 0, this.view.getWidth(),this.view.getHeight(), 30, 30));
     this.view.password.setEchoChar('*');    
     new Placeholder("customerservice@gerenciavirtual.net",this.view.email);  
