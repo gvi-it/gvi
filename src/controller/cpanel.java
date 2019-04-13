@@ -16,9 +16,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import view.*;
 import model.*;
-import view.menu.admin;
+import view.ViewPanel;
 
 public class cpanel implements ActionListener, MouseListener {
 
@@ -27,7 +26,7 @@ public class cpanel implements ActionListener, MouseListener {
     int width = resource.getScreenSize().width;
     int heigth = resource.getScreenSize().height;
     
-    tools admin;
+    ViewPanel panel = new ViewPanel();
     JPanel ma,children;
     
     public cpanel(executive model) {
@@ -36,36 +35,27 @@ public class cpanel implements ActionListener, MouseListener {
   
             case 1:
             {
-                    
-            this.admin = new tools();           
-            this.admin.setResizable(false);
+              
+            panel.setResizable(false); panel.setTitle("CPanel");
             
-            this.admin.setTitle("CPanel");
-            
-            this.admin.getContentPane().setBackground(Color.white);
-            
-            ma = new view.menu.admin(this.admin.container);
-            
-            ma.setVisible(true);
-           
-            ma.setSize(this.admin.menu.getSize());
-            
-            children = new view.form.admin.home();
+            panel.getContentPane().setBackground(Color.white);
+                       
+            children =  new view.form.admin.home();
                
             children.setVisible(true);
 
-            children.setSize(this.admin.menu.getSize());
+            children.setSize(this.panel.menu.getSize());
                         
-            this.admin.menu.setViewportView(ma);
+            panel.menu.setViewportView(new controller.admin.menu(panel.container).getView());
                  
-            this.admin.container.setViewportView(children);
+            panel.container.setViewportView(children);
                 
-            admin.user_info.setText(model.getName()+" "+model.getLastname()+"  ");
+            panel.user_info.setText(model.getName()+" "+model.getLastname()+"  ");
             
-            admin.user_info.addMouseListener(this);
-            admin.logout.addMouseListener(this);
+            panel.user_info.addMouseListener(this);
+            panel.logout.addMouseListener(this);
             
-            admin.setVisible(true);
+            panel.setVisible(true);
            
             break;
             }
@@ -81,8 +71,8 @@ public class cpanel implements ActionListener, MouseListener {
     @Override
     public void actionPerformed(ActionEvent e) {
    
-        if(e.getSource().equals(this.admin.logout)){
-            this.admin.dispose();
+        if(e.getSource().equals(this.panel.logout)){
+            this.panel.dispose();
             new access().execute();
         }
   
@@ -97,10 +87,10 @@ public class cpanel implements ActionListener, MouseListener {
     @Override
     public void mousePressed(MouseEvent e) {
         
-       if(e.getComponent().equals(this.admin.logout)){
+       if(e.getComponent().equals(this.panel.logout)){
            
             if(JOptionPane.showConfirmDialog(null,"Deseas Cerrar Sesioin?","Warning",JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
-            this.admin.dispose();
+            this.panel.dispose();
             new access().execute();
         } 
             
@@ -117,34 +107,34 @@ public class cpanel implements ActionListener, MouseListener {
         
         System.out.println("hola mundo");
         
-        if(e.getComponent().equals(this.admin.user_info)){
+        if(e.getComponent().equals(this.panel.user_info)){
             
                     e.getComponent().setBackground(new java.awt.Color(200,200,200));
       
-        } else if(e.getComponent().equals(this.admin.logout)){
+        } else if(e.getComponent().equals(this.panel.logout)){
                    
                e.getComponent().setBackground(new java.awt.Color(200,200,200));
-               this.admin.user_info.setBackground(new java.awt.Color(200,200,200));
+               this.panel.user_info.setBackground(new java.awt.Color(200,200,200));
         }
-        this.admin.logout.setVisible(true);
+        this.panel.logout.setVisible(true);
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
 
-         if(e.getComponent().equals(this.admin.user_info)){
+         if(e.getComponent().equals(this.panel.user_info)){
                   
-             if(this.admin.logout.getBackground().equals(new java.awt.Color(200,200,200))){
+             if(this.panel.logout.getBackground().equals(new java.awt.Color(200,200,200))){
                  e.getComponent().setBackground(new java.awt.Color(200,200,200));
              } else{
                  e.getComponent().setBackground(new java.awt.Color(255,255,255));
              }
              
-             this.admin.logout.setVisible(false);
+             this.panel.logout.setVisible(false);
              
-        } else if(e.getComponent().equals(this.admin.logout)){
-             this.admin.user_info.setBackground(new java.awt.Color(255,255,255));
-                     this.admin.logout.setVisible(false);
+        } else if(e.getComponent().equals(this.panel.logout)){
+             this.panel.user_info.setBackground(new java.awt.Color(255,255,255));
+                     this.panel.logout.setVisible(false);
             e.getComponent().setBackground(new java.awt.Color(255,255,255));
         }
     }

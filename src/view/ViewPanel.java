@@ -10,9 +10,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import model.executive;
 
-public class tools extends JFrame {
+public class ViewPanel extends JFrame {
 
-    public tools(){            
+    public ViewPanel(){            
        
             initComponents();
             
@@ -144,13 +144,13 @@ public class tools extends JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(tools.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(tools.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(tools.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(tools.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -159,14 +159,20 @@ public class tools extends JFrame {
             public void run() {
                 new tools().setVisible(true);
             }
+        //</editor-fold>
+
+        /* Create and display the form */
+       /* java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new ViewPanel().setVisible(true);
+            }
         });*/
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    //public javax.swing.JScrollPane container;
     public javax.swing.JScrollPane container;
     private javax.swing.JLayeredPane jLayeredPane1;
-    private javax.swing.JLayeredPane jLayeredPane2;
+    public javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JLayeredPane jLayeredPane3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu jPopupMenu1;
