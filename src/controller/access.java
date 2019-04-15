@@ -1,46 +1,35 @@
 package controller;
 
-import java.awt.Color;
 import model.*;
 import view.*;
+import libraries.Logo;
 import libraries.FormV;
+import libraries.Session;
 import libraries.Placeholder;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.geom.RoundRectangle2D;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.HashMap;
-import java.util.Map;
-import libraries.Session;
 
 public class access implements ActionListener, KeyListener{    
     
     login view = new login();
     executive model = new executive();
     FormV form = new FormV(this.view.getContentPane());
-    String[] data; 
     Session session = new Session();
     
-    int ban;
-    
+
     public access(){
         
     this.view.btn.addActionListener(this);    
     this.view.close.addActionListener(this);
     this.view.passinfo.addActionListener(this);
+    this.view.password.addKeyListener(this);
     this.view.email.addKeyListener(this);
-    
-    //this.view.email.setText("itdepartment@gerenciavirtual.net");
-    //this.view.password.setText("123");
     
     this.config();      
     }
@@ -51,8 +40,11 @@ public class access implements ActionListener, KeyListener{
     }
     
     private void config(){
-   // this.view.getContentPane().setBackground(new Color(0.15f, 0.45f, 0.68f, 1));
-       this.view.getContentPane().setBackground(new java.awt.Color(0,87,166));
+        
+    new Logo(this.view);
+ 
+    this.view.setTitle("Gerencia Virtual - Login");
+    this.view.getContentPane().setBackground(new java.awt.Color(0,87,166));
     this.view.setShape(new RoundRectangle2D.Double(0, 0, this.view.getWidth(),this.view.getHeight(), 30, 30));
     this.view.password.setEchoChar('*');    
     new Placeholder("customerservice@gerenciavirtual.net",this.view.email);  
@@ -64,21 +56,16 @@ public class access implements ActionListener, KeyListener{
   
         if(e.getSource().equals(view.btn)) {
            
-            if(form.validate()){
-                
-                login(this.view.email.getText().toString(),this.view.password.getText().toString());
-                
-            } else {
-                JOptionPane.showMessageDialog(null,"Los campos son requeridos");
-            }
+        login(this.view.email.getText().toString(),this.view.password.getText().toString());
+            
         } else if(e.getSource().equals(this.view.passinfo)){ 
                 
-                ban++;
-                if(ban%2 == 0){
-                ban = 0;
-                this.view.password.setEchoChar('*');
+                if(this.view.password.getEchoChar() == '*'){
+                    this.view.password.setEchoChar((char)0);
+                    System.out.println("Mostrar");
                 } else {
-                this.view.password.setEchoChar((char)0);
+                    this.view.password.setEchoChar('*');
+                    System.out.println("Oculto");
                 }
             
         } else { System.exit(0); }
@@ -86,18 +73,22 @@ public class access implements ActionListener, KeyListener{
 
     @Override
     public void keyTyped(KeyEvent e) {
+      
        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-    
-        
+     
+        if(e.getKeyCode() == 10){
+        login(this.view.email.getText().toString(),this.view.password.getText().toString());    
+        }   
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-         if(session.exist(this.view.email.getText())){
+         
+        if(e.getSource().equals(this.view.email) && session.exist(this.view.email.getText())){
                try{
                    this.view.password.setText(session.data().get(this.view.email.getText()));
 //                    System.out.println(session.data().get(this.view.email.getText()));
@@ -111,36 +102,40 @@ public class access implements ActionListener, KeyListener{
     }
 
     private void login(String user, String password) {
-       
-        try {          
-        //conexion               
-        Connect_DB vgi =  new Connect_DB();
-                
-        ResultSet query = vgi.execute("SELECT * FROM executive WHERE email ='"+user+"' and password ='"+password+"'");
-                
-        //model = new executive(query.getInt("id"),query.getString("name"),query.getString("lastname"),query.getString("ext"),query.getString("email"),query.getString("password"),query.getInt("erole"));                
-                
-        if(query.next()) {
-                
-        System.out.println("Exito usuairo y password correcto");
         
-        new Session(user,password);
-                    
-        model.setId(query.getInt("id"));
-        model.setName(query.getString("name"));
-        model.setLastname(query.getString("lastname"));
-        model.setEmail(query.getString("email"));
-        model.setPassword(query.getString("password"));
-        model.setErole(query.getInt("erole"));
-       
-        this.view.dispose();
-        new cpanel(model);
+        if(form.validate()){
+            
+            try {          
+            //conexion               
+            Connect_DB vgi =  new Connect_DB();
+
+            ResultSet query = vgi.execute("SELECT * FROM executive WHERE email ='"+user+"' and password ='"+password+"'");
+
+            //model = new executive(query.getInt("id"),query.getString("name"),query.getString("lastname"),query.getString("ext"),query.getString("email"),query.getString("password"),query.getInt("erole"));                
+
+            if(query.next()) {
+
+            System.out.println("Exito usuairo y password correcto");
+
+            new Session(user,password);
+
+            model.setId(query.getInt("id"));
+            model.setName(query.getString("name"));
+            model.setLastname(query.getString("lastname"));
+            model.setEmail(query.getString("email"));
+            model.setPassword(query.getString("password"));
+            model.setErole(query.getInt("erole"));
+
+            this.view.dispose();
+            new cpanel(model);
+
+            } else {
+            JOptionPane.showMessageDialog(null,"User or Password Incorrect");
+            }  } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Server NOT FOUND");
+            System.out.println("error");
+            }
         
-        } else {
-        JOptionPane.showMessageDialog(null,"User or Password Incorrect");
-        }  } catch (SQLException ex) {
-        JOptionPane.showMessageDialog(null,"Server NOT FOUND");
-        System.out.println("error");
-        }
+        } else { JOptionPane.showMessageDialog(null,"Los campos son requeridos"); }
     }
 }

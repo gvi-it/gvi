@@ -1,5 +1,6 @@
 package controller.admin;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JPanel;
@@ -14,6 +15,8 @@ public class menu implements ActionListener {
     public menu(JScrollPane container) {
            
     this.container = container;
+    
+//    getView.setBackground(Color.);
     
     getView.setSize(container.getSize());
     
