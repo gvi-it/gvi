@@ -28,9 +28,10 @@ private String ip = "172.217.8.142"; // Ip de la máquina remota  */
     
     public void run(){
                
-        screen.setVisible(true);
+
         screen.setLocationRelativeTo(null);
         screen.getContentPane().setBackground(Color.white);
+                screen.setVisible(true);
         
                 String ip = "www.google.com";
 
@@ -79,20 +80,19 @@ private String ip = "172.217.8.142"; // Ip de la máquina remota  */
                     while ((inputLine = in.readLine()) != null)
 
             {
-                
-                try {
+                   // usando el waitfor en vez de sleep lo metemos dentro del bucle
+               
                     Thread.sleep(60);
                     screen.progress.setValue(ban);
                     ban+=10;
                     
                     if(screen.progress.getValue() == screen.progress.getMaximum()){
                         new access().execute();
-                                                screen.dispose();
+                        screen.dispose();
+                        break;
                     }
                     
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(load.class.getName()).log(Level.SEVERE, null, ex);
-                }
+               
 
                 // Muestra por pantalla cada una de las lineas que recibe
 
