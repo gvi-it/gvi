@@ -23,7 +23,11 @@ public class access implements ActionListener, KeyListener{
     Session session = new Session();
     
 
+ 
+    
     public access(){
+   
+    this.view.password.setText(session.data().get(this.view.email.getText()));
         
     this.view.btn.addActionListener(this);    
     this.view.close.addActionListener(this);
@@ -31,7 +35,7 @@ public class access implements ActionListener, KeyListener{
     this.view.password.addKeyListener(this);
     this.view.email.addKeyListener(this);
     
-    this.config();      
+    this.config();         
     }
   
     public void execute(){
@@ -99,6 +103,30 @@ public class access implements ActionListener, KeyListener{
             System.out.println("no");
         }
             
+    }
+    
+    private void check(String k,String v){
+        this.view.email.setText(k);
+        this.view.password.setText(v);
+        this.login(k, v);
+    }
+    
+    public void checkSession(){
+        
+        if(session.exist("tdepartment@gerenciavirtual.net")){
+            
+        
+        
+        session.data().forEach((k,v) -> this.check(k,v));
+        
+        } else {
+            this.execute();
+        }
+       
+       // this.view.dispose();
+       // this.login(email, password);
+
+      //  this.view.dispose();
     }
 
     private void login(String user, String password) {

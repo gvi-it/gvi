@@ -1,6 +1,7 @@
 package controller;
 
 import java.awt.Color;
+import java.awt.geom.RoundRectangle2D;
 import view.ChargingScreen;
 import java.io.BufferedReader;
 
@@ -9,7 +10,13 @@ import java.io.InputStreamReader;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BorderFactory;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
+import libraries.Logo;
+import libraries.radius;
 
 public class load {
     
@@ -19,29 +26,42 @@ private String ip = "172.217.8.142"; // Ip de la máquina remota  */
 
     public void load(){
           
-
+  
     }
     
     public void run(){
-               
-
-        screen.setLocationRelativeTo(null);
-        screen.getContentPane().setBackground(Color.white);
-                screen.setVisible(true);
+        new Logo(this.screen);
         
+       // screen.setUndecorated(true);
+        screen.setShape(new RoundRectangle2D.Double(0, 0, screen.getWidth(),screen.getHeight(), 5, 5));
+        screen.setLocationRelativeTo(null);
+        screen.getContentPane().setBackground(new Color(0,0,0,0.8f));
+        screen.setVisible(true);
+        screen.setResizable(false);
+        screen.progress.setBackground(Color.darkGray);
+        //screen.progress.setBorder(null);
+       
+        
+        //screen.progress.setBackground(Color.white);
+
                 String ip = "www.google.com";
+                           int ban = 0;
+                
+                for(int x = 0; x <= 10; x++){
+                
+                String pingResult = "";
+            
+                //en windows es -n para mandar el numero de paquetes en linux -c
+                 String pingCmd = "ping -n 1 " + ip;
+                 
+                    try
 
-        String pingResult = "";
-
-        String pingCmd = "ping -c 10 " + ip;
-
-        try
-
-        {
+                {
 
             Runtime r = Runtime.getRuntime();
 
             Process p = r.exec(pingCmd);
+            System.out.println("ok");
             
             int val;
             
@@ -56,31 +76,27 @@ private String ip = "172.217.8.142"; // Ip de la máquina remota  */
             BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
 
             String inputLine;
-            
-            int ban = 0;
-       
-                    while ((inputLine = in.readLine()) != null)
 
-            {
                    // usando el waitfor en vez de sleep lo metemos dentro del bucle
                
-                    Thread.sleep(60);
+                    Thread.sleep(100);
                     screen.progress.setValue(ban);
                     ban+=10;
                     
                     if(screen.progress.getValue() == screen.progress.getMaximum()){
-                        new access().execute();
-                        screen.dispose();
+                           screen.dispose();
+                        new access().checkSession();
+                     
                         break;
                     }
                     
 
-                System.out.println(inputLine);
+             //   System.out.println(inputLine);
                 
 
-                pingResult += inputLine;
+              //  pingResult += inputLine;
                
-            }
+            
                     
                      in.close();
        
@@ -99,5 +115,8 @@ private String ip = "172.217.8.142"; // Ip de la máquina remota  */
             System.out.println(e);
 
         }
+            
+            }
+
     }
 }

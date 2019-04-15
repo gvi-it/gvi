@@ -36,6 +36,8 @@ public class cpanel implements ActionListener, MouseListener {
             panel.getContentPane().setBackground(Color.white);
           
             panel.setLocationRelativeTo(null);
+            
+            panel.logout.setVisible(false);
                        
             children =  new view.form.admin.home();
                

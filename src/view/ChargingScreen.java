@@ -16,21 +16,23 @@ public class ChargingScreen extends javax.swing.JFrame {
         progress = new javax.swing.JProgressBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLayeredPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/gvi.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/logo_gvi.png"))); // NOI18N
         jLabel1.setToolTipText("");
-        jLayeredPane1.add(jLabel1);
-        jLabel1.setBounds(170, 60, 40, 40);
+        jLayeredPane1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 110, 120));
 
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Loading...");
-        jLayeredPane1.add(jLabel2);
-        jLabel2.setBounds(160, 110, 80, 15);
-        jLayeredPane1.add(progress);
-        progress.setBounds(120, 140, 148, 14);
+        jLayeredPane1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, 130, 20));
+        jLayeredPane1.add(progress, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 130, -1));
 
-        getContentPane().add(jLayeredPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 240));
+        getContentPane().add(jLayeredPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 270, 210));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
