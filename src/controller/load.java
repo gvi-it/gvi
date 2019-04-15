@@ -2,10 +2,6 @@ package controller;
 
 import java.awt.Color;
 import view.ChargingScreen;
-/*import java.io.IOException;
-import java.net.InetAddress;
-import java.util.logging.Level;
-import java.util.logging.Logger;*/
 import java.io.BufferedReader;
 
 import java.io.InputStreamReader;
@@ -37,15 +33,7 @@ private String ip = "172.217.8.142"; // Ip de la máquina remota  */
 
         String pingResult = "";
 
- 
-
-        // Contiene la instruccion a ejecutar...
-
-        // Esta instruccion podria ser cambiada por cualquier otra
-
         String pingCmd = "ping -c 10 " + ip;
-
- 
 
         try
 
@@ -67,16 +55,10 @@ private String ip = "172.217.8.142"; // Ip de la máquina remota  */
 
             BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
 
-           
-           
-
             String inputLine;
             
             int ban = 0;
-
-            // Bucle mientas reciba parametros del buffer
-
-                    
+       
                     while ((inputLine = in.readLine()) != null)
 
             {
@@ -92,26 +74,16 @@ private String ip = "172.217.8.142"; // Ip de la máquina remota  */
                         break;
                     }
                     
-               
-
-                // Muestra por pantalla cada una de las lineas que recibe
 
                 System.out.println(inputLine);
                 
-                
-
-                // Si deseamos capturar el resultado para posteriormente
-
-                // utilizarlo en nuestra aplicacion
 
                 pingResult += inputLine;
-                
-
+               
             }
                     
                      in.close();
-
-                    
+       
                 } else {
                     JOptionPane.showMessageDialog(null,"Sin conexion con el servidor");
                     System.exit(0);
@@ -121,48 +93,11 @@ private String ip = "172.217.8.142"; // Ip de la máquina remota  */
             } catch (InterruptedException ex) {
                 Logger.getLogger(load.class.getName()).log(Level.SEVERE, null, ex);
             }
-           
-            
-
- 
-
-           
-            
-           
-            
-           
 
         } catch (IOException e) {
 
             System.out.println(e);
 
         }
-    }/*   
-        try {
-        
-            ping = InetAddress.getByName(ip);
-                
-           if(ping.isReachable(1000)) {
-            System.out.println(ip+" - responde!");
-           
-            for(int x = 0; x <= 100; x++){
-                try {
-                    Thread.sleep(60);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(load.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                screen.progress.setValue(x);
-                
-                if(screen.progress.getValue() == 100){
-                screen.dispose();
-                new access().execute();
-                }
-            }
-            
-            }else {
-            System.out.println(ip+" - no responde!");
-            }
-        } catch (IOException ex) { System.out.println(ex); } 
-    }*/
-    
+    }
 }
