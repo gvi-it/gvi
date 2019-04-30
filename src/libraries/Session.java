@@ -32,8 +32,7 @@ public class Session {
         oos.flush();
         oos.close();
         fos.close(); 
-       // fileOne.deleteOnExit();
-        
+       // fileOne.deleteOnExit();    
        // fileOne.delete();
         
     }catch(Exception e){}     
@@ -68,6 +67,37 @@ public class Session {
     try{ 
      
     if(!this.mapInFile.isEmpty() && this.user.equals(user)){
+    this.exist = true;
+    } else {
+    this.exist = false;
+    }
+   
+    } catch(Exception em) {}
+        
+    return this.exist;    
+        
+    }
+    
+     public boolean exist(){
+    
+     try{
+         
+        File toRead= new File("data");
+        FileInputStream fis = new FileInputStream(toRead);
+        ObjectInputStream ois = new ObjectInputStream(fis);
+        
+        this.mapInFile = (HashMap<String,String>)ois.readObject();
+        
+        this.mapInFile.forEach((k,v) -> set(k,v));
+        
+        ois.close();
+        fis.close();       
+
+    }catch(Exception e){}
+
+    try{ 
+     
+    if(!this.mapInFile.isEmpty()){
     this.exist = true;
     } else {
     this.exist = false;

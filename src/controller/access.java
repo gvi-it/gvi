@@ -1,6 +1,7 @@
 package controller;
 
-import model.*;
+//import model.*;
+import hibernate.*;
 import view.*;
 import libraries.Logo;
 import libraries.FormV;
@@ -14,16 +15,19 @@ import java.awt.event.KeyListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.RoundRectangle2D;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.apache.commons.codec.digest.DigestUtils;
 
 public class access implements ActionListener, KeyListener{    
     
     login view = new login();
-    executive model = new executive();
+    Executive model = new Executive();
+    Role role = new Role();
     FormV form = new FormV(this.view.getContentPane());
     Session session = new Session();
-    
-
- 
     
     public access(){
    
@@ -113,7 +117,7 @@ public class access implements ActionListener, KeyListener{
     
     public void checkSession(){
         
-        if(session.exist("tdepartment@gerenciavirtual.net")){
+        if(session.exist()){
             
         
         
@@ -131,13 +135,19 @@ public class access implements ActionListener, KeyListener{
 
     private void login(String user, String password) {
         
+        
+        
         if(form.validate()){
             
+            String encript = DigestUtils.sha512Hex(password); 
+            
+            System.out.println(encript);
+                  
             try {          
             //conexion               
             Connect_DB vgi =  new Connect_DB();
 
-            ResultSet query = vgi.execute("SELECT * FROM executive WHERE email ='"+user+"' and password ='"+password+"'");
+            ResultSet query = vgi.execute("select * from executive inner join role on role.id = executive.role and executive.email = '"+user+"' and executive.password = '"+encript+"'");
 
             //model = new executive(query.getInt("id"),query.getString("name"),query.getString("lastname"),query.getString("ext"),query.getString("email"),query.getString("password"),query.getInt("erole"));                
 
@@ -146,13 +156,19 @@ public class access implements ActionListener, KeyListener{
             System.out.println("Exito usuairo y password correcto");
 
             new Session(user,password);
+            
+            role.setId(query.getInt("executive.role"));
+            role.setRole(query.getString("role.role"));
 
-            model.setId(query.getInt("id"));
-            model.setName(query.getString("name"));
-            model.setLastname(query.getString("lastname"));
-            model.setEmail(query.getString("email"));
-            model.setPassword(query.getString("password"));
-            model.setErole(query.getInt("erole"));
+            model.setId(query.getInt("executive.id"));
+            model.setName(query.getString("executive.name"));
+            model.setLastname(query.getString("executive.lastname"));
+            model.setEmail(query.getString("executive.email"));
+            model.setPassword(query.getString("executive.password"));
+            model.setRole(role);
+//            model.setRoleName(query.getString("role.role"));
+            
+            System.out.println(model);
 
             this.view.dispose();
             new cpanel(model);
@@ -161,7 +177,7 @@ public class access implements ActionListener, KeyListener{
             JOptionPane.showMessageDialog(null,"User or Password Incorrect");
             }  } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Server NOT FOUND");
-            System.out.println("error");
+            System.out.println(ex);
             }
         
         } else { JOptionPane.showMessageDialog(null,"Los campos son requeridos"); }

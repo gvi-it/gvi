@@ -4,7 +4,9 @@ import java.sql.*;
 //ss
 public class Connect_DB {
 
-    private String driver = "org.postgresql.Driver",server = "jdbc:postgresql://localhost/vgi?user=postgresql&password=linux-kubuntu";
+    private String postgresql = "org.postgresql.Driver",server = "jdbc:postgresql://localhost/vgi?user=postgresql&password=linux-kubuntu";
+    private String mysql = "jdbc:mysql://localhost/gvi";
+    private String user = "root", password = "";
     public Connection request = null;
     
     public Connect_DB() {
@@ -12,7 +14,7 @@ public class Connect_DB {
    // Class.forName(driver);
     
      try {
-           this.request = DriverManager.getConnection("jdbc:postgresql://localhost/vgi","postgres","linux-kubuntu");
+           this.request = DriverManager.getConnection(mysql,user,password);
              System.out.println("Connected to the PostgreSQL server successfully.");
         } catch (SQLException e) {
             System.out.println(e.getMessage());

@@ -4,9 +4,7 @@ import java.awt.Color;
 import java.awt.geom.RoundRectangle2D;
 import view.ChargingScreen;
 import java.io.BufferedReader;
-
 import java.io.InputStreamReader;
-
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,6 +15,7 @@ import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 import libraries.Logo;
 import libraries.radius;
+import javax.management.*;
 
 public class load {
     
@@ -26,11 +25,15 @@ private String ip = "172.217.8.142"; // Ip de la máquina remota  */
 
     public void load(){
           
-  
+        
     }
     
     public void run(){
+        
         new Logo(this.screen);
+        
+        String SO = System.getProperty("os.name").substring(0,7);
+        System.out.println(SO);
         
        // screen.setUndecorated(true);
         screen.setShape(new RoundRectangle2D.Double(0, 0, screen.getWidth(),screen.getHeight(), 5, 5));
@@ -52,11 +55,19 @@ private String ip = "172.217.8.142"; // Ip de la máquina remota  */
                 String pingResult = "";
             
                 //en windows es -n para mandar el numero de paquetes en linux -c
-                 String pingCmd = "ping -n 1 " + ip;
+                 String pingCmd;
+                 
+                 if(SO.equals("Windows"))
+                 {
+                     pingCmd = "ping -n 1 " + ip;
+                 } else {
+                     pingCmd = "ping -c 1 " + ip;
+                 }
                  
                     try
 
                 {
+                    
 
             Runtime r = Runtime.getRuntime();
 
@@ -85,6 +96,19 @@ private String ip = "172.217.8.142"; // Ip de la máquina remota  */
                     
                     if(screen.progress.getValue() == screen.progress.getMaximum()){
                            screen.dispose();
+                           
+                           
+/*                           String[] cmd = { "/usr/bin/notify-send",
+                "-t",
+                "10000",
+                "Sesion Iniciada",
+                "Bievenido"};
+                System.out.println("This is said : Hello OSD");
+                Runtime.getRuntime().exec(cmd);*/
+              //  Notification notification = new Notification();
+          
+                
+                           
                         new access().checkSession();
                      
                         break;

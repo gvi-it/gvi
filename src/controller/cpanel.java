@@ -8,7 +8,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import model.*;
+import hibernate.*;
 import view.ViewPanel;
 import libraries.Logo;
 
@@ -22,16 +22,16 @@ public class cpanel implements ActionListener, MouseListener {
     ViewPanel panel = new ViewPanel();
     JPanel ma,children;
     
-    public cpanel(executive model) {
+    public cpanel(Executive model) {
         
         new Logo(panel);
         
-        switch(model.getErole()) {
-  
+        switch(model.getRole().getId()) {
+       
             case 1:
             {
               
-            panel.setResizable(false); panel.setTitle("CPanel");
+            panel.setResizable(false); panel.setTitle(model.getRole().getRole());
             
             panel.getContentPane().setBackground(Color.white);
           

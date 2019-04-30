@@ -1,17 +1,18 @@
 package model;
 
 public class executive {
-
-    private int id,erole;
-    private String name,lastname,ext,email,password;
     
-    public executive(int id, String name, String lastname, String ext, String email, String password, int erole) {
+     private int id,type;
+    private String name,lastname,ext,email,password,erole;
+    
+    public executive(int id, String name, String lastname, String ext, String email, String password, String erole, int type) {
     this.id = id;
     this.name = name;
     this.lastname = lastname;
     this.email = email;
     this.password = password;
     this.erole = erole;
+    this.type = type;
     }
     
     public executive(){
@@ -22,7 +23,7 @@ public class executive {
         this.id = id;
     }
 
-    public void setErole(int erole) {
+    public void setErole(String erole) {
         this.erole = erole;
     }
 
@@ -46,13 +47,11 @@ public class executive {
         this.password = password;
     }
     
-    
-
     public int getId() {
         return id;
     }
 
-    public int getErole() {
+    public String getErole() {
         return erole;
     }
 
@@ -74,8 +73,14 @@ public class executive {
 
     public String getPassword() {
         return password;
+    } 
+
+    public int getType() {
+        return type;
     }
-    
-    
-            
+
+    public void setType(int type) {
+        this.type = type;
+    }
+   
 }
