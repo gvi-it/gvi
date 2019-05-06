@@ -61,16 +61,16 @@ public class ViewPanel extends JFrame {
         jLayeredPane2.setLayout(jLayeredPane2Layout);
         jLayeredPane2Layout.setHorizontalGroup(
             jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 558, Short.MAX_VALUE)
+            .addGap(0, 578, Short.MAX_VALUE)
         );
         jLayeredPane2Layout.setVerticalGroup(
             jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 348, Short.MAX_VALUE)
+            .addGap(0, 358, Short.MAX_VALUE)
         );
 
         container.setViewportView(jLayeredPane2);
 
-        getContentPane().add(container, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 550, 350));
+        getContentPane().add(container, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 580, 360));
 
         jLayeredPane3.setBackground(new java.awt.Color(102, 153, 255));
         jLayeredPane3.setOpaque(true);
@@ -83,12 +83,12 @@ public class ViewPanel extends JFrame {
         );
         jLayeredPane3Layout.setVerticalGroup(
             jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 358, Short.MAX_VALUE)
+            .addGap(0, 368, Short.MAX_VALUE)
         );
 
         menu.setViewportView(jLayeredPane3);
 
-        getContentPane().add(menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 240, 350));
+        getContentPane().add(menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 240, 370));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

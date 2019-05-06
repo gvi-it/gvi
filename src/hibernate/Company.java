@@ -31,6 +31,7 @@ public class Company  implements java.io.Serializable {
     }
 
     public Company(CompanyStatus companyStatus, Executive executive, Taxtation taxtation, String name, String street, String city, String state, String zipCode, String phone, Date dischargeDate, String fein, Set corporateTaxes, Set forms) {
+      
        this.companyStatus = companyStatus;
        this.executive = executive;
        this.taxtation = taxtation;
@@ -146,6 +147,7 @@ public class Company  implements java.io.Serializable {
     }
 
 
+    
 
 
 }

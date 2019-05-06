@@ -17,6 +17,8 @@ import java.awt.event.ActionListener;
 import java.awt.geom.RoundRectangle2D;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -158,20 +160,50 @@ public class access implements ActionListener, KeyListener{
             new Session(user,password);
             
             role.setId(query.getInt("executive.role"));
-            role.setRole(query.getString("role.role"));
+            role.setName(query.getString("role.name"));
+            
+            
+            Set<Executive> list = new HashSet();
+            
+         /*   Role r = new Role(query.getString("executive.name"),muser);
+                      */  
+           
 
-            model.setId(query.getInt("executive.id"));
+   /*         model.setId(query.getInt("executive.id"));
             model.setName(query.getString("executive.name"));
             model.setLastname(query.getString("executive.lastname"));
             model.setEmail(query.getString("executive.email"));
             model.setPassword(query.getString("executive.password"));
             model.setRole(role);
+            model.setListExecutives(model);*/
+   
+   
+   model = new Executive(role,query.getString("executive.name"),query.getString("executive.lastname"),query.getString("executive.email"),query.getString("executive.password"),query.getFloat("executive.salary"),query.getInt("executive.hours"));                
+            
+   model.setListExecutives(model);
+   
+            Company cm = new Company();
+            
+            cm.setCity("New York");
+            cm.setName("Salsas");
+            
+   
+             model.setCompanies(cm);
+             
+              Company ct = new Company();
+            
+            ct.setCity("Virgina");
+            ct.setName("Tacos");
+            
+   
+             model.setCompanies(ct);
+           
 //            model.setRoleName(query.getString("role.role"));
             
-            System.out.println(model);
+            System.out.println(model.getListExecutives());
 
             this.view.dispose();
-            new cpanel(model);
+            new cpanel(model.getListExecutives());
 
             } else {
             JOptionPane.showMessageDialog(null,"User or Password Incorrect");
@@ -181,5 +213,5 @@ public class access implements ActionListener, KeyListener{
             }
         
         } else { JOptionPane.showMessageDialog(null,"Los campos son requeridos"); }
-    }
+    } 
 }

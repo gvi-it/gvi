@@ -9,6 +9,9 @@ import java.awt.event.MouseListener;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import hibernate.*;
+import java.util.Set;
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
 import view.ViewPanel;
 import libraries.Logo;
 
@@ -22,16 +25,22 @@ public class cpanel implements ActionListener, MouseListener {
     ViewPanel panel = new ViewPanel();
     JPanel ma,children;
     
-    public cpanel(Executive model) {
+    public cpanel(Set n) {
         
         new Logo(panel);
         
+/*        while(model.iterator().hasNext()){
+            
+        }*/
+        
+        Executive model = (Executive) n.iterator().next();
+            
         switch(model.getRole().getId()) {
        
             case 1:
             {
               
-            panel.setResizable(false); panel.setTitle(model.getRole().getRole());
+            panel.setResizable(false); panel.setTitle(model.getRole().getName());
             
             panel.getContentPane().setBackground(Color.white);
           
@@ -40,14 +49,14 @@ public class cpanel implements ActionListener, MouseListener {
             panel.logout.setVisible(false);
                        
             children =  new view.form.admin.home();
-               
+                 
             children.setVisible(true);
 
             children.setSize(this.panel.menu.getSize());
                         
             panel.menu.setViewportView(new controller.admin.menu(panel.container).getView());
                  
-            panel.container.setViewportView(children);
+            panel.container.setViewportView(new controller.admin.homec(model).getView());
                 
             panel.user_info.setText(model.getName()+" "+model.getLastname()+"  ");
             

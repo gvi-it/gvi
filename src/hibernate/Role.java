@@ -30,11 +30,11 @@ public class Role  implements java.io.Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
-    public String getRole() {
+    public String getName() {
         return this.role;
     }
     
-    public void setRole(String role) {
+    public void setName(String role) {
         this.role = role;
     }
     public Set getExecutives() {
