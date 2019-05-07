@@ -9,6 +9,7 @@ import java.awt.event.MouseListener;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import hibernate.*;
+import java.awt.Dimension;
 import java.util.Set;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
@@ -43,7 +44,21 @@ public class cpanel implements ActionListener, MouseListener {
             panel.setResizable(false); panel.setTitle(model.getRole().getName());
             
             panel.getContentPane().setBackground(Color.white);
+           
+            panel.menu.getHorizontalScrollBar().setVisible(false);
+            
+       //     panel.getContentPane().setSize(panel.menu.getWidth()+panel.container.getWidth(),panel.menu.getHeight());
           
+         //   int posx = (int) panel.user_info.getAlignmentY()+10;
+            
+            
+          //  System.out.println(posx);
+            //panel.setSize(new Dimension(panel.menu.getWidth()+panel.container.getWidth(),panel.container.getHeight()+panel.user_info.getHeight()+posx));
+            
+//            panel.getContentPane().setPreferredSize());
+            
+            System.out.println(panel.getContentPane());
+            
             panel.setLocationRelativeTo(null);
             
             panel.logout.setVisible(false);
@@ -54,9 +69,22 @@ public class cpanel implements ActionListener, MouseListener {
 
             children.setSize(this.panel.menu.getSize());
                         
-            panel.menu.setViewportView(new controller.admin.menu(panel.container).getView());
+         //   JPanel m = new controller.admin.menu(panel.container).getView();
+        
+            
+ //           m.setSize(panel.menu.getWidth()-20,panel.menu.getHeight());
+            
+            JPanel jm = new controller.admin.menu(model,panel.container).getView(), jc = new controller.admin.homec(model).getView();
+            
+            jm.setPreferredSize(new Dimension(panel.menu.getWidth()-20,panel.menu.getHeight()-40));
+            
+            jc.setPreferredSize(new Dimension(panel.container.getWidth(),jc.getHeight()));
+            
+            //jc.setPreferredSize(new Dimension(panel.container.getWidth(),jc.getHeight()));
+            
+            panel.menu.setViewportView(jm);
                  
-            panel.container.setViewportView(new controller.admin.homec(model).getView());
+            panel.container.setViewportView(jc);
                 
             panel.user_info.setText(model.getName()+" "+model.getLastname()+"  ");
             

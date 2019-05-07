@@ -18,10 +18,9 @@ public class ViewPanel extends JFrame {
         jPopupMenu2 = new javax.swing.JPopupMenu();
         jPanel1 = new javax.swing.JPanel();
         jLayeredPane1 = new javax.swing.JLayeredPane();
-        user_info = new javax.swing.JLabel();
         logout = new javax.swing.JLabel();
         container = new javax.swing.JScrollPane();
-        jLayeredPane2 = new javax.swing.JLayeredPane();
+        user_info = new javax.swing.JLabel();
         menu = new javax.swing.JScrollPane();
         jLayeredPane3 = new javax.swing.JLayeredPane();
 
@@ -30,11 +29,23 @@ public class ViewPanel extends JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 0, -1, -1));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 46, -1, -1));
 
         jLayeredPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLayeredPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(jLayeredPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(jLayeredPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 46, -1, -1));
+
+        logout.setBackground(new java.awt.Color(255, 255, 255));
+        logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/system/baseline_exit_to_app_black_18dp.png"))); // NOI18N
+        logout.setText("Log Out");
+        logout.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        logout.setOpaque(true);
+        getContentPane().add(logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 70, 30));
+
+        container.setMinimumSize(new java.awt.Dimension(700, 450));
+        container.setPreferredSize(new java.awt.Dimension(700, 450));
+        container.setRequestFocusEnabled(false);
+        getContentPane().add(container, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 40, 600, 450));
 
         user_info.setBackground(new java.awt.Color(255, 255, 255));
         user_info.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -45,32 +56,7 @@ public class ViewPanel extends JFrame {
         user_info.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         user_info.setMaximumSize(new java.awt.Dimension(200, 36));
         user_info.setOpaque(true);
-        getContentPane().add(user_info, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 60));
-
-        logout.setBackground(new java.awt.Color(255, 255, 255));
-        logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/system/baseline_exit_to_app_black_18dp.png"))); // NOI18N
-        logout.setText("Log Out");
-        logout.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        logout.setOpaque(true);
-        getContentPane().add(logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 70, 30));
-
-        jLayeredPane2.setBackground(new java.awt.Color(255, 255, 255));
-        jLayeredPane2.setOpaque(true);
-
-        javax.swing.GroupLayout jLayeredPane2Layout = new javax.swing.GroupLayout(jLayeredPane2);
-        jLayeredPane2.setLayout(jLayeredPane2Layout);
-        jLayeredPane2Layout.setHorizontalGroup(
-            jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 578, Short.MAX_VALUE)
-        );
-        jLayeredPane2Layout.setVerticalGroup(
-            jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 358, Short.MAX_VALUE)
-        );
-
-        container.setViewportView(jLayeredPane2);
-
-        getContentPane().add(container, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 580, 360));
+        getContentPane().add(user_info, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, 40));
 
         jLayeredPane3.setBackground(new java.awt.Color(102, 153, 255));
         jLayeredPane3.setOpaque(true);
@@ -83,12 +69,12 @@ public class ViewPanel extends JFrame {
         );
         jLayeredPane3Layout.setVerticalGroup(
             jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 368, Short.MAX_VALUE)
+            .addGap(0, 431, Short.MAX_VALUE)
         );
 
         menu.setViewportView(jLayeredPane3);
 
-        getContentPane().add(menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 240, 370));
+        getContentPane().add(menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 230, 450));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -96,7 +82,6 @@ public class ViewPanel extends JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JScrollPane container;
     private javax.swing.JLayeredPane jLayeredPane1;
-    public javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JLayeredPane jLayeredPane3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu jPopupMenu1;

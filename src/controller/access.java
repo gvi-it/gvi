@@ -178,25 +178,12 @@ public class access implements ActionListener, KeyListener{
             model.setListExecutives(model);*/
    
    
-   model = new Executive(role,query.getString("executive.name"),query.getString("executive.lastname"),query.getString("executive.email"),query.getString("executive.password"),query.getFloat("executive.salary"),query.getInt("executive.hours"));                
-            
-   model.setListExecutives(model);
+            model = new Executive(role,query.getString("executive.name"),query.getString("executive.lastname"),query.getString("executive.email"),query.getString("executive.password"),query.getFloat("executive.salary"),query.getInt("executive.hours"));                
+
+            model.setId(query.getInt("executive.id"));
+            model.setListExecutives(model);
    
-            Company cm = new Company();
-            
-            cm.setCity("New York");
-            cm.setName("Salsas");
-            
-   
-             model.setCompanies(cm);
-             
-              Company ct = new Company();
-            
-            ct.setCity("Virgina");
-            ct.setName("Tacos");
-            
-   
-             model.setCompanies(ct);
+       
            
 //            model.setRoleName(query.getString("role.role"));
             

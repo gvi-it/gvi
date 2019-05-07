@@ -26,15 +26,15 @@ import javax.swing.table.DefaultTableModel;
 import view.form.admin.*;
 import model.executive;
 
-public class homec {
+public class companies {
 
-     private company content = new view.form.admin.company();
+     private home content = new view.form.admin.home();
     
-    public homec(Executive executive) {
+    public companies(Executive executive) {
         
        // Object columnas[] = {"NOMBRES","CEDULA","DIRECCION","SEXO (M/F)","HOBBIES"};
        
-     /*   try {          
+        try {          
             //conexion               
             Connect_DB vgi =  new Connect_DB();
 
