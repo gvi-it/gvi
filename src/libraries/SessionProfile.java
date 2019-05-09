@@ -9,14 +9,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class Session {
+public class SessionProfile {
     
     private HashMap<String,String> mapInFile;
     private Object data;
     private String user,password;
     private boolean exist = false;
     
-    public Session(String user, String password) {
+    public SessionProfile(String user, String password) {
     
      try{
     
@@ -39,7 +39,7 @@ public class Session {
         
     }
     
-    public Session(){}
+    public SessionProfile(){}
     
     private void set(String user, String password){
     this.user = user;

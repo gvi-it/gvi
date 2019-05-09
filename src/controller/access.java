@@ -3,9 +3,14 @@ package controller;
 //import model.*;
 import hibernate.*;
 import view.*;
+import java.util.Set;
+import java.util.HashSet;
 import libraries.Logo;
 import libraries.FormV;
-import libraries.Session;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import libraries.Gmail;
+import libraries.SessionProfile;
 import libraries.Placeholder;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,13 +20,17 @@ import java.awt.event.KeyListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.RoundRectangle2D;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.apache.commons.codec.digest.DigestUtils;
+import java.time.format.DateTimeFormatter;  
+import java.time.LocalDateTime;    
+import libraries.DateFormat;
 
 public class access implements ActionListener, KeyListener{    
     
@@ -29,7 +38,8 @@ public class access implements ActionListener, KeyListener{
     Executive model = new Executive();
     Role role = new Role();
     FormV form = new FormV(this.view.getContentPane());
-    Session session = new Session();
+    SessionProfile session = new SessionProfile();
+    String inputLine = "";
     
     public access(){
    
@@ -83,7 +93,6 @@ public class access implements ActionListener, KeyListener{
 
     @Override
     public void keyTyped(KeyEvent e) {
-      
        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -156,19 +165,17 @@ public class access implements ActionListener, KeyListener{
             if(query.next()) {
 
             System.out.println("Exito usuairo y password correcto");
-
-            new Session(user,password);
+            
+            new SessionProfile(user,password);
             
             role.setId(query.getInt("executive.role"));
             role.setName(query.getString("role.name"));
-            
-            
+             
             Set<Executive> list = new HashSet();
             
          /*   Role r = new Role(query.getString("executive.name"),muser);
                       */  
            
-
    /*         model.setId(query.getInt("executive.id"));
             model.setName(query.getString("executive.name"));
             model.setLastname(query.getString("executive.lastname"));
@@ -183,8 +190,43 @@ public class access implements ActionListener, KeyListener{
             model.setId(query.getInt("executive.id"));
             model.setListExecutives(model);
    
-       
+            DateFormat date = new DateFormat();
+            
+              BufferedReader in;
+              
+              
+                try {
+                    
+                    URL oracle = new URL("https://www.gerenciavirtual.net/index.php/message");
+            
+            
+                  
+                    
+                    in = new BufferedReader(
+                            new InputStreamReader(oracle.openStream()));
+                    
+                    String tmp; 
+                    
+                    while ((tmp = in.readLine()) != null){
+                           inputLine = inputLine + tmp;
+                    }
+                    
+                     in.close();
+                    
+                } catch (IOException ex) {
+                    Logger.getLogger(access.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                    
+                     
+               
+   
+                    System.out.println(inputLine);
            
+            
+            new Gmail(user,"Inicio de Sesión",inputLine);
+//            new Gmail("julioyoza@gerenciavirtual.net","Inicio de Sesión",model.getName()+" "+model.getLastname()+" inicio sesión el "+date.getDate()+" a las "+date.getTime());
+  //          new Gmail("fmunoz@gerenciavirtual.net","Inicio de Sesión",model.getName()+" "+model.getLastname()+" inicio sesión el "+date.getDate()+" a las "+date.getTime());
+            
 //            model.setRoleName(query.getString("role.role"));
             
             System.out.println(model.getListExecutives());
