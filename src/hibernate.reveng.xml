@@ -41,18 +41,5 @@ Contributor(s):
 -->
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="gvi"/>
-  <table-filter match-name="product"/>
-  <table-filter match-name="company"/>
-  <table-filter match-name="role"/>
-  <table-filter match-name="inventory"/>
-  <table-filter match-name="schedules"/>
-  <table-filter match-name="corporate_tax"/>
-  <table-filter match-name="provider"/>
-  <table-filter match-name="corporate_status"/>
-  <table-filter match-name="executive"/>
-  <table-filter match-name="company_status"/>
-  <table-filter match-name="taxtation"/>
-  <table-filter match-name="client"/>
-  <table-filter match-name="format"/>
-  <table-filter match-name="form"/>
+  <table-filter match-name="business_activity"/>
 </hibernate-reverse-engineering>

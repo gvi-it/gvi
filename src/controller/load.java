@@ -30,7 +30,8 @@ private String ip = "172.217.8.142"; // Ip de la máquina remota  */
     
     public void run(){
         
-        new Logo(this.screen);
+        
+        this.screen.setIconImage(new Logo().createIcon());
         
         String SO = System.getProperty("os.name").substring(0,7);
         System.out.println(SO);

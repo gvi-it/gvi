@@ -11,19 +11,24 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 public class Logo {
-
-    public Logo(JFrame window) {
     
-    File imagetmp =  new File("src/resources/icon/gvi.png");
-    Image icon;
-    
-        try {
-           
-            Image icontmp = ImageIO.read(imagetmp);
-            window.setIconImage(new ImageIcon(icontmp.getScaledInstance(30, 30, 100)).getImage());
+     public Logo() {}  
+     
+     
+     public Image createIcon(){
             
-        } catch (IOException ex) {
-            Logger.getLogger(access.class.getName()).log(Level.SEVERE, null, ex);
-        }        
-    }  
+         try {
+             Image icon;
+             
+             
+             // Image icontmp = ImageIO.read(imagetmp);
+             return new ImageIcon(ImageIO.read(new File("src/resources/icon/gvi.png")).getScaledInstance(30,30, 100)).getImage();
+         } catch (IOException ex) {
+             Logger.getLogger(Logo.class.getName()).log(Level.SEVERE, null, ex);
+         }
+        return null;
+        
+     }
+     
+    
 }

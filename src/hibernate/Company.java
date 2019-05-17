@@ -1,7 +1,6 @@
 package hibernate;
 // Generated 30-abr-2019 16:41:29 by Hibernate Tools 4.3.1
 
-
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,11 +10,11 @@ import java.util.Set;
  */
 public class Company  implements java.io.Serializable {
 
-
      private Integer id;
      private CompanyStatus companyStatus;
      private Executive executive;
      private Taxtation taxtation;
+     private BusinessActivity activity;
      private String name;
      private String street;
      private String city;
@@ -49,6 +48,14 @@ public class Company  implements java.io.Serializable {
    
     public Integer getId() {
         return this.id;
+    }
+
+    public BusinessActivity getActivity() {
+        return activity;
+    }
+
+    public void setActivity(BusinessActivity activity) {
+        this.activity = activity;
     }
     
     public void setId(Integer id) {

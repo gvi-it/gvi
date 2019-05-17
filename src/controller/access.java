@@ -20,7 +20,9 @@ import java.awt.event.KeyListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.RoundRectangle2D;
+import ds.desktop.notify.DesktopNotify;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
@@ -30,6 +32,8 @@ import java.security.NoSuchAlgorithmException;
 import org.apache.commons.codec.digest.DigestUtils;
 import java.time.format.DateTimeFormatter;  
 import java.time.LocalDateTime;    
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import libraries.DateFormat;
 
 public class access implements ActionListener, KeyListener{    
@@ -61,8 +65,9 @@ public class access implements ActionListener, KeyListener{
     
     private void config(){
         
-    new Logo(this.view);
+  //  new Logo(this.view);
  
+    this.view.setIconImage(new Logo().createIcon());
     this.view.setTitle("Gerencia Virtual - Login");
     this.view.getContentPane().setBackground(new java.awt.Color(0,87,166));
     this.view.setShape(new RoundRectangle2D.Double(0, 0, this.view.getWidth(),this.view.getHeight(), 30, 30));
@@ -195,9 +200,9 @@ public class access implements ActionListener, KeyListener{
               BufferedReader in;
               
               
-                try {
+/*                try {
                     
-                    URL oracle = new URL("https://www.gerenciavirtual.net/index.php/message");
+                    URL oracle = new URL("https://www.gerenciavirtual.net/index.php/message?user="+model.getName()+"&&date="+date.getDate()+"&&hour="+date.getTime());
             
             
                   
@@ -208,14 +213,14 @@ public class access implements ActionListener, KeyListener{
                     String tmp; 
                     
                     while ((tmp = in.readLine()) != null){
-                           inputLine = inputLine + tmp;
+                           inputLine+=tmp;
                     }
                     
                      in.close();
                     
                 } catch (IOException ex) {
                     Logger.getLogger(access.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                }*/
                     
                      
                
@@ -223,7 +228,15 @@ public class access implements ActionListener, KeyListener{
                     System.out.println(inputLine);
            
             
-            new Gmail(user,"Inicio de Sesión",inputLine);
+            //new Gmail(user,"Inicio de Sesión",inputLine);
+                try {
+                    //            DesktopNotify.showDesktopMessage("Gerencia Virtual Inc","Bienvenido "+model.getName(),DesktopNotify.INFORMATION);
+                    DesktopNotify.showDesktopMessage("Gerencia Virtual Inc","Bienvenido "+model.getName(), DesktopNotify.DEFAULT,new ImageIcon(ImageIO.read(new File("src/resources/logo_gvi.png")).getScaledInstance(200,200, 100)).getImage(), null,10000);
+                } catch (IOException ex) {
+                    Logger.getLogger(access.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            
+
 //            new Gmail("julioyoza@gerenciavirtual.net","Inicio de Sesión",model.getName()+" "+model.getLastname()+" inicio sesión el "+date.getDate()+" a las "+date.getTime());
   //          new Gmail("fmunoz@gerenciavirtual.net","Inicio de Sesión",model.getName()+" "+model.getLastname()+" inicio sesión el "+date.getDate()+" a las "+date.getTime());
             

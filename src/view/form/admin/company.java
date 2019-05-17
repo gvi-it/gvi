@@ -38,14 +38,14 @@ public class company extends javax.swing.JPanel {
 
         pane = new javax.swing.JPanel();
         inactive = new javax.swing.JProgressBar();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        LabelActive = new javax.swing.JLabel();
+        LabelInactive = new javax.swing.JLabel();
         active = new javax.swing.JProgressBar();
         slopes = new javax.swing.JProgressBar();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        LabelSlope = new javax.swing.JLabel();
+        LabelAccounting = new javax.swing.JLabel();
         inactive1 = new javax.swing.JProgressBar();
-        total = new javax.swing.JLabel();
+        general = new javax.swing.JLabel();
 
         pane.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(204, 204, 204), null));
         pane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -53,29 +53,31 @@ public class company extends javax.swing.JPanel {
         inactive.setValue(75);
         pane.add(inactive, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, 137, 23));
 
-        jLabel3.setText("Active Companies");
-        pane.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, 20));
+        LabelActive.setText("Active Companies");
+        pane.add(LabelActive, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, 20));
 
-        jLabel4.setText("Inactive Companies");
-        pane.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, -1, -1));
+        LabelInactive.setText("Inactive Companies");
+        pane.add(LabelInactive, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, -1, -1));
 
+        active.setBackground(new java.awt.Color(204, 0, 0));
+        active.setForeground(new java.awt.Color(0, 0, 0));
         active.setValue(75);
         pane.add(active, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 137, 23));
 
         slopes.setValue(75);
         pane.add(slopes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 137, 23));
 
-        jLabel5.setText("slopes");
-        pane.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, 20));
+        LabelSlope.setText("slopes");
+        pane.add(LabelSlope, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, 20));
 
-        jLabel6.setText("Annual Accounting");
-        pane.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, -1, -1));
+        LabelAccounting.setText("Annual Accounting");
+        pane.add(LabelAccounting, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, -1, -1));
 
         inactive1.setValue(75);
         pane.add(inactive1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 137, 23));
 
-        total.setText("total of companies");
-        pane.add(total, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
+        general.setText("total of companies");
+        pane.add(general, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -97,15 +99,15 @@ public class company extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JProgressBar active;
-    private javax.swing.JProgressBar inactive;
-    private javax.swing.JProgressBar inactive1;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel LabelAccounting;
+    private javax.swing.JLabel LabelActive;
+    private javax.swing.JLabel LabelInactive;
+    private javax.swing.JLabel LabelSlope;
+    public javax.swing.JProgressBar active;
+    public javax.swing.JLabel general;
+    public javax.swing.JProgressBar inactive;
+    public javax.swing.JProgressBar inactive1;
     public javax.swing.JPanel pane;
-    private javax.swing.JProgressBar slopes;
-    private javax.swing.JLabel total;
+    public javax.swing.JProgressBar slopes;
     // End of variables declaration//GEN-END:variables
 }

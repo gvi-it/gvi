@@ -24,7 +24,6 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import view.form.admin.*;
-import model.executive;
 
 public class companies {
 

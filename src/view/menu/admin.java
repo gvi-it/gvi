@@ -18,7 +18,7 @@ public class admin extends javax.swing.JPanel {
         home = new javax.swing.JButton();
         companies = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        personal = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
 
@@ -43,8 +43,8 @@ public class admin extends javax.swing.JPanel {
         });
         add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 230, 38));
 
-        jButton5.setText("Inventory");
-        add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 230, 42));
+        personal.setText("Electronic Agenda");
+        add(personal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 230, 42));
 
         jButton9.setText("Payroll Report");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -71,8 +71,8 @@ public class admin extends javax.swing.JPanel {
     public javax.swing.JButton companies;
     public javax.swing.JButton home;
     public javax.swing.JButton jButton4;
-    public javax.swing.JButton jButton5;
     public javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBox1;
+    public static javax.swing.JButton personal;
     // End of variables declaration//GEN-END:variables
 }

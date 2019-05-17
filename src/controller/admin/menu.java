@@ -5,9 +5,13 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import view.form.agenda.personal;
 import view.menu.*;
+
 
 public class menu implements ActionListener {
 
@@ -37,6 +41,7 @@ public class menu implements ActionListener {
     
     view.home.addActionListener(this);
     view.companies.addActionListener(this);
+    view.personal.addActionListener(this);
             
     }
     
@@ -57,9 +62,14 @@ public class menu implements ActionListener {
           
           tmp = new controller.admin.companies(executive).getView();   
         
-         tmp.setPreferredSize(new Dimension(container.getWidth(),tmp.getHeight()));
+             tmp.setPreferredSize(new Dimension(container.getWidth(),tmp.getHeight())); 
          
          this.container.setViewportView(tmp);
-        }      
+        } else if(e.getSource().equals(getView.personal)){
+            System.out.println("personal");
+            
+            new controller.agenda(executive);
+             
+        }     
     }   
 }

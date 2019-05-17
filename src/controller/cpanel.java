@@ -28,7 +28,7 @@ public class cpanel implements ActionListener, MouseListener {
     
     public cpanel(Set n) {
         
-        new Logo(panel);
+       
         
 /*        while(model.iterator().hasNext()){
             
@@ -41,6 +41,8 @@ public class cpanel implements ActionListener, MouseListener {
             case 1:
             {
               
+            panel.setIconImage(new Logo().createIcon());
+                
             panel.setResizable(false); panel.setTitle(model.getRole().getName());
             
             panel.getContentPane().setBackground(Color.white);

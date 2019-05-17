@@ -24,7 +24,7 @@ public class DateFormat {
     
     public String getTime(){
     
-    String dateHour;    
+    String dateHour = "";    
         
     if(now.getHour() > 12){
     
