@@ -43,12 +43,12 @@ public class personal extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
 
         setPreferredSize(new java.awt.Dimension(740, 490));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jSeparator1.setBackground(new java.awt.Color(204, 204, 204));
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jSeparator1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, -1, 490));
+        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, -1, 490));
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setForeground(new java.awt.Color(204, 204, 204));
@@ -58,7 +58,7 @@ public class personal extends javax.swing.JFrame {
         jLabel1.setText("Icon");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 80, 90));
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 90));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 90));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -73,7 +73,7 @@ public class personal extends javax.swing.JFrame {
         jTextField1.setMargin(new java.awt.Insets(5, 25, 2, 30));
         jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, 30));
 
-        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 230, 30));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 230, 30));
 
         jScrollPane1.setBorder(null);
 
@@ -88,7 +88,7 @@ public class personal extends javax.swing.JFrame {
         jList1.setFixedCellHeight(25);
         jScrollPane1.setViewportView(jList1);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 230, 370));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 230, 370));
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Contact Company", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(102, 102, 102))); // NOI18N
 
@@ -103,7 +103,7 @@ public class personal extends javax.swing.JFrame {
             .addGap(0, 157, Short.MAX_VALUE)
         );
 
-        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, 350, 180));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, 350, 180));
     }// </editor-fold>//GEN-END:initComponents
 
 

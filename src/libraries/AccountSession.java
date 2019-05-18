@@ -9,14 +9,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class SessionProfile {
+public class AccountSession {
     
     private HashMap<String,String> mapInFile;
     private Object data;
     private String user,password;
     private boolean exist = false;
+    static public boolean existing = new File("data").exists();
     
-    public SessionProfile(String user, String password) {
+    public AccountSession(String user, String password) {
     
      try{
     
@@ -39,7 +40,7 @@ public class SessionProfile {
         
     }
     
-    public SessionProfile(){}
+    public AccountSession(){}
     
     private void set(String user, String password){
     this.user = user;
@@ -67,37 +68,6 @@ public class SessionProfile {
     try{ 
      
     if(!this.mapInFile.isEmpty() && this.user.equals(user)){
-    this.exist = true;
-    } else {
-    this.exist = false;
-    }
-   
-    } catch(Exception em) {}
-        
-    return this.exist;    
-        
-    }
-    
-     public boolean exist(){
-    
-     try{
-         
-        File toRead= new File("data");
-        FileInputStream fis = new FileInputStream(toRead);
-        ObjectInputStream ois = new ObjectInputStream(fis);
-        
-        this.mapInFile = (HashMap<String,String>)ois.readObject();
-        
-        this.mapInFile.forEach((k,v) -> set(k,v));
-        
-        ois.close();
-        fis.close();       
-
-    }catch(Exception e){}
-
-    try{ 
-     
-    if(!this.mapInFile.isEmpty()){
     this.exist = true;
     } else {
     this.exist = false;

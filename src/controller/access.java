@@ -3,15 +3,16 @@ package controller;
 //import model.*;
 import hibernate.*;
 import view.*;
-import java.util.Set;
-import java.util.HashSet;
 import libraries.Logo;
 import libraries.FormV;
+import libraries.Gmail;
+import libraries.DateFormat;
+import libraries.Placeholder;
+import libraries.AccountSession;
+import java.util.Set;
+import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import libraries.Gmail;
-import libraries.SessionProfile;
-import libraries.Placeholder;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -34,7 +35,6 @@ import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;    
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import libraries.DateFormat;
 
 public class access implements ActionListener, KeyListener{    
     
@@ -42,13 +42,15 @@ public class access implements ActionListener, KeyListener{
     Executive model = new Executive();
     Role role = new Role();
     FormV form = new FormV(this.view.getContentPane());
-    SessionProfile session = new SessionProfile();
+    AccountSession session = new AccountSession();
     String inputLine = "";
     
     public access(){
    
+    if(AccountSession.existing){    
     this.view.password.setText(session.data().get(this.view.email.getText()));
-        
+    }
+    
     this.view.btn.addActionListener(this);    
     this.view.close.addActionListener(this);
     this.view.passinfo.addActionListener(this);
@@ -66,7 +68,6 @@ public class access implements ActionListener, KeyListener{
     private void config(){
         
   //  new Logo(this.view);
- 
     this.view.setIconImage(new Logo().createIcon());
     this.view.setTitle("Gerencia Virtual - Login");
     this.view.getContentPane().setBackground(new java.awt.Color(0,87,166));
@@ -133,10 +134,8 @@ public class access implements ActionListener, KeyListener{
     
     public void checkSession(){
         
-        if(session.exist()){
+        if(AccountSession.existing){
             
-        
-        
         session.data().forEach((k,v) -> this.check(k,v));
         
         } else {
@@ -171,7 +170,7 @@ public class access implements ActionListener, KeyListener{
 
             System.out.println("Exito usuairo y password correcto");
             
-            new SessionProfile(user,password);
+            new AccountSession(user,password);
             
             role.setId(query.getInt("executive.role"));
             role.setName(query.getString("role.name"));

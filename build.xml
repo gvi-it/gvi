@@ -10,6 +10,19 @@
 <project name="GVI" default="default" basedir=".">
     <description>Builds, tests, and runs the project GVI.</description>
     <import file="nbproject/build-impl.xml"/>
+    
+    <target name = "-post-jar">
+        
+        <jar jarfile="${dist.jar}" update="true">
+            <zipfileset src="C:\Users\Preinstalleduser\Documents\NetBeansProjects\gvi\dist\lib\AbsoluteLayout.jar" excludes="META-INF/*"/>
+            <zipfileset src="C:\Users\Preinstalleduser\Documents\NetBeansProjects\gvi\dist\lib\DS_Desktop_Notify.jar" excludes="META-INF/*"/>
+               <zipfileset src="C:\Users\Preinstalleduser\Documents\NetBeansProjects\gvi\dist\lib\javax.mail-1.6.2.jar" excludes="META-INF/*"/>
+            <zipfileset src="C:\Users\Preinstalleduser\Documents\NetBeansProjects\gvi\dist\lib\kotlin-runtime.jar" excludes="META-INF/*"/>
+                        <zipfileset src="C:\Users\Preinstalleduser\Documents\NetBeansProjects\gvi\dist\lib\commons-codec-1.12.jar" excludes="META-INF/*"/>
+               <zipfileset src="C:\Users\Preinstalleduser\Documents\NetBeansProjects\gvi\dist\lib\mysql-connector-java-5.1.23-bin.jar" excludes="META-INF/*"/>
+            <zipfileset src="C:\Users\Preinstalleduser\Documents\NetBeansProjects\gvi\dist\lib\postgresql-42.2.5.jar" excludes="META-INF/*"/>
+        </jar>
+    </target>
     <!--
 
     There exist several targets which are by default empty and which can be 

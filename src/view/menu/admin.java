@@ -24,16 +24,13 @@ public class admin extends javax.swing.JPanel {
 
         setMaximumSize(new java.awt.Dimension(240, 425));
         setPreferredSize(new java.awt.Dimension(240, 425));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         home.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/visibility.png"))); // NOI18N
         home.setText("Home");
         home.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         home.setIconTextGap(10);
-        add(home, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 40));
 
         companies.setText("Companies");
-        add(companies, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 230, 41));
 
         jButton4.setText("Payroll");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -41,10 +38,8 @@ public class admin extends javax.swing.JPanel {
                 jButton4ActionPerformed(evt);
             }
         });
-        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 230, 38));
 
         personal.setText("Electronic Agenda");
-        add(personal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 230, 42));
 
         jButton9.setText("Payroll Report");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -52,11 +47,38 @@ public class admin extends javax.swing.JPanel {
                 jButton9ActionPerformed(evt);
             }
         });
-        add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 230, 40));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Users", "Clients", "Executives" }));
         jComboBox1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 230, 40));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(home, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(companies, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(personal, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(home, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(companies, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(2, 2, 2)
+                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(personal, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed

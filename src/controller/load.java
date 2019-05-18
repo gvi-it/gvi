@@ -17,9 +17,10 @@ import libraries.Logo;
 import libraries.radius;
 import javax.management.*;
 
+
 public class load {
     
-private ChargingScreen screen = new ChargingScreen();     
+private ChargingScreen screen = new ChargingScreen();  
 /*private InetAddress ping;
 private String ip = "172.217.8.142"; // Ip de la máquina remota  */
 
