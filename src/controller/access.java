@@ -3,12 +3,7 @@ package controller;
 //import model.*;
 import hibernate.*;
 import view.*;
-import libraries.Logo;
-import libraries.FormV;
-import libraries.Gmail;
-import libraries.DateFormat;
-import libraries.Placeholder;
-import libraries.AccountSession;
+import libraries.*;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.logging.Level;
@@ -25,14 +20,7 @@ import ds.desktop.notify.DesktopNotify;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import org.apache.commons.codec.digest.DigestUtils;
-import java.time.format.DateTimeFormatter;  
-import java.time.LocalDateTime;    
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
@@ -99,7 +87,7 @@ public class access implements ActionListener, KeyListener{
 
     @Override
     public void keyTyped(KeyEvent e) {
-       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     
     }
 
     @Override
@@ -141,17 +129,10 @@ public class access implements ActionListener, KeyListener{
         } else {
             this.execute();
         }
-       
-       // this.view.dispose();
-       // this.login(email, password);
-
-      //  this.view.dispose();
     }
 
     private void login(String user, String password) {
-        
-        
-        
+          
         if(form.validate()){
             
             String encript = DigestUtils.sha512Hex(password); 

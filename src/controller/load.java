@@ -97,7 +97,7 @@ private String ip = "172.217.8.142"; // Ip de la máquina remota  */
                     ban+=10;
                     
                     if(screen.progress.getValue() == screen.progress.getMaximum()){
-                           screen.dispose();
+                          
                            
                            
 /*                           String[] cmd = { "/usr/bin/notify-send",
@@ -112,6 +112,7 @@ private String ip = "172.217.8.142"; // Ip de la máquina remota  */
                 
                            
                         new access().checkSession();
+                         screen.dispose();
                      
                         break;
                     }

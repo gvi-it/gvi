@@ -209,7 +209,7 @@ public class homec {
                     content.active.setBackground(Color.white);
                     content.active.setMaximum(100);
                     //content.active.setStringPainted(true);
-                    value-=20;
+                    //value-=20;
                     content.active.setValue(value);
                     content.active.setString("Total: "+company.getInt("count(id)")+" ("+value+"%)");
                      

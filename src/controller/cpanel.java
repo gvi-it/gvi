@@ -1,20 +1,18 @@
 package controller;
 
+import view.*;
+import libraries.*;
+import hibernate.*;
 import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import hibernate.*;
 import java.awt.Dimension;
 import java.util.Set;
-import java.util.Vector;
-import javax.swing.table.DefaultTableModel;
-import view.ViewPanel;
-import libraries.Logo;
 
 public class cpanel implements ActionListener, MouseListener {
 
@@ -27,9 +25,7 @@ public class cpanel implements ActionListener, MouseListener {
     JPanel ma,children;
     
     public cpanel(Set n) {
-        
-       
-        
+
 /*        while(model.iterator().hasNext()){
             
         }*/
@@ -46,22 +42,10 @@ public class cpanel implements ActionListener, MouseListener {
             panel.setResizable(false); panel.setTitle(model.getRole().getName());
             
             panel.getContentPane().setBackground(Color.white);
-           
-            panel.menu.getHorizontalScrollBar().setVisible(false);
-            
-       //     panel.getContentPane().setSize(panel.menu.getWidth()+panel.container.getWidth(),panel.menu.getHeight());
-          
-         //   int posx = (int) panel.user_info.getAlignmentY()+10;
-            
-            
-          //  System.out.println(posx);
-            //panel.setSize(new Dimension(panel.menu.getWidth()+panel.container.getWidth(),panel.container.getHeight()+panel.user_info.getHeight()+posx));
-            
-//            panel.getContentPane().setPreferredSize());
-            
-            System.out.println(panel.getContentPane());
-            
+
             panel.setLocationRelativeTo(null);
+            
+            panel.menu.getHorizontalScrollBar().setVisible(false);
             
             panel.logout.setVisible(false);
                        
@@ -71,18 +55,11 @@ public class cpanel implements ActionListener, MouseListener {
 
             children.setSize(this.panel.menu.getSize());
                         
-         //   JPanel m = new controller.admin.menu(panel.container).getView();
-        
-            
- //           m.setSize(panel.menu.getWidth()-20,panel.menu.getHeight());
-            
             JPanel jm = new controller.admin.menu(model,panel.container).getView(), jc = new controller.admin.homec(model).getView();
             
             jm.setPreferredSize(new Dimension(panel.menu.getWidth()-20,panel.menu.getHeight()-40));
             
-            jc.setPreferredSize(new Dimension(panel.container.getWidth(),jc.getHeight()));
-            
-            //jc.setPreferredSize(new Dimension(panel.container.getWidth(),jc.getHeight()));
+           // jc.setPreferredSize(new Dimension(panel.container.getWidth(),jc.getHeight()));
             
             panel.menu.setViewportView(jm);
                  
@@ -97,8 +74,7 @@ public class cpanel implements ActionListener, MouseListener {
            
             break;
             }
-
-            
+  
             default :{
                 System.out.println("cerrar en default");
             System.exit(0);
@@ -112,10 +88,8 @@ public class cpanel implements ActionListener, MouseListener {
         if(e.getSource().equals(this.panel.logout)){
             this.panel.dispose();
             new access().execute();
-        }
-  
+        }  
     }
-
 
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -130,14 +104,13 @@ public class cpanel implements ActionListener, MouseListener {
             if(JOptionPane.showConfirmDialog(null,"Deseas Cerrar Sesioin?","Warning",JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
             this.panel.dispose();
             new access().execute();
-        } 
-            
-       }
+            } 
+        }
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-    //    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+  
     }
 
     @Override

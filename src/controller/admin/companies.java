@@ -41,8 +41,6 @@ public class companies {
             
             ResultSetMetaData MetaData =query.getMetaData();
             
-           
-            
              DefaultTableModel modelo = new DefaultTableModel(){ public boolean isCellEditable(int rowIndex, int columnIndex) {
                if(columnIndex == 0){
                return true;    

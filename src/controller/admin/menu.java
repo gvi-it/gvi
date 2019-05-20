@@ -5,10 +5,14 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
 import java.awt.event.WindowEvent;
+import javax.swing.DefaultListSelectionModel;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import libraries.SetRange;
 import view.form.agenda.personal;
 import view.menu.*;
 
@@ -42,7 +46,9 @@ public class menu implements ActionListener {
     view.home.addActionListener(this);
     view.companies.addActionListener(this);
     view.personal.addActionListener(this);
-            
+
+    view.dropdownmenu.addActionListener(this);
+          
     }
     
     public JPanel getView(){ return getView; }
@@ -54,7 +60,7 @@ public class menu implements ActionListener {
        
          tmp = new controller.admin.homec(executive).getView();   
         
-         tmp.setPreferredSize(new Dimension(container.getWidth(),tmp.getHeight()));
+         tmp.setPreferredSize(new Dimension(tmp.getSize()));
          
          this.container.setViewportView(tmp);
          
@@ -62,14 +68,60 @@ public class menu implements ActionListener {
           
           tmp = new controller.admin.companies(executive).getView();   
         
-             tmp.setPreferredSize(new Dimension(container.getWidth(),tmp.getHeight())); 
+             tmp.setPreferredSize(new Dimension(tmp.getSize())); 
          
-         this.container.setViewportView(tmp);
+            this.container.setViewportView(tmp);
         } else if(e.getSource().equals(getView.personal)){
             System.out.println("personal");
             
-            new controller.agenda(executive);
-             
-        }     
+            new controller.agenda(executive);     
+        } else if(e.getSource().equals(getView.dropdownmenu)){
+            
+          
+
+         // new SetRange(getView.dropdownmenu);
+          SelectedIndex(getView.dropdownmenu.getSelectedIndex());  
+          
+          
+          
+          /*
+          
+          public DisabledItem(JComboBox tmp){
+          
+          for(int x = 0; x < tmp.getItemCount(); x++){
+                    
+          }
+          
+          */
+          
+        }
+        
     }   
+
+    private void SelectedIndex(int option) {
+        
+        switch(option){
+            
+            case 0:{
+                break;
+            }
+            
+            case 1:{
+            break;    
+            }
+            
+            case 2:{
+              
+             tmp = new controller.admin.executives().getView();   
+        
+             tmp.setPreferredSize(new Dimension(tmp.getWidth(),tmp.getHeight())); 
+             
+             this.container.setViewportView(tmp);
+        
+            break;    
+            }
+            
+        }
+      
+    }
 }

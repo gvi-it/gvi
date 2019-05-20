@@ -20,7 +20,7 @@ public class admin extends javax.swing.JPanel {
         jButton4 = new javax.swing.JButton();
         personal = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        dropdownmenu = new javax.swing.JComboBox<>();
 
         setMaximumSize(new java.awt.Dimension(240, 425));
         setPreferredSize(new java.awt.Dimension(240, 425));
@@ -48,8 +48,13 @@ public class admin extends javax.swing.JPanel {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Users", "Clients", "Executives" }));
-        jComboBox1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        dropdownmenu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Users", "Clients", "Executives" }));
+        dropdownmenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        dropdownmenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dropdownmenuActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -59,7 +64,7 @@ public class admin extends javax.swing.JPanel {
             .addComponent(companies, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(dropdownmenu, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(personal, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
@@ -76,7 +81,7 @@ public class admin extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(40, 40, 40)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(dropdownmenu, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(personal, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -89,12 +94,16 @@ public class admin extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void dropdownmenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dropdownmenuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dropdownmenuActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton companies;
+    public javax.swing.JComboBox<String> dropdownmenu;
     public javax.swing.JButton home;
     public javax.swing.JButton jButton4;
     public javax.swing.JButton jButton9;
-    private javax.swing.JComboBox<String> jComboBox1;
     public static javax.swing.JButton personal;
     // End of variables declaration//GEN-END:variables
 }
