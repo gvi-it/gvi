@@ -10,7 +10,7 @@ package controller.admin;
  * @author Preinstalleduser
  */
 
-import controller.Connect_DB;
+import controller.DataBase;
 import hibernate.Company;
 import hibernate.Executive;
 import java.sql.ResultSet;
@@ -35,7 +35,7 @@ public class companies {
        
         try {          
             //conexion               
-            Connect_DB vgi =  new Connect_DB();
+            DataBase vgi =  new DataBase();
 
             ResultSet query = vgi.execute("select name,city,type as status from company inner join company_status on company_status.id = company.status and executive = "+executive.getId());
             

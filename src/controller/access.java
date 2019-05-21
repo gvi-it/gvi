@@ -141,7 +141,7 @@ public class access implements ActionListener, KeyListener{
                   
             try {          
             //conexion               
-            Connect_DB vgi =  new Connect_DB();
+            DataBase vgi =  new DataBase();
 
             ResultSet query = vgi.execute("select * from executive inner join role on role.id = executive.role and executive.email = '"+user+"' and executive.password = '"+encript+"'");
 

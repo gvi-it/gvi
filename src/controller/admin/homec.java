@@ -10,7 +10,7 @@ package controller.admin;
  * @author Preinstalleduser
  */
 
-import controller.Connect_DB;
+import controller.DataBase;
 import hibernate.Company;
 import hibernate.Executive;
 import java.awt.Color;
@@ -30,11 +30,11 @@ import view.form.admin.*;
 
 public class homec {
 
-     private company content = new view.form.admin.company();
+     private ListCompanies content = new view.form.admin.ListCompanies();
     
     public homec(Executive executive) {
         
-         Connect_DB gvi =  new Connect_DB();
+         DataBase gvi =  new DataBase();
 
             ResultSet query = gvi.execute("SELECT id FROM company_status ");
 
@@ -45,7 +45,7 @@ public class homec {
                  
             ResultSet company = gvi.execute("select count(id) from company where status ="+query.getInt("id"));
             
-         //   company.next();
+         //   ListCompanies.next();
             
             this.setPercentage(query.getInt("id"),company);
                  
@@ -56,9 +56,9 @@ public class homec {
              
              /*   try {
              //conexion
-             Connect_DB vgi =  new Connect_DB();
+             DataBase vgi =  new DataBase();
              
-             ResultSet query = vgi.execute("select name,city,type as status from company inner join company_status on company_status.id = company.status and executive = "+executive.getId());
+             ResultSet query = vgi.execute("select name,city,type as status from ListCompanies inner join company_status on company_status.id = ListCompanies.status and executive = "+executive.getId());
              
              ResultSetMetaData MetaData =query.getMetaData();
              
@@ -185,7 +185,7 @@ public class homec {
          try {
               
              
-            Connect_DB gvi =  new Connect_DB();
+            DataBase gvi =  new DataBase();
 
             ResultSet general = gvi.execute("SELECT count(id) FROM company_status");
             

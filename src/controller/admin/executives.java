@@ -1,11 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller.admin;
 
-import controller.Connect_DB;
+import controller.DataBase;
+import ds.desktop.notify.DesktopNotify;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -16,39 +13,49 @@ import javax.swing.DefaultCellEditor;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import view.form.admin.executive;
+import javax.swing.table.TableColumnModel;
+import libraries.TableSQL;
+import view.form.admin.ListExecutives;
 
-/**
- *
- * @author Preinstalleduser
- */
 public class executives implements ActionListener{
 
-    private executive content = new executive();
+    private ListExecutives content = new ListExecutives();
     
     public executives() {
         
           content.toregister.addActionListener(this);
-        
+             
           try {          
             //conexion               
-            Connect_DB vgi =  new Connect_DB();
+            DataBase vgi =  new DataBase();
 
-            ResultSet query = vgi.execute(" select executive.id as id,executive.name as name,executive.lastname as lastname ,role.name as role from executive inner join role on role.id = executive.role");
+            ResultSet query = vgi.execute("select executive.id as id,executive.name as name,executive.lastname as lastname ,role.name as role from executive inner join role on role.id = executive.role");
             
-            ResultSetMetaData MetaData =query.getMetaData();
+           // ResultSetMetaData MetaData = query.getMetaData();
             
-             DefaultTableModel modelo = new DefaultTableModel(){ public boolean isCellEditable(int rowIndex, int columnIndex) {
-               if(columnIndex == 0){
-               return true;    
-               } else {
-               return false;    
-               }
-            }};
+            TableSQL table = new TableSQL(content.jTable.getPreferredSize());
             
+            table.Model(query,TableSQL.DEFAULT);
             
-           
+            int[] widthCell = {5,5,80,120,120,30};
+            
+            table.AdjustCell(widthCell);
+            
+            content.jTable.setModel(table.getView().getModel());
+            
+            //table.Model(query,TableSQL.DEFAULT);
+         
+            
+            /*
+            DefaultTableModel modelo = new DefaultTableModel(){
+                
+               @Override
+               public boolean isCellEditable(int rowIndex, int columnIndex) { return (columnIndex == 0) ? true : false; }
+            
+            };
+                        
             // Se obtiene el número de columnas.
             int numeroColumnas = MetaData.getColumnCount()+1;
 
@@ -58,100 +65,86 @@ public class executives implements ActionListener{
             etiquetas[0] = " ";
 
             // Se obtiene cada una de las etiquetas para cada columna
-            for (int i = 1; i < numeroColumnas; i++)
-            {
+            for (int i = 1; i < numeroColumnas; i++) {
             // Nuevamente, para ResultSetMetaData la primera columna es la 1. 
-            etiquetas[i] = MetaData.getColumnLabel(i).toUpperCase();
-                
-               
+            etiquetas[i] = MetaData.getColumnLabel(i).toUpperCase(); 
             }
             
-               modelo.setColumnIdentifiers(etiquetas);
+                modelo.setColumnIdentifiers(etiquetas);
                
                 content.jTable.setModel(modelo);
                 
                 content.jTable.setSize(100,5);
                 
+                int[] widthCell = {5,5,80,120,150};
                 
-               
-
-            
+                this.AdjustCells(content.jTable,widthCell);
+                
             while(query.next()){
                 
-                
                 Object[] data = new Object[numeroColumnas];
-                
-                //System.out.println(query.getString(1));
-                
-            //        data[0] = new JCheckBox();
                   
-                 content.jTable.getColumnModel().getColumn(0).setCellEditor(new DefaultCellEditor(new JCheckBox()));
+                content.jTable.getColumnModel().getColumn(0).setCellEditor(new DefaultCellEditor(new JCheckBox()));
                 
-                 for (int i = 1; i < numeroColumnas; i++){
-                
-//                     System.out.println("result "+query.getObject(i));
-                     data[i] = query.getObject(etiquetas[i].toString());
-                     
-                     
-                     
-                    
-                 }
-                
-                
+                for (int i = 1; i < numeroColumnas; i++) {             
+                data[i] = query.getObject(etiquetas[i].toString());    
+                }
+                 
                 modelo.addRow(data);
                 
-                modelo.fireTableDataChanged();
-                
-            }
-           
-            
-         
-            
-          //  modelo.fireTableDataChanged();
-            
-  
-            
-          
-            
-            //model = new executive(query.getInt("id"),query.getString("name"),query.getString("lastname"),query.getString("ext"),query.getString("email"),query.getString("password"),query.getInt("erole"));                
- 
-        } catch(SQLException e){
-            
-            
-            
-        }
-        
+                modelo.fireTableDataChanged();   
+            }*/
+
+        } catch(SQLException e){ }  
     }
     
-      public JPanel getView(){ return content; }
+     public JPanel getView(){ return content; }
+     
+     private void AdjustCells(JTable table, int[] WidthCell){
+         
+    TableColumnModel row = table.getColumnModel();
+    
+    for(int x = 0; x < WidthCell.length; x++) {
+    
+    row.getColumn(x).setPreferredWidth(WidthCell[x]);
+         
+    }
+    
+    table.setColumnModel(row);
+    
+     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         
         if(e.getSource().equals(content.toregister)){
+            
             JFrame window = new view.form.admin.addExecutive();
-           window.setSize(window.getPreferredSize());
+            
+            ListExecutives.toregister.setEnabled(false);
+    
+            window.setSize(window.getPreferredSize());
               
-    window.setTitle("New Executive");
-      
-     window.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-            
-    window.setResizable(false);
-            
-    window.setLocationRelativeTo(null);
-            
-        window.addWindowListener(new java.awt.event.WindowAdapter() {
+            window.setTitle("New Executive");
 
-            @Override
-            public void windowClosing(WindowEvent e) {
+             window.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-                view.menu.admin.personal.setEnabled(true);
+            window.setResizable(false);
+
+            window.setLocationRelativeTo(null);
+            
+            window.addWindowListener(new java.awt.event.WindowAdapter() {
+
+                @Override
+                public void windowClosing(WindowEvent e) {
+
+                 ListExecutives.toregister.setEnabled(true);
                 super.windowClosing(e); //To change body of generated methods, choose Tools | Templates.
-            }
-        });
-          
-    window.setVisible(true);  
+                }
+            });
+            
+        window.setVisible(true);  
+        
         }
     }
-     
 }

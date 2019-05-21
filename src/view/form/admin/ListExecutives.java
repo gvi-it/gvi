@@ -9,12 +9,12 @@ package view.form.admin;
  *
  * @author Preinstalleduser
  */
-public class executive extends javax.swing.JPanel {
+public class ListExecutives extends javax.swing.JPanel {
 
     /**
      * Creates new form executive
      */
-    public executive() {
+    public ListExecutives() {
         initComponents();
     }
 
@@ -124,6 +124,6 @@ public class executive extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTable jTable;
     private javax.swing.JTextField jTextField1;
-    public javax.swing.JButton toregister;
+    public static javax.swing.JButton toregister;
     // End of variables declaration//GEN-END:variables
 }
