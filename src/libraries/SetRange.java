@@ -31,7 +31,7 @@ public class SetRange {
    model.setSelectionInterval(x,tmp.getItemCount());
     
         EnabledJComboBoxRenderer enableRenderer = new EnabledJComboBoxRenderer(model);
-        tmp.setRenderer(enableRenderer);
+        //tmp.setRenderer(enableRenderer);
    
     
 }

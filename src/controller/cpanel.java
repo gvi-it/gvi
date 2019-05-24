@@ -1,5 +1,6 @@
 package controller;
 
+import ds.desktop.notify.DesktopNotify;
 import view.*;
 import libraries.*;
 import hibernate.*;
@@ -12,7 +13,13 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import java.awt.Dimension;
+import java.io.File;
+import java.io.IOException;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 public class cpanel implements ActionListener, MouseListener {
 
@@ -31,9 +38,9 @@ public class cpanel implements ActionListener, MouseListener {
         }*/
         
         Executive model = (Executive) n.iterator().next();
-            
+            System.out.println(model.getRole().getId());
         switch(model.getRole().getId()) {
-       
+            
             case 1:
             {
               
@@ -71,15 +78,33 @@ public class cpanel implements ActionListener, MouseListener {
             panel.logout.addMouseListener(this);
             
             panel.setVisible(true);
+            
+            this.message(model);
            
             break;
             }
   
-            default :{
-                System.out.println("cerrar en default");
-            System.exit(0);
+            default :
+            {
+            
+            if(AccountSession.File.delete()) {
+                new access().checkSession();
+                JOptionPane.showMessageDialog(panel,"The user exists but has not assigned a role, please contact the IT department.","Problem with account",JOptionPane.WARNING_MESSAGE);
+            } else{
+                System.exit(0);
             }
-        }    
+            break;
+            }
+        }     
+    }
+    
+    private void message(Executive model){
+        try {
+                    //            DesktopNotify.showDesktopMessage("Gerencia Virtual Inc","Bienvenido "+model.getName(),DesktopNotify.INFORMATION);
+            DesktopNotify.showDesktopMessage("Gerencia Virtual Inc","Bienvenido "+model.getName(), DesktopNotify.DEFAULT,new ImageIcon(ImageIO.read(new File("src/resources/logo_gvi.png")).getScaledInstance(200,200, 100)).getImage(), null,10000);
+            } catch (IOException ex) {
+            Logger.getLogger(access.class.getName()).log(Level.SEVERE, null, ex);
+        } 
     }
 
     @Override

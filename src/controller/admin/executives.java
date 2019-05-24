@@ -14,12 +14,14 @@ import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import libraries.TableSQL;
 import view.form.admin.ListExecutives;
 
-public class executives implements ActionListener{
+public class executives implements ActionListener, ListSelectionListener{
 
     private ListExecutives content = new ListExecutives();
     
@@ -39,11 +41,17 @@ public class executives implements ActionListener{
             
             table.Model(query,TableSQL.DEFAULT);
             
-            int[] widthCell = {5,5,80,120,120,30};
+            int[] widthCell = {2,3,80,140,120,5};
             
             table.AdjustCell(widthCell);
             
-            content.jTable.setModel(table.getView().getModel());
+            table.TransferModel(content.jTable);
+            
+            content.jTable.getSelectionModel().addListSelectionListener(this);
+            
+            
+            
+           // content.jTable.getColumnModel().getColumn(0).setCellEditor(new DefaultCellEditor(new JCheckBox()));
             
             //table.Model(query,TableSQL.DEFAULT);
          
@@ -147,4 +155,10 @@ public class executives implements ActionListener{
         
         }
     }
+
+    @Override
+    public void valueChanged(ListSelectionEvent e) {
+    System.out.println(content.jTable.getValueAt(content.jTable.getSelectedRow(), 0).toString());
+    }
+
 }

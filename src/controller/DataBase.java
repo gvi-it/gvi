@@ -1,29 +1,25 @@
 package controller;
 
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-//ss
+
 public class DataBase {
 
-    private String postgresql = "org.postgresql.Driver",server = "jdbc:postgresql://192.168.77.70/vgi?user=postgresql&password=linux-kubuntu";
-    private String mysql = "jdbc:mysql://192.168.77.70:3306/gvi";
+    private String ip = "192.168.77.101:3306", local = "localhost";
+    private String postgresql = "org.postgresql.Driver",server = "jdbc:postgresql://192.168.77.71/vgi?user=postgresql&password=linux-kubuntu";
+    private String mysql = "jdbc:mysql://"+ip+"/gvi";
     private String user = "root", password = "senha root";
     public Connection request = null;
     
     public DataBase() {
 
-    try {
+        try {
          
-         try { 
-             Class.forName("com.mysql.jdbc.Driver");
-         } catch (ClassNotFoundException ex) {
-             Logger.getLogger(DataBase.class.getName()).log(Level.SEVERE, null, ex);
-         }
-           this.request = DriverManager.getConnection(mysql,user,password);
-             System.out.println("Connected to the MySQL server successfully.");
-        } catch (SQLException e) {
+        Class.forName("com.mysql.jdbc.Driver");
+        request = DriverManager.getConnection(mysql,user,password);
+        System.out.println("Connected to the MySQL server successfully.");
+    
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
            JOptionPane.showMessageDialog(null,"Service not started");
         System.exit(0);

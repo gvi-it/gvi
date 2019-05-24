@@ -8,142 +8,63 @@ import java.io.InputStreamReader;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.BorderFactory;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.UIManager;
-import javax.swing.UIManager.LookAndFeelInfo;
 import libraries.Logo;
-import libraries.radius;
-import javax.management.*;
-
 
 public class load {
     
-private ChargingScreen screen = new ChargingScreen();  
-/*private InetAddress ping;
-private String ip = "172.217.8.142"; // Ip de la máquina remota  */
+private final ChargingScreen screen = new ChargingScreen();  
+private final String server = "192.168.77.101"; // Ip de la máquina remota 
+private final String SO = System.getProperty("os.name").substring(0,7);
+private String pingCmd;
+private int count;
 
-    public void load(){
-          
-        
-    }
+    public void load(){ }
     
     public void run(){
-        
-        
-        this.screen.setIconImage(new Logo().createIcon());
-        
-        String SO = System.getProperty("os.name").substring(0,7);
-        System.out.println(SO);
-        
-       // screen.setUndecorated(true);
+     
+        screen.setIconImage(new Logo().createIcon());
         screen.setShape(new RoundRectangle2D.Double(0, 0, screen.getWidth(),screen.getHeight(), 5, 5));
         screen.setLocationRelativeTo(null);
         screen.getContentPane().setBackground(new Color(0,0,0,0.8f));
         screen.setVisible(true);
         screen.setResizable(false);
         screen.progress.setBackground(Color.darkGray);
-        //screen.progress.setBorder(null);
-       
+        //en windows es -n para mandar el numero de paquetes en linux -c
+        pingCmd = ("Windows".equals(SO)) ? "ping -n 1 " : "ping -c 1 ";        
         
-        //screen.progress.setBackground(Color.white);
+        for(int x = 0; x <= 10; x++) {
+         
+            try { // preparamos el proceso de ping hacia el servidor
+                  Process p = Runtime.getRuntime().exec(pingCmd+server);
 
-                String ip = "www.google.com";
-                           int ban = 0;
-                
-                for(int x = 0; x <= 10; x++){
-                
-                String pingResult = "";
-            
-                //en windows es -n para mandar el numero de paquetes en linux -c
-                 String pingCmd;
-                 
-                 if(SO.equals("Windows"))
-                 {
-                     pingCmd = "ping -n 1 " + ip;
-                 } else {
-                     pingCmd = "ping -c 1 " + ip;
-                 }
-                 
-                    try
+                try { // usando el waitfor en vez de sleep lo metemos dentro del bucle
+                    int val = p.waitFor();
 
-                {
-                    
-
-            Runtime r = Runtime.getRuntime();
-
-            Process p = r.exec(pingCmd);
-            System.out.println("ok");
-            
-            int val;
-            
-            try {
-                val = p.waitFor();
-                boolean reachable = (val == 0);
-                
-                if(reachable){
-                    
-                     // Inicializa el lector del buffer
-
-            BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
-
-            String inputLine;
-
-                   // usando el waitfor en vez de sleep lo metemos dentro del bucle
-               
-                    Thread.sleep(100);
-                    screen.progress.setValue(ban);
-                    ban+=10;
-                    
-                    if(screen.progress.getValue() == screen.progress.getMaximum()){
-                          
+                    if(val == 0) {
+                        // Inicializa el lector del buffer
+                        try (BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()))) {
                            
-                           
-/*                           String[] cmd = { "/usr/bin/notify-send",
-                "-t",
-                "10000",
-                "Sesion Iniciada",
-                "Bievenido"};
-                System.out.println("This is said : Hello OSD");
-                Runtime.getRuntime().exec(cmd);*/
-              //  Notification notification = new Notification();
-          
-                
-                           
-                        new access().checkSession();
-                         screen.dispose();
-                     
-                        break;
+                            Thread.sleep(100);
+                            screen.progress.setValue(count);
+                            count+=10;
+
+                            if(screen.progress.getValue() == screen.progress.getMaximum()) {
+
+                                new access().checkSession();
+                                screen.dispose();
+                                break;
+                            }
+                        }
+
+                    } else {
+                        JOptionPane.showMessageDialog(null,"Sin conexion con el servidor");
+                        System.exit(0);
                     }
                     
-
-             //   System.out.println(inputLine);
+                } catch (InterruptedException ex) { Logger.getLogger(load.class.getName()).log(Level.SEVERE, null, ex); }
                 
-
-              //  pingResult += inputLine;
-               
-            
-                    
-                     in.close();
-       
-                } else {
-                    JOptionPane.showMessageDialog(null,"Sin conexion con el servidor");
-                    System.exit(0);
-                }
-                
-                System.out.println(reachable);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(load.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-        } catch (IOException e) {
-
-            System.out.println(e);
-
+            } catch (IOException e) { System.out.println(e); }         
         }
-            
-            }
-
     }
 }

@@ -1,32 +1,30 @@
 package libraries;
 
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.util.ResourceBundle.Control;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
-import javax.swing.table.TableModel;
-import javax.tools.DocumentationTool.Location;
 
 public class TableSQL {
 
     private ResultSet SQL = null;
   //  private DefaultTableModel model;
-    private JTable Table;
+    private JTable Table,SecondTable;
     public static final Boolean DEFAULT = true;
     public static final Boolean ONLY_SELECTABLE = false;
     private Point point;
     private Dimension dimension;
+    private int[] dimen;
     
     public TableSQL(Dimension size, Point point){  this.dimension = size; this.point = point; }
     
@@ -46,33 +44,44 @@ public class TableSQL {
     
     DefaultTableModel modelo;
     
-    Object[] etiquetas;
+    String[] etiquetas;
     
         if(Model){
 
-         etiquetas = new Object[last+2];    
-
-         etiquetas[first] = "@";
+         //etiquetas = new Object[last+2];    
+        etiquetas = new String[last+2];
+        etiquetas[first] = "@";
         etiquetas[last+1] = "Tools";
         
         int lastt = last+1;
 
-        etiquetas = this.setLabels(etiquetas, MetaData,1);
+        etiquetas = this.setLabels(etiquetas, MetaData,2);
 
             modelo = new DefaultTableModel(){
 
                    @Override
                    public boolean isCellEditable(int rowIndex, int columnIndex) { return (columnIndex == first || columnIndex == lastt);  }
 
+                   public Class<?> getColumnClass(int column){
+                       
+                       switch(column){
+                           
+                           case 0: return Boolean.class;
+                           
+                           default: return String.class;
+                       }
+                      
+                   }
+                   
                  };      
          } else  {
 
 
-          etiquetas = new Object[last+1];    
-
+        //  etiquetas = new Object[last+1];    
+          etiquetas = new String[last+1];
           etiquetas[first] = "@";
 
-          etiquetas = this.setLabels(etiquetas, MetaData, 0);
+          etiquetas = this.setLabels(etiquetas, MetaData, 1);
 
            int lastt = last+1;
             modelo = new DefaultTableModel(){
@@ -92,7 +101,7 @@ public class TableSQL {
                 Object[] data = new Object[etiquetas.length];
                 System.out.println(data.length);
                   
-                Table.getColumnModel().getColumn(0).setCellEditor(new DefaultCellEditor(new JCheckBox()));
+               
                 
                 for (int i = 1; i <= last; i++) {   
                     System.out.println(etiquetas[i]+" pos: "+i);
@@ -106,19 +115,20 @@ public class TableSQL {
                 }
                   
                 modelo.addRow(data);
-
-                
                 modelo.fireTableDataChanged();   
+                
             }
     }
     
     public JTable getView() { return Table; }
-    
+       
     public void AdjustCell(int[] WidthCell){ this.AdjustCells(Table, WidthCell); }
     
     private void AdjustCells(JTable table, int[] WidthCell){
          
     TableColumnModel row = table.getColumnModel();
+    
+    this.dimen = WidthCell;
     
     for(int x = 0; x < WidthCell.length; x++) {
     
@@ -130,10 +140,10 @@ public class TableSQL {
     
     }
     
-    private Object[] setLabels(Object[] etiquetas, ResultSetMetaData MetaData, int Decrement){
-        
+    private String[] setLabels(String[] etiquetas, ResultSetMetaData MetaData, int Decrement){
+            
         // Se obtiene cada una de las etiquetas para cada columna
-            for (int i = 1; i < etiquetas.length-Decrement; i++) {
+            for (int i = 1; i <= etiquetas.length-Decrement; i++) {
                 try {
                     // Nuevamente, para ResultSetMetaData la primera columna es la 1.
                     etiquetas[i] = MetaData.getColumnLabel(i).toUpperCase();
@@ -142,13 +152,6 @@ public class TableSQL {
                 }
             }
         return etiquetas;
-    }
-    
-    public TableSQL(ResultSet SQL, DefaultTableModel Model, Boolean Controls) {
-        
-    this.SQL = SQL;
-    
-          
     }
     
     public void setEditIcon(ImageIcon image) {
@@ -173,5 +176,30 @@ public class TableSQL {
         
        return Table;
     }
+    
+
+    public void TransferModel(JTable jTable) {
+      jTable.setModel(Table.getModel());
+      
+      this.AdjustCells(jTable,dimen);
+                
+           
+               // jTable.setLayout(null);
+                 //jTable.getColumnModel().getColumn(0).setCellEditor(new DefaultCellEditor(check));
+                 
+      
+    }
+
+    public ListSelectionModel getList() {
+    
+    JTable tmp = (SecondTable == null) ? Table : SecondTable;   
+        
+    tmp.setCellSelectionEnabled(true);
+    ListSelectionModel cellSelectionModel = tmp.getSelectionModel();
+    cellSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+    
+    return cellSelectionModel;
+    }
+   
   
 }

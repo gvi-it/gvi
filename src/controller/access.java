@@ -4,10 +4,6 @@ package controller;
 import hibernate.*;
 import view.*;
 import libraries.*;
-import java.util.Set;
-import java.util.HashSet;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -16,13 +12,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.RoundRectangle2D;
-import ds.desktop.notify.DesktopNotify;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
 import org.apache.commons.codec.digest.DigestUtils;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 
 public class access implements ActionListener, KeyListener{    
     
@@ -35,7 +25,7 @@ public class access implements ActionListener, KeyListener{
     
     public access(){
    
-    if(AccountSession.existing){    
+    if(AccountSession.File.exists()){    
     this.view.password.setText(session.data().get(this.view.email.getText()));
     }
     
@@ -54,8 +44,7 @@ public class access implements ActionListener, KeyListener{
     }
     
     private void config(){
-        
-  //  new Logo(this.view);
+
     this.view.setIconImage(new Logo().createIcon());
     this.view.setTitle("Gerencia Virtual - Login");
     this.view.getContentPane().setBackground(new java.awt.Color(0,87,166));
@@ -70,7 +59,7 @@ public class access implements ActionListener, KeyListener{
   
         if(e.getSource().equals(view.btn)) {
            
-        login(this.view.email.getText().toString(),this.view.password.getText().toString());
+        login(this.view.email.getText(),this.view.password.getText());
             
         } else if(e.getSource().equals(this.view.passinfo)){ 
                 
@@ -93,25 +82,15 @@ public class access implements ActionListener, KeyListener{
     @Override
     public void keyPressed(KeyEvent e) {
      
-        if(e.getKeyCode() == 10){
-        login(this.view.email.getText().toString(),this.view.password.getText().toString());    
+        if(e.getKeyCode() == 10){    
+            login(this.view.email.getText(),this.view.password.getText());
+        } else {
         }   
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-         
-        if(e.getSource().equals(this.view.email) && session.exist(this.view.email.getText())){
-               try{
-                   this.view.password.setText(session.data().get(this.view.email.getText()));
-//                    System.out.println(session.data().get(this.view.email.getText()));
-                  //  login(this.view.email.getText(),session.data().get(this.view.email.getText()));
-                    
-               } catch(Exception es){ System.out.println(es); }
-        } else {
-            System.out.println("no");
-        }
-            
+                 
     }
     
     private void check(String k,String v){
@@ -122,8 +101,8 @@ public class access implements ActionListener, KeyListener{
     
     public void checkSession(){
         
-        if(AccountSession.existing){
-            
+        if(AccountSession.File.exists()){
+         System.out.println("Existe la sesion");
         session.data().forEach((k,v) -> this.check(k,v));
         
         } else {
@@ -156,7 +135,7 @@ public class access implements ActionListener, KeyListener{
             role.setId(query.getInt("executive.role"));
             role.setName(query.getString("role.name"));
              
-            Set<Executive> list = new HashSet();
+           // Set<Executive> list = new HashSet();
             
          /*   Role r = new Role(query.getString("executive.name"),muser);
                       */  
@@ -177,7 +156,7 @@ public class access implements ActionListener, KeyListener{
    
             DateFormat date = new DateFormat();
             
-              BufferedReader in;
+     //         BufferedReader in;
               
               
 /*                try {
@@ -208,14 +187,7 @@ public class access implements ActionListener, KeyListener{
                     System.out.println(inputLine);
            
             
-            //new Gmail(user,"Inicio de Sesión",inputLine);
-                try {
-                    //            DesktopNotify.showDesktopMessage("Gerencia Virtual Inc","Bienvenido "+model.getName(),DesktopNotify.INFORMATION);
-                    DesktopNotify.showDesktopMessage("Gerencia Virtual Inc","Bienvenido "+model.getName(), DesktopNotify.DEFAULT,new ImageIcon(ImageIO.read(new File("src/resources/logo_gvi.png")).getScaledInstance(200,200, 100)).getImage(), null,10000);
-                } catch (IOException ex) {
-                    Logger.getLogger(access.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            
+            //new Gmail(user,"Inicio de Sesión",model.getName()+" "+model.getLastname()+" inicio sesión el "+date.getDate()+" a las "+date.getTime());
 
 //            new Gmail("julioyoza@gerenciavirtual.net","Inicio de Sesión",model.getName()+" "+model.getLastname()+" inicio sesión el "+date.getDate()+" a las "+date.getTime());
   //          new Gmail("fmunoz@gerenciavirtual.net","Inicio de Sesión",model.getName()+" "+model.getLastname()+" inicio sesión el "+date.getDate()+" a las "+date.getTime());

@@ -3,98 +3,48 @@ package libraries;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.HashMap;
-import java.util.Map;
-
 
 public class AccountSession {
     
     private HashMap<String,String> mapInFile;
-    private Object data;
-    private String user,password;
-    private boolean exist = false;
-    static public boolean existing = new File("data").exists();
+    public static File File = new File("data");
+  
+    public AccountSession(){}
     
     public AccountSession(String user, String password) {
     
-     try{
-    
-        HashMap<String,String> map = new HashMap<String,String>();
-        
-        map.put(user,password);
-          
-        File fileOne =  new File("data");
-        FileOutputStream fos=new FileOutputStream(fileOne);
-        ObjectOutputStream oos=new ObjectOutputStream(fos);
+        try{
 
-        oos.writeObject(map);
-        oos.flush();
-        oos.close();
-        fos.close(); 
-       // fileOne.deleteOnExit();    
-       // fileOne.delete();
-        
-    }catch(Exception e){}     
-        
-    }
-    
-    public AccountSession(){}
-    
-    private void set(String user, String password){
-    this.user = user;
-    this.password = password;
-    //System.out.println(user+" "+password);
-    }
-    
-    public boolean exist(String user){
-    
-     try{
-         
-        File toRead= new File("data");
-        FileInputStream fis = new FileInputStream(toRead);
-        ObjectInputStream ois = new ObjectInputStream(fis);
-        
-        this.mapInFile = (HashMap<String,String>)ois.readObject();
-        
-        this.mapInFile.forEach((k,v) -> set(k,v));
-        
-        ois.close();
-        fis.close();       
+           HashMap<String,String> map = new HashMap<>();
 
-    }catch(Exception e){}
+           map.put(user,password);
 
-    try{ 
-     
-    if(!this.mapInFile.isEmpty() && this.user.equals(user)){
-    this.exist = true;
-    } else {
-    this.exist = false;
+           File fileOne =  new File("data");
+            try (FileOutputStream fos = new FileOutputStream(fileOne); ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+                oos.writeObject(map);
+                oos.flush();
+            }
+            
+       }catch(IOException e){}     
     }
-   
-    } catch(Exception em) {}
-        
-    return this.exist;    
-        
-    }
-    
+
+    @SuppressWarnings("unchecked")
     public HashMap <String,String> data(){
             
         try{
         File toRead= new File("data");
-        FileInputStream fis = new FileInputStream(toRead);
-        ObjectInputStream ois = new ObjectInputStream(fis);
-        
-        this.mapInFile = (HashMap<String,String>)ois.readObject();
-        
-        ois.close();
-        fis.close();
+            try (FileInputStream fis = new FileInputStream(toRead); ObjectInputStream ois = new ObjectInputStream(fis)) {
+                
+                mapInFile = (HashMap<String,String>)ois.readObject();         
+            }
 
-    }catch(Exception e){} 
+        } catch(IOException | ClassNotFoundException e){} 
    
-    return this.mapInFile;
+    return mapInFile;
            
-    }
-    
+    }   
 }
