@@ -33,9 +33,7 @@ public class cpanel implements ActionListener, MouseListener {
     
     public cpanel(Set n) {
 
-/*        while(model.iterator().hasNext()){
-            
-        }*/
+    /*        while(model.iterator().hasNext()){  }*/
         
         Executive model = (Executive) n.iterator().next();
             System.out.println(model.getRole().getId());

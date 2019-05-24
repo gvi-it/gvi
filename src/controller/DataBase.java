@@ -23,7 +23,12 @@ public class DataBase {
             System.out.println(e);
            JOptionPane.showMessageDialog(null,"Service not started");
         System.exit(0);
+       
         }     
+    }
+    
+    public void Started(){
+        
     }
     
     public ResultSet execute(String sql){

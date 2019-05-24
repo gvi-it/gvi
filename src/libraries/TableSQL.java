@@ -38,6 +38,7 @@ public class TableSQL {
     
     ResultSetMetaData MetaData = query.getMetaData();
     
+   // System.out.println("nombre de la tabla "+MetaData.);
     int last = MetaData.getColumnCount();
     System.out.println(last);
     int first = 0;
@@ -100,12 +101,11 @@ public class TableSQL {
                 
                 Object[] data = new Object[etiquetas.length];
                 System.out.println(data.length);
-                  
+ 
                
-                
                 for (int i = 1; i <= last; i++) {   
                     System.out.println(etiquetas[i]+" pos: "+i);
-                data[i] = query.getObject(etiquetas[i].toString());    
+                data[i] = query.getObject(etiquetas[i].toString());                                
                 }
                 
                 int difference = etiquetas.length - last;
@@ -113,7 +113,7 @@ public class TableSQL {
                 if(difference == 2){
                   Table.getColumnModel().getColumn(etiquetas.length-1).setCellEditor(new DefaultCellEditor(new JCheckBox()));
                 }
-                  
+             
                 modelo.addRow(data);
                 modelo.fireTableDataChanged();   
                 
@@ -131,7 +131,7 @@ public class TableSQL {
     this.dimen = WidthCell;
     
     for(int x = 0; x < WidthCell.length; x++) {
-    
+   
     row.getColumn(x).setPreferredWidth(WidthCell[x]);
          
     }    
@@ -180,6 +180,15 @@ public class TableSQL {
 
     public void TransferModel(JTable jTable) {
       jTable.setModel(Table.getModel());
+      
+        
+        jTable.getTableHeader().getColumnModel().getColumn(1).setMaxWidth(0);
+        
+        jTable.getColumnModel().getColumn(1).setPreferredWidth(0);
+                jTable.getColumnModel().getColumn(1).setWidth(0);
+                        jTable.getColumnModel().getColumn(1).setMaxWidth(0);
+                                jTable.getColumnModel().getColumn(1).setMinWidth(0);
+    
       
       this.AdjustCells(jTable,dimen);
                 

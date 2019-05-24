@@ -5,6 +5,8 @@ import ds.desktop.notify.DesktopNotify;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -21,7 +23,7 @@ import javax.swing.table.TableColumnModel;
 import libraries.TableSQL;
 import view.form.admin.ListExecutives;
 
-public class executives implements ActionListener, ListSelectionListener{
+public class executives implements ActionListener, MouseListener{
 
     private ListExecutives content = new ListExecutives();
     
@@ -41,13 +43,13 @@ public class executives implements ActionListener, ListSelectionListener{
             
             table.Model(query,TableSQL.DEFAULT);
             
-            int[] widthCell = {2,3,80,140,120,5};
+            int[] widthCell = {3,0,80,140,120,5};
             
             table.AdjustCell(widthCell);
             
             table.TransferModel(content.jTable);
             
-            content.jTable.getSelectionModel().addListSelectionListener(this);
+            content.jTable.addMouseListener(this);
             
             
             
@@ -157,8 +159,28 @@ public class executives implements ActionListener, ListSelectionListener{
     }
 
     @Override
-    public void valueChanged(ListSelectionEvent e) {
-    System.out.println(content.jTable.getValueAt(content.jTable.getSelectedRow(), 0).toString());
+    public void mouseClicked(MouseEvent e) {
+        System.out.println(content.jTable.getValueAt(content.jTable.getSelectedRow(),0));
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+      
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
     }
 
 }

@@ -22,7 +22,7 @@ private int count;
     public void load(){ }
     
     public void run(){
-     
+                
         screen.setIconImage(new Logo().createIcon());
         screen.setShape(new RoundRectangle2D.Double(0, 0, screen.getWidth(),screen.getHeight(), 5, 5));
         screen.setLocationRelativeTo(null);
@@ -51,6 +51,7 @@ private int count;
 
                             if(screen.progress.getValue() == screen.progress.getMaximum()) {
 
+                                DataBase dataBase = new DataBase();
                                 new access().checkSession();
                                 screen.dispose();
                                 break;
@@ -58,7 +59,7 @@ private int count;
                         }
 
                     } else {
-                        JOptionPane.showMessageDialog(null,"Sin conexion con el servidor");
+                        JOptionPane.showMessageDialog(null,"There is no connection to the server");
                         System.exit(0);
                     }
                     
