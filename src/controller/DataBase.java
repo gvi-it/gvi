@@ -20,7 +20,7 @@ public class DataBase {
         System.out.println("Connected to the MySQL server successfully.");
     
         } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
+            System.out.println(e);
            JOptionPane.showMessageDialog(null,"Service not started");
         System.exit(0);
         }     
@@ -35,7 +35,7 @@ public class DataBase {
         return query;
   
         } catch(SQLException e){
-            e.printStackTrace();
+                       System.out.println(e);
             return null;    
         }
     } 
