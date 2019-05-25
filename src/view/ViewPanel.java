@@ -38,7 +38,7 @@ public class ViewPanel extends JFrame {
         logout.setBackground(new java.awt.Color(255, 255, 255));
         logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/system/baseline_exit_to_app_black_18dp.png"))); // NOI18N
         logout.setText("Log Out");
-        logout.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        logout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         logout.setOpaque(true);
         getContentPane().add(logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 70, 30));
 
@@ -49,9 +49,9 @@ public class ViewPanel extends JFrame {
 
         user_info.setBackground(new java.awt.Color(255, 255, 255));
         user_info.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        user_info.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/user.png"))); // NOI18N
+        user_info.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/executive.png"))); // NOI18N
         user_info.setText("user_name  ");
-        user_info.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        user_info.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         user_info.setFocusable(false);
         user_info.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         user_info.setMaximumSize(new java.awt.Dimension(200, 36));

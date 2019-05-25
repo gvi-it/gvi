@@ -69,7 +69,7 @@ public class cpanel implements ActionListener, MouseListener {
             panel.menu.setViewportView(jm);
                  
             panel.container.setViewportView(jc);
-                
+            
             panel.user_info.setText(model.getName()+" "+model.getLastname()+"  ");
             
             panel.user_info.addMouseListener(this);
@@ -139,11 +139,9 @@ public class cpanel implements ActionListener, MouseListener {
     @Override
     public void mouseEntered(MouseEvent e) {
         
-        System.out.println("hola mundo");
-        
         if(e.getComponent().equals(this.panel.user_info)){
-            
-                    e.getComponent().setBackground(new java.awt.Color(200,200,200));
+                        
+               e.getComponent().setBackground(new java.awt.Color(200,200,200));
       
         } else if(e.getComponent().equals(this.panel.logout)){
                    
@@ -157,7 +155,7 @@ public class cpanel implements ActionListener, MouseListener {
     public void mouseExited(MouseEvent e) {
 
          if(e.getComponent().equals(this.panel.user_info)){
-                  
+                 
              if(this.panel.logout.getBackground().equals(new java.awt.Color(200,200,200))){
                  e.getComponent().setBackground(new java.awt.Color(200,200,200));
              } else{
@@ -170,6 +168,7 @@ public class cpanel implements ActionListener, MouseListener {
              this.panel.user_info.setBackground(new java.awt.Color(255,255,255));
                      this.panel.logout.setVisible(false);
             e.getComponent().setBackground(new java.awt.Color(255,255,255));
+            
         }
     }
 }

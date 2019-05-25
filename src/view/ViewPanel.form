@@ -79,7 +79,7 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Log Out"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Cursor Por defecto"/>
+          <Color id="Cursor de Mano"/>
         </Property>
         <Property name="opaque" type="boolean" value="true"/>
       </Properties>
@@ -120,11 +120,11 @@
         </Property>
         <Property name="horizontalAlignment" type="int" value="2"/>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/resources/icon/user.png"/>
+          <Image iconType="3" name="/resources/icon/executive.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="user_name  "/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Cursor Por defecto"/>
+          <Color id="Cursor de Mano"/>
         </Property>
         <Property name="focusable" type="boolean" value="false"/>
         <Property name="horizontalTextPosition" type="int" value="4"/>

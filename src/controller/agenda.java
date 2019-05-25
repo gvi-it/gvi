@@ -16,7 +16,7 @@ public class agenda {
               
     window.setTitle("Electronic Agenda - "+e.getName());
       
-     window.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+    window.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
             
     window.setResizable(false);
             

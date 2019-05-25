@@ -24,12 +24,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="home" min="-2" pref="230" max="-2" attributes="0"/>
-          <Component id="companies" min="-2" pref="230" max="-2" attributes="0"/>
-          <Component id="jButton4" min="-2" pref="230" max="-2" attributes="0"/>
-          <Component id="jButton9" min="-2" pref="230" max="-2" attributes="0"/>
-          <Component id="dropdownmenu" min="-2" pref="230" max="-2" attributes="0"/>
-          <Component id="personal" min="-2" pref="230" max="-2" attributes="0"/>
+          <Component id="dropdownmenu" alignment="0" max="32767" attributes="0"/>
+          <Component id="personal" alignment="1" pref="227" max="32767" attributes="0"/>
+          <Component id="jButton9" alignment="0" max="32767" attributes="0"/>
+          <Component id="jButton4" alignment="0" max="32767" attributes="0"/>
+          <Component id="companies" alignment="0" max="32767" attributes="0"/>
+          <Component id="home" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -45,13 +45,10 @@
               </Group>
               <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
               <Component id="jButton9" min="-2" pref="40" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="40" pref="40" max="-2" attributes="0"/>
-                      <Component id="dropdownmenu" min="-2" pref="40" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="personal" min="-2" pref="42" max="-2" attributes="0"/>
-              </Group>
+              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+              <Component id="personal" min="-2" pref="40" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+              <Component id="dropdownmenu" min="-2" pref="40" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -63,6 +60,9 @@
           <Image iconType="3" name="/resources/visibility.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Home"/>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Cursor de Mano"/>
+        </Property>
         <Property name="horizontalAlignment" type="int" value="2"/>
         <Property name="iconTextGap" type="int" value="10"/>
       </Properties>
@@ -73,6 +73,9 @@
     <Component class="javax.swing.JButton" name="companies">
       <Properties>
         <Property name="text" type="java.lang.String" value="Companies"/>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Cursor de Mano"/>
+        </Property>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -81,6 +84,9 @@
     <Component class="javax.swing.JButton" name="jButton4">
       <Properties>
         <Property name="text" type="java.lang.String" value="Payroll"/>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Cursor de Mano"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
@@ -92,6 +98,9 @@
     <Component class="javax.swing.JButton" name="personal">
       <Properties>
         <Property name="text" type="java.lang.String" value="Electronic Agenda"/>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Cursor de Mano"/>
+        </Property>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -100,6 +109,9 @@
     <Component class="javax.swing.JButton" name="jButton9">
       <Properties>
         <Property name="text" type="java.lang.String" value="Payroll Report"/>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Cursor de Mano"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton9ActionPerformed"/>

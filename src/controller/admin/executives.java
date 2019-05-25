@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.TableColumnModel;
+import libraries.Placeholder;
 import libraries.TableSQL;
 import view.form.admin.ListExecutives;
 
@@ -22,12 +23,13 @@ public class executives implements ActionListener, MouseListener{
     public executives() {
         
           content.toregister.addActionListener(this);
+          config(content);
              
           try {          
             //conexion               
             DataBase vgi =  new DataBase();
 
-            ResultSet query = vgi.execute("select executive.id as id, role.id as idrole,executive.name as name,executive.lastname as lastname ,role.name as role from executive inner join role on role.id = executive.role");
+            ResultSet query = vgi.execute("select executive.id as id, executive.name as name,executive.lastname as lastname ,role.name as role from executive inner join role on role.id = executive.role");
             
            // ResultSetMetaData MetaData = query.getMetaData();
             
@@ -35,7 +37,7 @@ public class executives implements ActionListener, MouseListener{
             
             table.Model(query,TableSQL.DEFAULT);
             
-            int[] widthCell = {3,0,80,140,120,5};
+            int[] widthCell = {3,0,80,140,120,3};
             
             table.AdjustCell(widthCell);
             
@@ -120,39 +122,14 @@ public class executives implements ActionListener, MouseListener{
     public void actionPerformed(ActionEvent e) {
         
         if(e.getSource().equals(content.toregister)){
-            
-            JFrame window = new view.form.admin.addExecutive();
-            
-            ListExecutives.toregister.setEnabled(false);
-    
-            window.setSize(window.getPreferredSize());
-              
-            window.setTitle("New Executive");
-
-             window.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-            window.setResizable(false);
-
-            window.setLocationRelativeTo(null);
-            
-            window.addWindowListener(new java.awt.event.WindowAdapter() {
-
-                @Override
-                public void windowClosing(WindowEvent e) {
-
-                 ListExecutives.toregister.setEnabled(true);
-                super.windowClosing(e); //To change body of generated methods, choose Tools | Templates.
-                }
-            });
-            
-        window.setVisible(true);  
-        
+        new ExecutiveData();
         }
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        System.out.println(content.jTable.getValueAt(content.jTable.getSelectedRow(),1));
+    new ExecutiveData((int) content.jTable.getValueAt(content.jTable.getSelectedRow(),1));
+    System.out.println(content.jTable.getValueAt(content.jTable.getSelectedRow(),1));
     }
 
     @Override
@@ -174,5 +151,10 @@ public class executives implements ActionListener, MouseListener{
     public void mouseExited(MouseEvent e) {
 
     }
+
+    private void config(ListExecutives window) {
+        new Placeholder("Search",window.SearchText);
+    }
+
 
 }

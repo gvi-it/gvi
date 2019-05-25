@@ -12,6 +12,9 @@ import java.awt.event.KeyListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.RoundRectangle2D;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.UIManager;
 import org.apache.commons.codec.digest.DigestUtils;
 
 public class access implements ActionListener, KeyListener{    
@@ -23,7 +26,22 @@ public class access implements ActionListener, KeyListener{
     AccountSession session = new AccountSession();
     String inputLine = "";
     
+    
     public access(){
+        
+                    try{
+  
+  JFrame.setDefaultLookAndFeelDecorated(true);
+  JDialog.setDefaultLookAndFeelDecorated(true);
+  UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+  //UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+  //UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+  //UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
+}
+catch (Exception e)
+ {
+  e.printStackTrace();
+ }
    
     if(AccountSession.File.exists()){    
     this.view.password.setText(session.data().get(this.view.email.getText()));
@@ -41,6 +59,7 @@ public class access implements ActionListener, KeyListener{
     public void execute(){
     this.view.setVisible(true);
     this.view.setLocationRelativeTo(null);
+    
     }
     
     private void config(){

@@ -179,7 +179,8 @@ public class TableSQL {
     
 
     public void TransferModel(JTable jTable) {
-      jTable.setModel(Table.getModel());
+      
+        jTable.setModel(Table.getModel());
       
         
         jTable.getTableHeader().getColumnModel().getColumn(1).setMaxWidth(0);

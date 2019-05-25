@@ -28,37 +28,49 @@ public class ListExecutives extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        Search = new javax.swing.JLabel();
+        SearchText = new javax.swing.JTextField();
         toregister = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable = new javax.swing.JTable();
 
-        setPreferredSize(new java.awt.Dimension(700, 450));
+        setPreferredSize(new java.awt.Dimension(720, 450));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/system/search.png"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 40, -1, -1));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/user.png"))); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/iconExecutive.png"))); // NOI18N
         jLabel1.setText("Executives");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, -1, -1));
+        jLabel1.setToolTipText("");
+        jLabel1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jLabel1.setAlignmentY(0.0F);
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel1.setIconTextGap(5);
+        jLabel1.setVerifyInputWhenFocusTarget(false);
+        jLabel1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 0, -1, 40));
+        jLabel1.getAccessibleContext().setAccessibleParent(null);
 
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jTextField1.setText("Search");
-        jTextField1.setMargin(new java.awt.Insets(2, 25, 2, 2));
-        jTextField1.setName(""); // NOI18N
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 40, 110, -1));
+        Search.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/system/search.png"))); // NOI18N
+        Search.setLabelFor(SearchText);
+        jPanel1.add(Search, new org.netbeans.lib.awtextra.AbsoluteConstraints(428, 10, 30, 30));
+
+        SearchText.setForeground(new java.awt.Color(51, 51, 51));
+        SearchText.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        SearchText.setMargin(new java.awt.Insets(2, 25, 2, 2));
+        SearchText.setName(""); // NOI18N
+        jPanel1.add(SearchText, new org.netbeans.lib.awtextra.AbsoluteConstraints(428, 10, 130, 30));
 
         toregister.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
         toregister.setText("+");
-        jPanel1.add(toregister, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 40, 40, -1));
+        jPanel1.add(toregister, new org.netbeans.lib.awtextra.AbsoluteConstraints(555, 10, 40, 30));
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 470, 60));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, -1));
 
         jTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -70,17 +82,17 @@ public class ListExecutives extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 470, 320));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 470, 320));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Search;
+    public javax.swing.JTextField SearchText;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTable jTable;
-    private javax.swing.JTextField jTextField1;
     public static javax.swing.JButton toregister;
     // End of variables declaration//GEN-END:variables
 }
