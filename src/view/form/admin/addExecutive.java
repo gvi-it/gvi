@@ -43,6 +43,7 @@ public class addExecutive extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         hours = new javax.swing.JSpinner();
         date = new javax.swing.JFormattedTextField();
+        jCheckBox1 = new javax.swing.JCheckBox();
         cancel = new javax.swing.JButton();
         Save = new javax.swing.JButton();
 
@@ -104,7 +105,12 @@ public class addExecutive extends javax.swing.JFrame {
         container.add(hours, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 130, -1, -1));
 
         date.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        date.setName("require"); // NOI18N
         container.add(date, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 180, 90, -1));
+
+        jCheckBox1.setText("jCheckBox1");
+        jCheckBox1.setName("require"); // NOI18N
+        container.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
         getContentPane().add(container, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 440, 220));
 
@@ -168,6 +174,7 @@ public class addExecutive extends javax.swing.JFrame {
     public javax.swing.JFormattedTextField date;
     public javax.swing.JTextField email;
     public javax.swing.JSpinner hours;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

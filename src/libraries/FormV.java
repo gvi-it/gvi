@@ -4,8 +4,10 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.HashMap;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -17,44 +19,77 @@ public class FormV implements KeyListener{
     private Component[] component;
     private Boolean val = false;
     private Boolean[] all;
+    private HashMap<Class,Integer> ClassComponent = new HashMap<>();
     
     public FormV(Container pane) {
     this.component = pane.getComponents();
     this.all = new Boolean[this.component.length]; 
     
+    ClassComponent.put(JTextField.class,0);
+    ClassComponent.put(JCheckBox.class,1);
+    ClassComponent.put(JFormattedTextField.class,2);
+    ClassComponent.put(JLayeredPane.class,101);
+    ClassComponent.put(JPanel.class,101);
+    
    // pane.addKeyListener(this);
     
     }
     
+    private Boolean revalidate(Component component) {
+       
+        boolean state = false;
+        
+          try {
+             
+             switch(ClassComponent.get(component.getClass())){
+                 
+                 case 0: {
+                 state = (component.getName() == "require") ? !((JTextField) component).getText().equals(null) : true;
+                  System.out.println("-----textfield");
+                 break;
+                 }
+                 
+                 case 1: {
+                 state = (component.getName() == "require") ? ((JCheckBox) component).isSelected() : true;
+                 System.out.println("-----checkbox");
+                 break;
+                 }   
+                 
+                 case 2: {
+                     
+                 state = (component.getName() == "require") ? ((JFormattedTextField) component).isEditValid() : true;
+                  System.out.println("-----textfield");
+                 break;
+                 }
+                 
+                 case 101:{
+                  
+                 state = search(component);    
+                     
+                 break;    
+                 }
+                 
+             }
+
+    } catch(Exception e){
+    state = true;
+    }
+        
+    return state; 
+        
+    }
+    
     private Boolean search(Component component){
-  
+        
         Component[] ctmp = (component instanceof JLayeredPane) ? ((JLayeredPane) component).getComponents() : ((JPanel) component).getComponents();
                 
         for(int xtmp = 0; xtmp < ctmp.length; xtmp++){
-             
-            if(ctmp[xtmp] instanceof JTextField || ctmp[xtmp] instanceof JPasswordField || ctmp[xtmp] instanceof JComboBox || ctmp[xtmp] instanceof JCheckBox || ctmp[xtmp] instanceof JTextArea) {
-              
-                if(ctmp[xtmp].getName() == "require") {
-                System.out.println(true);
+             System.out.println("field : "+ctmp[xtmp].getClass());
 
-                    if(!((JTextField) ctmp[xtmp]).getText().equals("")){
-                    val = true;
-                    } else {                
-                    val = false;
-                    break;
-                    }
-                } else {
-                    val = true;
-                }
-            } else if(ctmp[xtmp] instanceof JLayeredPane || ctmp[xtmp] instanceof JPanel){
-                
-             val = search(ctmp[xtmp]);
+             val = revalidate(ctmp[xtmp]);
              
-                if(!val)
-                {
-                break;    
-                }
-            }          
+             if(!val){ break; }       
+
         }
         return val;
     }
@@ -62,7 +97,7 @@ public class FormV implements KeyListener{
     public Boolean validate(){
 
         for(int x = 0; x < this.component.length; x++) {
-            
+          
             if(this.component[x] instanceof JLayeredPane || this.component[x] instanceof JPanel){
                System.out.println(this.component[x].getClass());
                 this.all[x] = this.search(this.component[x]);
