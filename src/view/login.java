@@ -113,6 +113,7 @@ public class login extends javax.swing.JFrame {
         jLayeredPane4.setOpaque(true);
 
         password.setBorder(null);
+        password.setMargin(new java.awt.Insets(2, 25, 2, 2));
         password.setName("require"); // NOI18N
 
         passinfo.setBackground(new java.awt.Color(255, 255, 255));

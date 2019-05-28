@@ -11,13 +11,16 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.awt.geom.RoundRectangle2D;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 import org.apache.commons.codec.digest.DigestUtils;
 
-public class access implements ActionListener, KeyListener{    
+public class access implements ActionListener, KeyListener, MouseListener, MouseMotionListener{    
     
     login view = new login();
     Executive model = new Executive();
@@ -25,6 +28,7 @@ public class access implements ActionListener, KeyListener{
     FormV form = new FormV(this.view.getContentPane());
     AccountSession session = new AccountSession();
     String inputLine = "";
+    int x,y;
     
     
     public access(){
@@ -43,6 +47,10 @@ catch (Exception e)
   e.printStackTrace();
  }
    
+    view.addMouseListener(this);
+    view.addMouseMotionListener(this);
+    
+                    
     if(AccountSession.File.exists()){    
     this.view.password.setText(session.data().get(this.view.email.getText()));
     }
@@ -227,4 +235,42 @@ catch (Exception e)
         
         } else { JOptionPane.showMessageDialog(null,"Los campos son requeridos"); }
     } 
+
+    
+    
+    @Override
+    public void mouseClicked(MouseEvent e) {
+       
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        x = e.getX();
+        y = e.getY();
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+       
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+       
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+       
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+    this.view.setLocation(this.view.getLocation().x + e.getX() - x, this.view.getLocation().y + e.getY() - y);
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+      
+    }
 }

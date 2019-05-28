@@ -3,14 +3,18 @@ package controller.admin;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
+import javax.swing.JFormattedTextField;
+import javax.swing.JTextField;
+import libraries.FormV;
 import libraries.Logo;
 import libraries.Placeholder;
 import view.form.admin.addExecutive;
 
-public class ExecutiveData implements ActionListener{
+public class ExecutiveData implements ActionListener {
     
 addExecutive model = new addExecutive();    
-  
+FormV form = new FormV(model.getContentPane());  
+
     ExecutiveData (int id) {
     
     config(model);    
@@ -20,6 +24,7 @@ addExecutive model = new addExecutive();
     }
 
     ExecutiveData () {
+        model.cancel.addActionListener(this);
     config(model);    
     }
 
@@ -35,11 +40,33 @@ addExecutive model = new addExecutive();
     
     window.setIconImage(new Logo().createIcon());
     
+    window.date.setFormatterFactory(new javax.swing.JFormattedTextField.AbstractFormatterFactory() {
+        @Override
+        public JFormattedTextField.AbstractFormatter getFormatter(JFormattedTextField tf) {
+
+            try{
+              
+            return new javax.swing.text.MaskFormatter("##/##/####");
+                
+            } catch(java.text.ParseException e){
+                e.printStackTrace();
+            }
+            return null;
+        }
+    }
+    );
+    
+ 
+    
+    
     new Placeholder("example@gerenciavirtual.net",window.email);
-        new Placeholder("Your Name",window.name);
-            new Placeholder("Your Lastname",window.lastname);
-                new Placeholder("200.00",window.salary);
-                    new Placeholder("8",window.hours);
+    new Placeholder("Your Name",window.name);
+    new Placeholder("Your Lastname",window.lastname);
+    new Placeholder("200.00",window.salary);
+    new Placeholder("dd/mm/yyyy",window.date);
+//    new Placeholder("8",(JTextField) window.hours);
+    
+    System.out.println("Nombre de Jtext: "+window.salary.getAccessibleContext().getAccessibleDescription());
             
     window.setLocationRelativeTo(null);
             
@@ -60,10 +87,18 @@ addExecutive model = new addExecutive();
     @Override
     public void actionPerformed(ActionEvent e) {
        
+       
         if(e.getSource().equals(model.Save)){
             
         } else if(e.getSource().equals(model.cancel)){
-            model.dispose();
+            
+            if(form.validate()){
+                         model.dispose();
+             System.out.println("todo bien");
+        } else {
+            System.out.println("falta");
+        }
+
         }
         
     }

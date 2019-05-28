@@ -7,7 +7,14 @@ public class ViewPanel extends JFrame {
     public ViewPanel(){            
        
     initComponents();
-          
+    
+    /*this.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+    this.setUndecorated(true);
+    */
+    
+    
+    pack();
+    
     }
     
     @SuppressWarnings("unchecked")
@@ -22,10 +29,9 @@ public class ViewPanel extends JFrame {
         container = new javax.swing.JScrollPane();
         user_info = new javax.swing.JLabel();
         menu = new javax.swing.JScrollPane();
-        jLayeredPane3 = new javax.swing.JLayeredPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(102, 153, 255));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -57,23 +63,6 @@ public class ViewPanel extends JFrame {
         user_info.setMaximumSize(new java.awt.Dimension(200, 36));
         user_info.setOpaque(true);
         getContentPane().add(user_info, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, 40));
-
-        jLayeredPane3.setBackground(new java.awt.Color(102, 153, 255));
-        jLayeredPane3.setOpaque(true);
-
-        javax.swing.GroupLayout jLayeredPane3Layout = new javax.swing.GroupLayout(jLayeredPane3);
-        jLayeredPane3.setLayout(jLayeredPane3Layout);
-        jLayeredPane3Layout.setHorizontalGroup(
-            jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 238, Short.MAX_VALUE)
-        );
-        jLayeredPane3Layout.setVerticalGroup(
-            jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 431, Short.MAX_VALUE)
-        );
-
-        menu.setViewportView(jLayeredPane3);
-
         getContentPane().add(menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 230, 450));
 
         pack();
@@ -82,7 +71,6 @@ public class ViewPanel extends JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JScrollPane container;
     private javax.swing.JLayeredPane jLayeredPane1;
-    private javax.swing.JLayeredPane jLayeredPane3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu jPopupMenu2;

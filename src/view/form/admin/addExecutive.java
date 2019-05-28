@@ -27,7 +27,7 @@ public class addExecutive extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        container = new javax.swing.JPanel();
         lastname = new javax.swing.JTextField();
         name = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -38,66 +38,75 @@ public class addExecutive extends javax.swing.JFrame {
         salary = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         email = new javax.swing.JTextField();
-        hours = new javax.swing.JTextField();
         JLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
+        hours = new javax.swing.JSpinner();
+        date = new javax.swing.JFormattedTextField();
         cancel = new javax.swing.JButton();
         Save = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(550, 290));
-        setPreferredSize(new java.awt.Dimension(490, 345));
+        setPreferredSize(new java.awt.Dimension(490, 340));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Executive Register", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP));
-        jPanel1.setPreferredSize(new java.awt.Dimension(400, 350));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(lastname, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 120, -1));
-        jPanel1.add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 120, 30));
+        container.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Executive Register", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP));
+        container.setPreferredSize(new java.awt.Dimension(400, 350));
+        container.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        container.add(lastname, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 120, -1));
+
+        name.setName(""); // NOI18N
+        container.add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 120, 30));
 
         jLabel1.setText("Lastname :");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 60, 20));
+        container.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 60, 20));
 
         jLabel2.setText("Name :");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, 40, 20));
+        container.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, 40, 20));
 
         role.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(role, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 50, 70, -1));
+        container.add(role, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 50, 70, -1));
 
         jLabel3.setText("Role :");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 40, 20));
+        container.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 40, 20));
 
         jLabel4.setText("Salary :");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 90, 40, 20));
+        container.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 90, 40, 20));
 
+        salary.setName("require"); // NOI18N
         salary.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 salaryActionPerformed(evt);
             }
         });
-        jPanel1.add(salary, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 90, 70, -1));
+        container.add(salary, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 90, 70, -1));
+        salary.getAccessibleContext().setAccessibleName("");
+        salary.getAccessibleContext().setAccessibleDescription("int");
 
         jLabel5.setText("Email :");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 60, 20));
-        jPanel1.add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 120, -1));
-        jPanel1.add(hours, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 130, 30, -1));
+        container.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 60, 20));
+        container.add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 120, -1));
 
         JLabel1.setText("hours :");
-        jPanel1.add(JLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 130, -1, 20));
+        container.add(JLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 130, -1, 20));
 
         jLabel6.setText("Password : ");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 70, 20));
+        container.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 70, 20));
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 120, -1));
+        container.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 120, -1));
+        container.add(hours, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 130, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 440, 220));
+        date.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        container.add(date, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 180, 90, -1));
+
+        getContentPane().add(container, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 440, 220));
 
         cancel.setText("Cancel");
         getContentPane().add(cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 270, 80, 30));
@@ -155,15 +164,16 @@ public class addExecutive extends javax.swing.JFrame {
     private javax.swing.JLabel JLabel1;
     public javax.swing.JButton Save;
     public javax.swing.JButton cancel;
+    public javax.swing.JPanel container;
+    public javax.swing.JFormattedTextField date;
     public javax.swing.JTextField email;
-    public javax.swing.JTextField hours;
+    public javax.swing.JSpinner hours;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
     public javax.swing.JTextField lastname;
     public javax.swing.JTextField name;

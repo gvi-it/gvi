@@ -35,9 +35,10 @@ public final class Placeholder extends JLabel implements FocusListener, Document
 
     setText( text );
     setFont( component.getFont() );
-    setForeground( component.getForeground() );
+    setForeground( Color.GRAY );
     setBorder( new EmptyBorder(component.getInsets()) );
     setHorizontalAlignment(JLabel.LEADING);
+    
 
     component.addFocusListener( this );
     document.addDocumentListener( this );
@@ -54,7 +55,7 @@ public final class Placeholder extends JLabel implements FocusListener, Document
 
     alpha = alpha > 255 ? 255 : alpha < 0 ? 0 : alpha;
 
-    Color foreground = getForeground();
+    Color foreground = Color.GRAY; //getForeground();
     int red = foreground.getRed();
     int green = foreground.getGreen();
     int blue = foreground.getBlue();

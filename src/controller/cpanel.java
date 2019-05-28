@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import java.awt.Dimension;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.Set;
@@ -21,7 +22,7 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
-public class cpanel implements ActionListener, MouseListener {
+public class cpanel implements ActionListener, MouseListener{
 
     Toolkit resource = Toolkit.getDefaultToolkit();
     
@@ -43,12 +44,26 @@ public class cpanel implements ActionListener, MouseListener {
             {
               
             panel.setIconImage(new Logo().createIcon());
-                
-            panel.setResizable(false); panel.setTitle(model.getRole().getName());
             
-            panel.getContentPane().setBackground(Color.white);
+            panel.setResizable(false); panel.setTitle(model.getRole().getName());
+      
+            panel.getContentPane().setBackground(Color.WHITE);
 
             panel.setLocationRelativeTo(null);
+ 
+            panel.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+            
+            panel.addWindowListener(new java.awt.event.WindowAdapter() {
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                
+                if(JOptionPane.showConfirmDialog(panel,"Do you want to close the application?",null,JOptionPane.OK_CANCEL_OPTION,JOptionPane.WARNING_MESSAGE) != JOptionPane.CANCEL_OPTION) {
+                System.exit(0);
+                } 
+            }
+        });
+          
             
             panel.menu.getHorizontalScrollBar().setVisible(false);
             
