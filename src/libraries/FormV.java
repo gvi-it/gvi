@@ -1,39 +1,53 @@
 package libraries;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.HashMap;
+import javax.swing.BorderFactory;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-public class FormV implements KeyListener{
+public class FormV {
 
     private Component[] component;
-    private Boolean val = false;
+    private Boolean val = false, simple = true;
     private Boolean[] all;
     private HashMap<Class,Integer> ClassComponent = new HashMap<>();
     
     public FormV(Container pane) {
-    this.component = pane.getComponents();
-    this.all = new Boolean[this.component.length]; 
     
-    ClassComponent.put(JTextField.class,0);
-    ClassComponent.put(JCheckBox.class,1);
-    ClassComponent.put(JFormattedTextField.class,2);
+    component = pane.getComponents();
+    all = new Boolean[this.component.length]; 
+    
+    ClassComponent.put(JSpinner.class,0);
+    ClassComponent.put(JTextField.class,1);
+    ClassComponent.put(JCheckBox.class,2);
+    ClassComponent.put(JComboBox.class,3);  
+    ClassComponent.put(JTextArea.class,4);
+    ClassComponent.put(JPasswordField.class,5);
+    ClassComponent.put(JFormattedTextField.class,6);
+  
     ClassComponent.put(JLayeredPane.class,101);
     ClassComponent.put(JPanel.class,101);
     
    // pane.addKeyListener(this);
     
     }
+    
+     public FormV(Container pane, Boolean simple) {
+     this.simple = simple;    
+     }
     
     private Boolean revalidate(Component component) {
        
@@ -44,25 +58,100 @@ public class FormV implements KeyListener{
              switch(ClassComponent.get(component.getClass())){
                  
                  case 0: {
-                 state = (component.getName() == "require") ? !((JTextField) component).getText().equals(null) : true;
-                  System.out.println("-----textfield");
+                 
+                  state = (component.getName() == "require") ? !((JSpinner) component).getValue().equals(0) : true;
+                 System.out.println("-----JSpinner");
+                 
+                 if(component.getName() == "require") {
+                 
+                 ((JSpinner) component).setBorder((state == false) ? BorderFactory.createLineBorder(Color.red) : BorderFactory.createBevelBorder(1));
+ 
+                 }
+                 
                  break;
+                     
                  }
                  
                  case 1: {
-                 state = (component.getName() == "require") ? ((JCheckBox) component).isSelected() : true;
-                 System.out.println("-----checkbox");
-                 break;
-                 }   
+                 state = (component.getName() == "require") ? !((JTextField) component).getText().equals("") : true;
+                 System.out.println("-----textfield");
                  
-                 case 2: {
-                     
-                 state = (component.getName() == "require") ? ((JFormattedTextField) component).isEditValid() : true;
-                  System.out.println("-----textfield");
+                 if(component.getName() == "require") {
+                 
+                 ((JTextField) component).setBorder((state == false) ? BorderFactory.createLineBorder(Color.red) : BorderFactory.createBevelBorder(1));
+
+                 }
+                 
                  break;
                  }
                  
-                 case 101:{
+                 case 2: {
+                     
+                 state = (component.getName() == "require") ? ((JCheckBox) component).isSelected() : true;
+                 System.out.println("-----checkbox");
+                 
+                 if(component.getName() == "require") {
+                 
+                 ((JCheckBox) component).setBorderPaintedFlat(true);
+                 ((JCheckBox) component).setBorderPainted(true);
+                 ((JCheckBox) component).setBorder((state == false) ? BorderFactory.createLineBorder(Color.red) : BorderFactory.createBevelBorder(1));
+  
+                 }
+                 
+                 break;
+                 }   
+                 
+                 case 3: {
+                 state = (component.getName() == "require") ? (((JComboBox) component).getSelectedIndex() != 0 && ((JComboBox) component).getSelectedIndex() > 0) : true; 
+                 System.out.println("-----ComboBox option: "+((JComboBox) component).getSelectedIndex());
+                 
+                 if(component.getName() == "require") {
+                        
+                  ((JComboBox) component).setBorder((state == false) ? BorderFactory.createLineBorder(Color.red, 1, true) : BorderFactory.createEmptyBorder());
+
+                 } 
+                 
+                 break;
+                 }
+                 
+                 case 4: {
+                 state = (component.getName() == "require") ? !((JTextArea) component).getText().equals("") : true; 
+                 System.out.println("-----TextArea");
+                 
+                 if(component.getName() == "require") {
+                 
+                 ((JTextArea) component).setBorder((state == false) ? BorderFactory.createLineBorder(Color.red) : BorderFactory.createBevelBorder(1)); 
+ 
+                 }
+                 break;
+                 }
+                 
+                 case 5: {
+                 state = (component.getName() == "require") ? !((JTextField) component).getText().equals("") : true;
+                 System.out.println("-----PasswordField");
+                 
+                 if(component.getName() == "require") {
+                 
+                 ((JPasswordField) component).setBorder((state == false) ? BorderFactory.createLineBorder(Color.red) : BorderFactory.createBevelBorder(1));    
+
+                 }
+                 break;
+                 }
+                 
+                 case 6: {    
+                 state = (component.getName() == "require") ? ((JFormattedTextField) component).isEditValid() : true;
+                 System.out.println("-----FormattedTextField");
+                 
+                 if(component.getName() == "require") {
+                 
+                 ((JFormattedTextField) component).setBorder((state == false) ? BorderFactory.createLineBorder(Color.red) : BorderFactory.createBevelBorder(1));  
+                                      
+                 }
+                 
+                 break;
+                 }
+ 
+                 case 101: {
                   
                  state = search(component);    
                      
@@ -71,6 +160,8 @@ public class FormV implements KeyListener{
                  
              }
 
+//              || ((JComboBox) component).getSelectedItem().equals("")) ? true : false 
+             
     } catch(Exception e){
     state = true;
     }
@@ -109,36 +200,18 @@ public class FormV implements KeyListener{
                   System.out.println(this.component[x].getName());
             }
         }
-        for(int y = 0; y < this.all.length; y++){
         
+        for(int y = 0; y < this.all.length; y++) {
+        
+            if(!simple){ JOptionPane.showMessageDialog(null,"Please complete the form","",JOptionPane.ERROR_MESSAGE);   }   
+            
+            
             if(!this.all[y]){
             this.val = false;
             break;    
-            }   
+            } 
+
         }
         return this.val;    
     } 
-
-    private void InputType(Container pane) {
-    
-        
-        
-    }
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-
-            System.out.println(e.getSource().getClass());
-        
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
