@@ -20,11 +20,12 @@ public class TableSQL {
     private ResultSet SQL = null;
   //  private DefaultTableModel model;
     private JTable Table,SecondTable;
-    public static final Boolean DEFAULT = true;
+    public static final Boolean WITH_CONTROLS = true;
     public static final Boolean ONLY_SELECTABLE = false;
+    private Boolean resize = false, remove = false;
     private Point point;
     private Dimension dimension;
-    private int[] dimen;
+    private int[] dimen, hidden;
     
     public TableSQL(Dimension size, Point point){  this.dimension = size; this.point = point; }
     
@@ -77,7 +78,6 @@ public class TableSQL {
                  };      
          } else  {
 
-
         //  etiquetas = new Object[last+1];    
           etiquetas = new String[last+1];
           etiquetas[first] = "@";
@@ -85,11 +85,22 @@ public class TableSQL {
           etiquetas = this.setLabels(etiquetas, MetaData, 1);
 
            int lastt = last+1;
-            modelo = new DefaultTableModel(){
+             modelo = new DefaultTableModel(){
 
                    @Override
-                   public boolean isCellEditable(int rowIndex, int columnIndex) { return (lastt == columnIndex || columnIndex == first);  }
+                   public boolean isCellEditable(int rowIndex, int columnIndex) { return (columnIndex == first || columnIndex == lastt);  }
 
+                   public Class<?> getColumnClass(int column){
+                       
+                       switch(column){
+                           
+                           case 0: return Boolean.class;
+                           
+                           default: return String.class;
+                       }
+                      
+                   }
+                   
                  };      
         }
     
@@ -128,7 +139,9 @@ public class TableSQL {
          
     TableColumnModel row = table.getColumnModel();
     
-    this.dimen = WidthCell;
+    dimen = WidthCell;
+    
+    resize = true;
     
     for(int x = 0; x < WidthCell.length; x++) {
    
@@ -136,8 +149,7 @@ public class TableSQL {
          
     }    
     table.setColumnModel(row);
-    
-    
+
     }
     
     private String[] setLabels(String[] etiquetas, ResultSetMetaData MetaData, int Decrement){
@@ -176,28 +188,47 @@ public class TableSQL {
         
        return Table;
     }
-    
 
+    public void HiddenColumns(int[] position){
+     
+    hidden = position;
+    
+    remove = true;
+
+    }
+    
     public void TransferModel(JTable jTable) {
       
         jTable.setModel(Table.getModel());
       
+        if(remove){
+            
+        for(int x = 0; x < hidden.length; x++) {
+            
+        System.out.println("numero: "+hidden[x]);
         
-        jTable.getTableHeader().getColumnModel().getColumn(1).setMaxWidth(0);
+        jTable.getTableHeader().getColumnModel().getColumn(hidden[x]).setMaxWidth(0);
+        
+        jTable.getColumnModel().getColumn(hidden[x]).setPreferredWidth(0);
+        jTable.getColumnModel().getColumn(hidden[x]).setWidth(0);
+        jTable.getColumnModel().getColumn(hidden[x]).setMaxWidth(0);
+        jTable.getColumnModel().getColumn(hidden[x]).setMinWidth(0);
+        
+        }    
+            
+        }
+        
+/*        jTable.getTableHeader().getColumnModel().getColumn(1).setMaxWidth(0);
         
         jTable.getColumnModel().getColumn(1).setPreferredWidth(0);
                 jTable.getColumnModel().getColumn(1).setWidth(0);
                         jTable.getColumnModel().getColumn(1).setMaxWidth(0);
-                                jTable.getColumnModel().getColumn(1).setMinWidth(0);
+                                jTable.getColumnModel().getColumn(1).setMinWidth(0);*/
     
-      
-      this.AdjustCells(jTable,dimen);
-                
-           
+      if(resize){
+      this.AdjustCells(jTable,dimen); }
                // jTable.setLayout(null);
                  //jTable.getColumnModel().getColumn(0).setCellEditor(new DefaultCellEditor(check));
-                 
-      
     }
 
     public ListSelectionModel getList() {
@@ -209,7 +240,5 @@ public class TableSQL {
     cellSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     
     return cellSelectionModel;
-    }
-   
-  
+    }  
 }

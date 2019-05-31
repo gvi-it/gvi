@@ -16,18 +16,17 @@ public class login extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         close = new javax.swing.JButton();
         form = new javax.swing.JLayeredPane();
+        passinfo = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         btn = new javax.swing.JButton();
-        jLayeredPane3 = new javax.swing.JLayeredPane();
         email = new javax.swing.JTextField();
-        jLayeredPane4 = new javax.swing.JLayeredPane();
         password = new javax.swing.JPasswordField();
-        passinfo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(102, 153, 255));
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(300, 300));
 
         jLayeredPane1.setBackground(new java.awt.Color(255, 255, 255));
         jLayeredPane1.setForeground(new java.awt.Color(255, 255, 255));
@@ -75,46 +74,7 @@ public class login extends javax.swing.JFrame {
         );
 
         form.setName("form"); // NOI18N
-
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("user:");
-
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("password:");
-
-        btn.setText("Login");
-        btn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        jLayeredPane3.setBackground(new java.awt.Color(255, 255, 255));
-        jLayeredPane3.setForeground(new java.awt.Color(255, 255, 255));
-        jLayeredPane3.setOpaque(true);
-
-        email.setBorder(null);
-        email.setName("require"); // NOI18N
-
-        jLayeredPane3.setLayer(email, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout jLayeredPane3Layout = new javax.swing.GroupLayout(jLayeredPane3);
-        jLayeredPane3.setLayout(jLayeredPane3Layout);
-        jLayeredPane3Layout.setHorizontalGroup(
-            jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jLayeredPane3Layout.createSequentialGroup()
-                .addComponent(email)
-                .addContainerGap())
-        );
-        jLayeredPane3Layout.setVerticalGroup(
-            jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(jLayeredPane3Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        jLayeredPane4.setBackground(new java.awt.Color(255, 255, 255));
-        jLayeredPane4.setOpaque(true);
-
-        password.setBorder(null);
-        password.setMargin(new java.awt.Insets(2, 25, 2, 2));
-        password.setName("require"); // NOI18N
+        form.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         passinfo.setBackground(new java.awt.Color(255, 255, 255));
         passinfo.setForeground(new java.awt.Color(255, 255, 255));
@@ -122,89 +82,43 @@ public class login extends javax.swing.JFrame {
         passinfo.setBorder(null);
         passinfo.setBorderPainted(false);
         passinfo.setContentAreaFilled(false);
-        passinfo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        passinfo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         passinfo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        passinfo.setMargin(new java.awt.Insets(2, 14, 10, 14));
         passinfo.setOpaque(true);
         passinfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 passinfoActionPerformed(evt);
             }
         });
+        form.add(passinfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(225, 96, -1, 20));
 
-        jLayeredPane4.setLayer(password, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane4.setLayer(passinfo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("user:");
+        form.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 51, -1, 23));
 
-        javax.swing.GroupLayout jLayeredPane4Layout = new javax.swing.GroupLayout(jLayeredPane4);
-        jLayeredPane4.setLayout(jLayeredPane4Layout);
-        jLayeredPane4Layout.setHorizontalGroup(
-            jLayeredPane4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jLayeredPane4Layout.createSequentialGroup()
-                .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(passinfo)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jLayeredPane4Layout.setVerticalGroup(
-            jLayeredPane4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jLayeredPane4Layout.createSequentialGroup()
-                .addGroup(jLayeredPane4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(password)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane4Layout.createSequentialGroup()
-                        .addComponent(passinfo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(1, 1, 1))
-        );
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("password:");
+        form.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
 
-        form.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        form.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        form.setLayer(btn, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        form.setLayer(jLayeredPane3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        form.setLayer(jLayeredPane4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        btn.setText("Login");
+        btn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        form.add(btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 142, 180, -1));
 
-        javax.swing.GroupLayout formLayout = new javax.swing.GroupLayout(form);
-        form.setLayout(formLayout);
-        formLayout.setHorizontalGroup(
-            formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formLayout.createSequentialGroup()
-                .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(formLayout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(jLabel2))
-                    .addGroup(formLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel3)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLayeredPane3)
-                    .addComponent(jLayeredPane4))
-                .addContainerGap(68, Short.MAX_VALUE))
-        );
-        formLayout.setVerticalGroup(
-            formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formLayout.createSequentialGroup()
-                .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(formLayout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(jLayeredPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formLayout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLayeredPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(btn)
-                .addContainerGap(55, Short.MAX_VALUE))
-        );
+        email.setName("require"); // NOI18N
+        form.add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 180, 35));
+
+        password.setText("dsffsdfsdfsdfsdfsdfsdf");
+        password.setMargin(new java.awt.Insets(2, 2, 2, 30));
+        password.setName("require"); // NOI18N
+        form.add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 180, 32));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(form)
             .addComponent(jLayeredPane1)
+            .addComponent(form)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,7 +133,6 @@ public class login extends javax.swing.JFrame {
 
     private void passinfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passinfoActionPerformed
         // TODO add your handling code here:
-
     }//GEN-LAST:event_passinfoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -231,8 +144,6 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLayeredPane jLayeredPane1;
-    private javax.swing.JLayeredPane jLayeredPane3;
-    public javax.swing.JLayeredPane jLayeredPane4;
     public javax.swing.JButton passinfo;
     public javax.swing.JPasswordField password;
     // End of variables declaration//GEN-END:variables

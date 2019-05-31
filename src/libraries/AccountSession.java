@@ -42,7 +42,7 @@ public class AccountSession {
                 mapInFile = (HashMap<String,String>)ois.readObject();         
             }
 
-        } catch(IOException | ClassNotFoundException e){} 
+        } catch(IOException | ClassNotFoundException e){}
    
     return mapInFile;
            

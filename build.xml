@@ -11,6 +11,7 @@
             <zipfileset src="C:\Users\Preinstalleduser\Documents\NetBeansProjects\gvi\dist\lib\DS_Desktop_Notify.jar" excludes="META-INF/*"/>
             <zipfileset src="C:\Users\Preinstalleduser\Documents\NetBeansProjects\gvi\dist\lib\javax.mail-1.6.2.jar" excludes="META-INF/*"/>
              <zipfileset src="C:\Users\Preinstalleduser\Documents\NetBeansProjects\gvi\dist\lib\commons-codec-1.12.jar" excludes="META-INF/*"/>
+             <zipfileset src="C:\Users\Preinstalleduser\Documents\NetBeansProjects\gvi\dist\lib\swingx-all-1.6.4.jar" excludes="META-INF/*"/>
             <zipfileset src="C:\Users\Preinstalleduser\Documents\NetBeansProjects\gvi\dist\lib\mysql-connector-java-5.1.23-bin.jar" excludes="META-INF/*"/>
         </jar>
     </target>

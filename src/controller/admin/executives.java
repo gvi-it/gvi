@@ -5,10 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.event.WindowEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.TableColumnModel;
@@ -18,12 +16,12 @@ import view.form.admin.ListExecutives;
 
 public class executives implements ActionListener, MouseListener{
 
-    private ListExecutives content = new ListExecutives();
+    private ListExecutives view = new ListExecutives();
     
     public executives() {
         
-          content.toregister.addActionListener(this);
-          config(content);
+          ListExecutives.toregister.addActionListener(this);
+          config(view);
              
           try {          
             //conexion               
@@ -33,76 +31,25 @@ public class executives implements ActionListener, MouseListener{
             
            // ResultSetMetaData MetaData = query.getMetaData();
             
-            TableSQL table = new TableSQL(content.jTable.getPreferredSize());
+            TableSQL table = new TableSQL(view.jTable.getPreferredSize());
             
-            table.Model(query,TableSQL.DEFAULT);
+            table.Model(query, TableSQL.WITH_CONTROLS);
             
-            int[] widthCell = {3,0,80,140,120,3};
+            int[] widthCell = {3,0,80,140,120};
             
-            table.AdjustCell(widthCell);
+          //  table.AdjustCell(widthCell);
+             table.HiddenColumns(new int[]{0,1});
+            table.TransferModel(view.jTable);
             
-            table.TransferModel(content.jTable);
-            
-            content.jTable.addMouseListener(this);
-            
-            
-            
-           // content.jTable.getColumnModel().getColumn(0).setCellEditor(new DefaultCellEditor(new JCheckBox()));
-            
-            //table.Model(query,TableSQL.DEFAULT);
-         
-            
-            /*
-            DefaultTableModel modelo = new DefaultTableModel(){
-                
-               @Override
-               public boolean isCellEditable(int rowIndex, int columnIndex) { return (columnIndex == 0) ? true : false; }
-            
-            };
-                        
-            // Se obtiene el número de columnas.
-            int numeroColumnas = MetaData.getColumnCount()+1;
+           
 
-            // Se crea un array de etiquetas para rellenar
-            Object[] etiquetas = new Object[numeroColumnas];
             
-            etiquetas[0] = " ";
-
-            // Se obtiene cada una de las etiquetas para cada columna
-            for (int i = 1; i < numeroColumnas; i++) {
-            // Nuevamente, para ResultSetMetaData la primera columna es la 1. 
-            etiquetas[i] = MetaData.getColumnLabel(i).toUpperCase(); 
-            }
-            
-                modelo.setColumnIdentifiers(etiquetas);
-               
-                content.jTable.setModel(modelo);
-                
-                content.jTable.setSize(100,5);
-                
-                int[] widthCell = {5,5,80,120,150};
-                
-                this.AdjustCells(content.jTable,widthCell);
-                
-            while(query.next()){
-                
-                Object[] data = new Object[numeroColumnas];
-                  
-                content.jTable.getColumnModel().getColumn(0).setCellEditor(new DefaultCellEditor(new JCheckBox()));
-                
-                for (int i = 1; i < numeroColumnas; i++) {             
-                data[i] = query.getObject(etiquetas[i].toString());    
-                }
-                 
-                modelo.addRow(data);
-                
-                modelo.fireTableDataChanged();   
-            }*/
+            view.jTable.addMouseListener(this);
 
         } catch(SQLException e){ }  
     }
     
-     public JPanel getView(){ return content; }
+     public JPanel getView(){ return view; }
      
      private void AdjustCells(JTable table, int[] WidthCell){
          
@@ -121,15 +68,15 @@ public class executives implements ActionListener, MouseListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         
-        if(e.getSource().equals(content.toregister)){
+        if(e.getSource().equals(view.toregister)){
         new ExecutiveData();
         }
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-    new ExecutiveData((int) content.jTable.getValueAt(content.jTable.getSelectedRow(),1));
-    System.out.println(content.jTable.getValueAt(content.jTable.getSelectedRow(),1));
+    new ExecutiveData((int) view.jTable.getValueAt(view.jTable.getSelectedRow(),1));
+    System.out.println(view.jTable.getValueAt(view.jTable.getSelectedRow(),1));
     }
 
     @Override

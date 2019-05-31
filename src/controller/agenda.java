@@ -2,6 +2,7 @@ package controller;
 
 import hibernate.Executive;
 import java.awt.event.WindowEvent;
+import libraries.Logo;
 import view.form.agenda.personal;
 
 public class agenda {
@@ -11,6 +12,8 @@ public class agenda {
     public agenda(Executive e) {
     
     view.menu.admin.personal.setEnabled(false);
+    
+    window.setIconImage(new Logo().createIcon());
               
     window.setSize(window.getPreferredSize());
               

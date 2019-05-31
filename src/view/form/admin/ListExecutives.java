@@ -53,7 +53,6 @@ public class ListExecutives extends javax.swing.JPanel {
         jLabel1.setVerifyInputWhenFocusTarget(false);
         jLabel1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 0, -1, 40));
-        jLabel1.getAccessibleContext().setAccessibleParent(null);
 
         Search.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/system/search.png"))); // NOI18N
@@ -77,7 +76,7 @@ public class ListExecutives extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Executive", "Tools", "Title 3", "Title 4", "Title 5", "Title 6"
+                "Title 1"
             }
         ));
         jScrollPane1.setViewportView(jTable);

@@ -3,8 +3,6 @@ package libraries;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.HashMap;
 import javax.swing.BorderFactory;
 import javax.swing.JCheckBox;
@@ -17,6 +15,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
+
 
 public class FormV {
 
@@ -49,25 +49,20 @@ public class FormV {
      this.simple = simple;    
      }
     
-    private Boolean revalidate(Component component) {
+    private Boolean revalidate(Component component,Integer focus) {
        
         boolean state = false;
         
           try {
              
-             switch(ClassComponent.get(component.getClass())){
+            switch(ClassComponent.get(component.getClass())){
                  
                  case 0: {
                  
-                  state = (component.getName() == "require") ? !((JSpinner) component).getValue().equals(0) : true;
+                 state = (component.getName() == "require") ? (!((JSpinner) component).getValue().equals(0) && (int) ((JSpinner) component).getValue() > 0) : true;
                  System.out.println("-----JSpinner");
-                 
-                 if(component.getName() == "require") {
-                 
-                 ((JSpinner) component).setBorder((state == false) ? BorderFactory.createLineBorder(Color.red) : BorderFactory.createBevelBorder(1));
- 
-                 }
-                 
+                                  
+                ((JSpinner) component).setBorder((state == false && component.getName() == "require") ? BorderFactory.createLineBorder(Color.red) : new JSpinner().getBorder());
                  break;
                      
                  }
@@ -75,13 +70,9 @@ public class FormV {
                  case 1: {
                  state = (component.getName() == "require") ? !((JTextField) component).getText().equals("") : true;
                  System.out.println("-----textfield");
-                 
-                 if(component.getName() == "require") {
-                 
-                 ((JTextField) component).setBorder((state == false) ? BorderFactory.createLineBorder(Color.red) : BorderFactory.createBevelBorder(1));
-
-                 }
-                 
+       
+                 ((JTextField) component).setBorder((state == false && component.getName() == "require") ? BorderFactory.createLineBorder(Color.red) : new JTextField().getBorder());
+          
                  break;
                  }
                  
@@ -89,12 +80,12 @@ public class FormV {
                      
                  state = (component.getName() == "require") ? ((JCheckBox) component).isSelected() : true;
                  System.out.println("-----checkbox");
-                 
+   
                  if(component.getName() == "require") {
                  
                  ((JCheckBox) component).setBorderPaintedFlat(true);
                  ((JCheckBox) component).setBorderPainted(true);
-                 ((JCheckBox) component).setBorder((state == false) ? BorderFactory.createLineBorder(Color.red) : BorderFactory.createBevelBorder(1));
+                 ((JCheckBox) component).setBorder((state == false) ? BorderFactory.createLineBorder(Color.red) : new JCheckBox().getBorder());
   
                  }
                  
@@ -107,7 +98,7 @@ public class FormV {
                  
                  if(component.getName() == "require") {
                         
-                  ((JComboBox) component).setBorder((state == false) ? BorderFactory.createLineBorder(Color.red, 1, true) : BorderFactory.createEmptyBorder());
+                 ((JComboBox) component).setBorder((state == false) ? BorderFactory.createLineBorder(Color.red) : new JComboBox().getBorder());
 
                  } 
                  
@@ -120,19 +111,19 @@ public class FormV {
                  
                  if(component.getName() == "require") {
                  
-                 ((JTextArea) component).setBorder((state == false) ? BorderFactory.createLineBorder(Color.red) : BorderFactory.createBevelBorder(1)); 
+                 ((JTextArea) component).setBorder((state == false) ? BorderFactory.createLineBorder(Color.red) : new JTextArea().getBorder()); 
  
                  }
                  break;
                  }
                  
                  case 5: {
-                 state = (component.getName() == "require") ? !((JTextField) component).getText().equals("") : true;
+                 state = (component.getName() == "require") ? !((JPasswordField) component).getText().equals("") : true;
                  System.out.println("-----PasswordField");
                  
                  if(component.getName() == "require") {
                  
-                 ((JPasswordField) component).setBorder((state == false) ? BorderFactory.createLineBorder(Color.red) : BorderFactory.createBevelBorder(1));    
+                 ((JPasswordField) component).setBorder((state == false) ? BorderFactory.createLineBorder(Color.red) : new JPasswordField().getBorder());    
 
                  }
                  break;
@@ -144,7 +135,7 @@ public class FormV {
                  
                  if(component.getName() == "require") {
                  
-                 ((JFormattedTextField) component).setBorder((state == false) ? BorderFactory.createLineBorder(Color.red) : BorderFactory.createBevelBorder(1));  
+                 ((JFormattedTextField) component).setBorder((state == false) ? BorderFactory.createLineBorder(Color.red) : new JFormattedTextField().getBorder());  
                                       
                  }
                  
@@ -160,26 +151,24 @@ public class FormV {
                  
              }
 
-//              || ((JComboBox) component).getSelectedItem().equals("")) ? true : false 
-             
-    } catch(Exception e){
+    } catch(Exception e) {
     state = true;
     }
-        
-    return state; 
-        
+ 
+    return state;         
     }
+   
     
     private Boolean search(Component component){
         
         Component[] ctmp = (component instanceof JLayeredPane) ? ((JLayeredPane) component).getComponents() : ((JPanel) component).getComponents();
-                
+
         for(int xtmp = 0; xtmp < ctmp.length; xtmp++){
              System.out.println("field : "+ctmp[xtmp].getClass());
 
-             val = revalidate(ctmp[xtmp]);
+             val = revalidate(ctmp[xtmp],xtmp);
              
-             if(!val){ break; }       
+             if(!val){ ctmp[xtmp].requestFocus(); break; }       
 
         }
         return val;
@@ -214,4 +203,5 @@ public class FormV {
         }
         return this.val;    
     } 
+
 }

@@ -1,9 +1,7 @@
-
 package libraries;
 
 import javax.swing.DefaultListSelectionModel;
 import javax.swing.JComboBox;
-
 
 public class SetRange {
 
@@ -33,7 +31,5 @@ public class SetRange {
         EnabledJComboBoxRenderer enableRenderer = new EnabledJComboBoxRenderer(model);
         //tmp.setRenderer(enableRenderer);
    
-    
-}
-    
+}   
 }

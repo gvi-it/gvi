@@ -1,21 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package view.form.admin;
 
-/**
- *
- * @author Preinstalleduser
- */
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
+
 public class addExecutive extends javax.swing.JFrame {
 
-    /**
-     * Creates new form addExecutive
-     */
     public addExecutive() {
         initComponents();
+        role.setEditable(true);
+        role.addItem("Select");
+           role.addItem("uno");
+        role.addItem("dos");
+          role.addItem("tres");
+          
+          AutoCompleteDecorator.decorate(role);
+
     }
 
     /**
@@ -28,8 +27,8 @@ public class addExecutive extends javax.swing.JFrame {
     private void initComponents() {
 
         container = new javax.swing.JPanel();
-        lastname = new javax.swing.JTextField();
         name = new javax.swing.JTextField();
+        lastname = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         role = new javax.swing.JComboBox<>();
@@ -40,10 +39,8 @@ public class addExecutive extends javax.swing.JFrame {
         email = new javax.swing.JTextField();
         JLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        password = new javax.swing.JTextField();
         hours = new javax.swing.JSpinner();
-        date = new javax.swing.JFormattedTextField();
-        jCheckBox1 = new javax.swing.JCheckBox();
         cancel = new javax.swing.JButton();
         Save = new javax.swing.JButton();
 
@@ -56,10 +53,12 @@ public class addExecutive extends javax.swing.JFrame {
         container.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Executive Register", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP));
         container.setPreferredSize(new java.awt.Dimension(400, 350));
         container.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        container.add(lastname, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 120, -1));
 
-        name.setName(""); // NOI18N
+        name.setName("require"); // NOI18N
         container.add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 120, 30));
+
+        lastname.setName("require"); // NOI18N
+        container.add(lastname, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 120, 30));
 
         jLabel1.setText("Lastname :");
         container.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 60, 20));
@@ -67,14 +66,15 @@ public class addExecutive extends javax.swing.JFrame {
         jLabel2.setText("Name :");
         container.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, 40, 20));
 
-        role.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        container.add(role, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 50, 70, -1));
+        role.setName("require"); // NOI18N
+        container.add(role, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, 90, 30));
+        role.getAccessibleContext().setAccessibleName("Role");
 
         jLabel3.setText("Role :");
         container.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 40, 20));
 
         jLabel4.setText("Salary :");
-        container.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 90, 40, 20));
+        container.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 90, 40, 30));
 
         salary.setName("require"); // NOI18N
         salary.addActionListener(new java.awt.event.ActionListener() {
@@ -82,35 +82,32 @@ public class addExecutive extends javax.swing.JFrame {
                 salaryActionPerformed(evt);
             }
         });
-        container.add(salary, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 90, 70, -1));
+        container.add(salary, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, 70, 30));
         salary.getAccessibleContext().setAccessibleName("");
         salary.getAccessibleContext().setAccessibleDescription("int");
 
         jLabel5.setText("Email :");
         container.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 60, 20));
-        container.add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 120, -1));
+
+        email.setName("require"); // NOI18N
+        container.add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 120, 30));
 
         JLabel1.setText("hours :");
-        container.add(JLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 130, -1, 20));
+        container.add(JLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, 50, 20));
 
         jLabel6.setText("Password : ");
         container.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 70, 20));
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        password.setName("require"); // NOI18N
+        password.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                passwordActionPerformed(evt);
             }
         });
-        container.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 120, -1));
-        container.add(hours, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 130, -1, -1));
+        container.add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 120, 30));
 
-        date.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
-        date.setName("require"); // NOI18N
-        container.add(date, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 180, 90, -1));
-
-        jCheckBox1.setText("jCheckBox1");
-        jCheckBox1.setName("require"); // NOI18N
-        container.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+        hours.setName("require"); // NOI18N
+        container.add(hours, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 130, 40, 30));
 
         getContentPane().add(container, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 440, 220));
 
@@ -123,9 +120,9 @@ public class addExecutive extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_passwordActionPerformed
 
     private void salaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salaryActionPerformed
         // TODO add your handling code here:
@@ -171,19 +168,17 @@ public class addExecutive extends javax.swing.JFrame {
     public javax.swing.JButton Save;
     public javax.swing.JButton cancel;
     public javax.swing.JPanel container;
-    public javax.swing.JFormattedTextField date;
     public javax.swing.JTextField email;
     public javax.swing.JSpinner hours;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField jTextField1;
     public javax.swing.JTextField lastname;
     public javax.swing.JTextField name;
+    public javax.swing.JTextField password;
     public javax.swing.JComboBox<String> role;
     public javax.swing.JTextField salary;
     // End of variables declaration//GEN-END:variables

@@ -33,11 +33,11 @@ public class access implements ActionListener, KeyListener, MouseListener, Mouse
     
     public access(){
         
-                    try{
+    try{
   
-  JFrame.setDefaultLookAndFeelDecorated(true);
-  JDialog.setDefaultLookAndFeelDecorated(true);
-  UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+   JFrame.setDefaultLookAndFeelDecorated(true);
+   JDialog.setDefaultLookAndFeelDecorated(true);
+   UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
   //UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
   //UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
   //UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
@@ -227,7 +227,7 @@ catch (Exception e)
             new cpanel(model.getListExecutives());
 
             } else {
-            JOptionPane.showMessageDialog(null,"User or Password Incorrect");
+            JOptionPane.showMessageDialog(null,"User or Password Incorrect","Invalid",JOptionPane.ERROR_MESSAGE);
             }  } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Server NOT FOUND");
             System.out.println(ex);
