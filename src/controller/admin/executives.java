@@ -5,8 +5,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.TableColumnModel;
@@ -33,18 +39,27 @@ public class executives implements ActionListener, MouseListener{
             
             TableSQL table = new TableSQL(view.jTable.getPreferredSize());
             
-            table.Model(query, TableSQL.WITH_CONTROLS);
+//            table.Model(query, TableSQL.WITH_CONTROLS);
+
+            ImageIcon update = null;
+              try {
+                  update = new ImageIcon(ImageIO.read(new File("src/resources/icon/gvi.png")).getScaledInstance(30,30, 100));
+              } catch (IOException ex) {
+                  Logger.getLogger(executives.class.getName()).log(Level.SEVERE, null, ex);
+              }
             
-            int[] widthCell = {3,0,80,140,120};
+            table.Model(query,TableSQL.WITH_CONTROLS, update, update);
             
-          //  table.AdjustCell(widthCell);
+            int[] widthCell = {30,0,80,140,120,5};
+            
+            table.AdjustCell(widthCell);
              table.HiddenColumns(new int[]{0,1});
             table.TransferModel(view.jTable);
             
            
 
             
-            view.jTable.addMouseListener(this);
+           // view.jTable.addMouseListener(this);
 
         } catch(SQLException e){ }  
     }
@@ -75,7 +90,7 @@ public class executives implements ActionListener, MouseListener{
 
     @Override
     public void mouseClicked(MouseEvent e) {
-    new ExecutiveData((int) view.jTable.getValueAt(view.jTable.getSelectedRow(),1));
+  //  new ExecutiveData((int) view.jTable.getValueAt(view.jTable.getSelectedRow(),1));
     System.out.println(view.jTable.getValueAt(view.jTable.getSelectedRow(),1));
     }
 

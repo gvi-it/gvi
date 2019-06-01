@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
-import javax.swing.JFormattedTextField;
 import libraries.FormV;
 import libraries.Logo;
 import libraries.Placeholder;
