@@ -22,7 +22,7 @@ FormV form = new FormV(model.getContentPane());
                                       
     }
 
-    ExecutiveData () {
+    public ExecutiveData () {
         
     config(model);     
             

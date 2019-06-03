@@ -7,6 +7,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -20,7 +21,7 @@ import libraries.Placeholder;
 import libraries.TableSQL;
 import view.form.admin.ListExecutives;
 
-public class executives implements ActionListener, MouseListener{
+public class executives implements ActionListener, MouseListener, TableSQL.Listener{
 
     private ListExecutives view = new ListExecutives();
     
@@ -31,11 +32,13 @@ public class executives implements ActionListener, MouseListener{
              
           try {          
             //conexion               
-            DataBase vgi =  new DataBase();
+            DataBase gvi =  new DataBase();
 
-            ResultSet query = vgi.execute("select executive.id as id, executive.name as name,executive.lastname as lastname ,role.name as role from executive inner join role on role.id = executive.role");
+            ResultSet query = gvi.execute("select executive.id as id, executive.name as name,executive.lastname as lastname ,role.name as role from executive inner join role on role.id = executive.role");
             
-           // ResultSetMetaData MetaData = query.getMetaData();
+            //PreparedStatement statement = gvi.request.prepareStatement("");
+            
+          //  statement.
             
             TableSQL table = new TableSQL(view.jTable.getPreferredSize());
             
@@ -47,19 +50,14 @@ public class executives implements ActionListener, MouseListener{
               } catch (IOException ex) {
                   Logger.getLogger(executives.class.getName()).log(Level.SEVERE, null, ex);
               }
-            
+
             table.Model(query,TableSQL.WITH_CONTROLS, update, update);
             
-            int[] widthCell = {30,0,80,140,120,5};
+            int[] widthCell = {30,0,80,180,140,5};
             
             table.AdjustCell(widthCell);
-             table.HiddenColumns(new int[]{0,1});
-            table.TransferModel(view.jTable);
-            
-           
-
-            
-           // view.jTable.addMouseListener(this);
+            table.HiddenColumns(new int[]{0,1});
+            table.TransferModel(view.jTable,this);
 
         } catch(SQLException e){ }  
     }
@@ -116,6 +114,13 @@ public class executives implements ActionListener, MouseListener{
 
     private void config(ListExecutives window) {
         new Placeholder("Search",window.SearchText);
+    }
+
+    @Override
+    public void SelectedItem(int row) {
+        System.out.println("row select: "+row);
+
+//  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 

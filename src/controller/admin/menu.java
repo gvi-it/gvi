@@ -59,7 +59,7 @@ public class menu implements ActionListener {
           
         } else if(e.getSource().equals(getView.companies)) {
           
-          tmp = new controller.admin.companies(executive).getView();   
+          tmp = new controller.admin.companies(executive).getView();  
         
              tmp.setPreferredSize(new Dimension(tmp.getSize())); 
          

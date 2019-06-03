@@ -31,6 +31,10 @@ public class DataBase {
         
     }
     
+    public Connection getConnection(){
+    return request;    
+    }
+    
     public ResultSet execute(String sql){
    
         try{

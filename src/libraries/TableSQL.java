@@ -1,33 +1,31 @@
 package libraries;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Point;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.sql.ResultSetMetaData;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.awt.Point;
 import java.awt.Cursor;
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import javax.swing.DefaultCellEditor;
+import javax.swing.JLabel;
+import javax.swing.JTable;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
+import javax.swing.DefaultCellEditor;
 import javax.swing.ListSelectionModel;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.DefaultTableCellRenderer;
 
 public class TableSQL {
 
     private ResultSet SQL = null;
-  //  private DefaultTableModel model;
     private JTable Table,SecondTable;
     public static final Boolean WITH_CONTROLS = true;
     public static final Boolean ONLY_SELECTABLE = false;
@@ -35,20 +33,15 @@ public class TableSQL {
     private Point point;
     private Dimension dimension;
     private int[] dimen, hidden;
-    ImageIcon update = null,delete = null;
-    private int numrow = 0;
-    
+    private ImageIcon update = null,delete = null;
+    private int lastrow = 0;
+
     public TableSQL(Dimension size, Point point){  this.dimension = size; this.point = point; }
     
     public TableSQL(Dimension size, int x, int y){ this.dimension = size; point = new Point(x,y); }
         
     public TableSQL(Dimension size){ this.dimension = size; this.point = new Point(0,0); }
             
-    public void Model(ResultSet query, Boolean Model, ImageIcon update, ImageIcon delete) throws SQLException{
-    this.update = update; this.delete = delete;
-    Model(query,Model);
-    }
-    
     private class render extends DefaultTableCellRenderer{
 
         @Override
@@ -56,26 +49,24 @@ public class TableSQL {
             
             JLabel tmp = new JLabel();
             tmp.setText("");
-            tmp.setSize(40,20);
-            tmp.setOpaque(true);
-            tmp.setBackground(Color.red);
-            
-            tmp.setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
-            tmp.setIcon(new ImageIcon(update.getImage().getScaledInstance(20,20,java.awt.Image.SCALE_SMOOTH)));
-            
-            
+            tmp.setSize(10,10);
+            tmp.setHorizontalAlignment(CENTER);
+            tmp.setIcon(new ImageIcon(update.getImage().getScaledInstance(15,15,java.awt.Image.SCALE_SMOOTH)));
+    
             return tmp;
-        }
-        
+        }    
     }
     
+    public void Model(ResultSet query, Boolean WITH_CONTROLS, ImageIcon update, ImageIcon delete) throws SQLException {
+        this.Model(query,WITH_CONTROLS); this.update = update; this.delete = delete;
+    }
+     
     public void Model(ResultSet query, Boolean Model) throws SQLException {
         
     Table = this.ModelTable();
     
-    ResultSetMetaData MetaData = query.getMetaData();
-    
-   // System.out.println("nombre de la tabla "+MetaData.);
+    ResultSetMetaData MetaData = query.getMetaData();    
+   // System.out.println("nombre de la tabla "+MetaData.); // mas adelante optimizaremos sobre ocultar las claves primarias y foraneas apartir de la información de la tabla
     int last = MetaData.getColumnCount();
     System.out.println(last);
     int first = 0;
@@ -85,15 +76,11 @@ public class TableSQL {
     String[] etiquetas;
     
         if(Model){
-
-         //etiquetas = new Object[last+2];    
+           
         etiquetas = new String[last+2];
-        etiquetas[first] = "";
-        etiquetas[last+1] = "";
-        
-        int lastt = last+1;
-        numrow = lastt;
-        
+        etiquetas[first] = "";    
+         
+        lastrow = last+1;
 
         etiquetas = this.setLabels(etiquetas, MetaData,2);
 
@@ -101,100 +88,63 @@ public class TableSQL {
 
                    @Override
                    public boolean isCellEditable(int rowIndex, int columnIndex) { return(columnIndex == first);  }
-
-                   
-                   
+   
                    public Class<?> getColumnClass(int column){
                        
-                       if(column == lastt){
-                        
-                       System.out.println("Image");
-                       
-                       return Object.class;
+                       if(column == lastrow){
+                        return Object.class;
                        } else if(column == 0){
-                           return Boolean.class;
+                        return Boolean.class;
                        } else{
-                           return String.class;
+                        return String.class;
                        }
-                       
-                       /*switch(column){
-                           
-                           case 0: return Boolean.class;
-                           
-                          // default: return String.class;
-                       }*/
-                      
-                   }
-                   
+                    }
                  };      
-         } else  {
+        } else  {
 
-        //  etiquetas = new Object[last+1];    
-          etiquetas = new String[last+1];
-          etiquetas[first] = "@";
+           etiquetas = new String[last+1];
+           etiquetas[first] = "";
 
-          etiquetas = this.setLabels(etiquetas, MetaData, 1);
+           etiquetas = this.setLabels(etiquetas, MetaData, 1);
 
-           int lastt = last+1;
-             modelo = new DefaultTableModel(){
+           lastrow = last+1;
+           modelo = new DefaultTableModel(){
 
                    @Override
-                   public boolean isCellEditable(int rowIndex, int columnIndex) { return false; }//return (columnIndex == first || columnIndex == lastt);  }
+                   public boolean isCellEditable(int rowIndex, int columnIndex) { return(columnIndex == first); }//return (columnIndex == first || columnIndex == lastt);  }
 
-                   public Class<?> getColumnClass(int column){
+                   public Class<?> getColumnClass(int column) {
                        
                        switch(column){
                            
-                           case 0: return Boolean.class;
+                        case 0: return Boolean.class;
                            
-                           default: return String.class;
-                       }
-                      
-                   }
-                   
-                 };      
+                        default: return String.class;
+                    }         
+                }                   
+            };      
         }
     
+        modelo.addColumn(new render());
      modelo.setColumnIdentifiers(etiquetas);
-     
-     
 
      Table.setModel(modelo);
      
-     while(query.next()){
+        while(query.next()){
                 
-                Object[] data = new Object[etiquetas.length];
-                System.out.println(data.length);
- 
+            Object[] data = new Object[etiquetas.length];
                
-                for (int i = 1; i <= last; i++) {   
-                    System.out.println(etiquetas[i]+" pos: "+i);
-                data[i] = query.getObject(etiquetas[i].toString());                                
-                }
+            for (int i = 1; i <= last; i++) { data[i] = query.getObject(etiquetas[i]); }
                 
-                int difference = etiquetas.length - last;
+            int difference = etiquetas.length - last;
                 
-                if(difference == 2){
-                  Table.getColumnModel().getColumn(etiquetas.length-1).setCellEditor(new DefaultCellEditor(new JCheckBox()));
-                  
-                } 
-                
-                           
-            
-                
-                
-                modelo.addRow(data);
-                
-                 //Table.setValueAt(update,0, last+1);
-                modelo.fireTableDataChanged();   
-                
-                   
-                
-            }
-     
-      
-     
-                           
+            if(difference == 2){
+            Table.getColumnModel().getColumn(etiquetas.length-1).setCellEditor(new DefaultCellEditor(new JCheckBox())); 
+            } 
+                 
+            modelo.addRow(data);         
+            modelo.fireTableDataChanged();        
+        }
     }
     
     public JTable getView() { return Table; }
@@ -215,7 +165,6 @@ public class TableSQL {
          
     }    
     table.setColumnModel(row);
-
     }
     
     private String[] setLabels(String[] etiquetas, ResultSetMetaData MetaData, int Decrement){
@@ -230,14 +179,6 @@ public class TableSQL {
                 }
             }
         return etiquetas;
-    }
-    
-    public void setEditIcon(ImageIcon image) {
-        
-    }
-    
-    public void setRemoveIcon(ImageIcon image){
-        
     }
 
     private JTable ModelTable() {
@@ -263,11 +204,11 @@ public class TableSQL {
 
     }
     
-    public void TransferModel(JTable jTable) {
-      
-        jTable.setModel(Table.getModel());
+    public void TransferModel(JTable jTable, Object c) {
         
-        jTable.getColumnModel().getColumn(numrow).setCellRenderer(new render());
+        jTable.setModel(Table.getModel()); 
+        
+        jTable.getColumnModel().getColumn(lastrow).setCellRenderer(new render());
         
 //        jTable.getTableHeader().co
         
@@ -280,12 +221,11 @@ public class TableSQL {
             @Override
             public void mouseMoved(MouseEvent e) {
                                
-            if(jTable.columnAtPoint(e.getPoint()) == numrow || jTable.columnAtPoint(e.getPoint()) == 0){ 
+            if(jTable.columnAtPoint(e.getPoint()) == lastrow || jTable.columnAtPoint(e.getPoint()) == 0){ 
             jTable.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             } else {
                 jTable.setCursor(Cursor.getDefaultCursor());
             }
-                
                 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         });
@@ -332,8 +272,12 @@ public class TableSQL {
             @Override
             public void mouseClicked(MouseEvent e) {
                 
-                if(jTable.columnAtPoint(e.getPoint()) == numrow){
-                    System.out.println("Click en el label de editar, row :"+jTable.getSelectedRow());
+                if(jTable.columnAtPoint(e.getPoint()) == lastrow){
+                   
+                     Listener t = (Listener) c;
+                     
+                    t.SelectedItem((int) jTable.getValueAt(jTable.getSelectedRow(),1));
+                  //  System.out.println("Click en el label de editar, row :"+jTable.getSelectedRow());
                 }
                 
                 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -385,10 +329,7 @@ public class TableSQL {
                         jTable.getColumnModel().getColumn(1).setMaxWidth(0);
                                 jTable.getColumnModel().getColumn(1).setMinWidth(0);*/
     
-      if(resize){
-      this.AdjustCells(jTable,dimen); }
-               // jTable.setLayout(null);
-                 //jTable.getColumnModel().getColumn(0).setCellEditor(new DefaultCellEditor(check));
+      if(resize){ this.AdjustCells(jTable,dimen); }
     }
 
     public ListSelectionModel getList() {
@@ -401,4 +342,9 @@ public class TableSQL {
     
     return cellSelectionModel;
     }  
+    
+    public interface Listener{
+     
+    void SelectedItem(int row);
+    }
 }
