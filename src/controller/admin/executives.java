@@ -7,7 +7,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -46,16 +45,16 @@ public class executives implements ActionListener, MouseListener, TableSQL.Liste
 
             ImageIcon update = null;
               try {
-                  update = new ImageIcon(ImageIO.read(new File("src/resources/icon/gvi.png")).getScaledInstance(30,30, 100));
+                  update = new ImageIcon(ImageIO.read(new File("src/resources/system/edit.png")).getScaledInstance(40,40, 100));
               } catch (IOException ex) {
                   Logger.getLogger(executives.class.getName()).log(Level.SEVERE, null, ex);
               }
 
             table.Model(query,TableSQL.WITH_CONTROLS, update, update);
             
-            int[] widthCell = {30,0,80,180,140,5};
+        //    int[] widthCell = {30,0,80,180,140,5};
             
-            table.AdjustCell(widthCell);
+           // table.AdjustCell(widthCell);
             table.HiddenColumns(new int[]{0,1});
             table.TransferModel(view.jTable,this);
 
@@ -118,8 +117,8 @@ public class executives implements ActionListener, MouseListener, TableSQL.Liste
 
     @Override
     public void SelectedItem(int row) {
-        System.out.println("row select: "+row);
-
+     //   System.out.println("row select: "+row);
+     new ExecutiveData(row);
 //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

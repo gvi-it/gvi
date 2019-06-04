@@ -1,25 +1,55 @@
 package controller.admin;
 
+import controller.DataBase;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import libraries.FormV;
 import libraries.Logo;
 import libraries.Placeholder;
 import view.form.admin.addExecutive;
 
-public class ExecutiveData implements ActionListener, KeyListener {
+public class ExecutiveData implements ActionListener, KeyListener, MouseListener {
     
-addExecutive model = new addExecutive();    
-FormV form = new FormV(model.getContentPane());  
+private addExecutive model = new addExecutive();    
+private FormV form = new FormV(model.getContentPane()); 
+private DataBase gvi =  new DataBase();
 
     ExecutiveData (int id) {
     
-    config(model);    
-   
-                                      
+    try {
+        config(model);
+
+        ResultSet query = gvi.execute("select * from executive where executive.id="+id);
+        
+        if(query.next()){
+        
+        model.name.setText(query.getString("name"));
+        model.lastname.setText(query.getString("lastname"));
+        model.email.setText(query.getString("email"));
+        model.hours.setValue(query.getObject("hours"));
+        model.salary.setText(""+query.getFloat("salary"));
+        //model.password.setText(query.getString("password"));
+        
+        }
+        
+    } catch (SQLException ex) {
+        Logger.getLogger(ExecutiveData.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    
+    
+
+    
+    
+                               
     }
 
     public ExecutiveData () {
@@ -29,64 +59,83 @@ FormV form = new FormV(model.getContentPane());
     }
 
     private void config(addExecutive window) {
-           
-    window.setSize(window.getPreferredSize());
-              
-    window.setTitle("Datos Del Ejecutivo - ");
+         
+    try {
       
-    window.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-            
-    window.setResizable(false);
-    
-    window.setIconImage(new Logo().createIcon());
-    
-    model.cancel.addActionListener(this);
-    model.Save.addActionListener(this);
-    model.email.addKeyListener(this);
-    model.hours.addKeyListener(this);
-    model.name.addKeyListener(this);
-    model.role.addKeyListener(this);
-    model.salary.addKeyListener(this);
-    model.password.addKeyListener(this);
-    
-   /* window.date.setFormatterFactory(new javax.swing.JFormattedTextField.AbstractFormatterFactory() {
+        ResultSet roles = gvi.execute("select * from role");
+        
+        // model.role.setEditable(true);
+        model.role.addItem("Select");
+
+        while(roles.next()){
+            model.role.addItem(roles.getString("role.name"));
+        }
+        
+        //AutoCompleteDecorator.decorate(model.role);
+        
+        window.setSize(window.getPreferredSize());
+        
+        window.setTitle("Datos Del Ejecutivo - ");
+        
+        window.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        
+        window.setResizable(false);
+        
+        window.setIconImage(new Logo().createIcon());
+        
+        model.cancel.addActionListener(this);
+        model.Save.addActionListener(this);
+        model.email.addKeyListener(this);
+        model.hours.addKeyListener(this);
+        model.name.addKeyListener(this);
+        model.role.addKeyListener(this);
+        model.salary.addKeyListener(this);
+        model.password.addKeyListener(this);
+        
+        /* window.date.setFormatterFactory(new javax.swing.JFormattedTextField.AbstractFormatterFactory() {
         @Override
         public JFormattedTextField.AbstractFormatter getFormatter(JFormattedTextField tf) {
-
-            try{
-              
-            return new javax.swing.text.MaskFormatter("##/##/####");
-                
-            } catch(java.text.ParseException e){
-                e.printStackTrace();
-            }
-            return null;
+        
+        try{
+        
+        return new javax.swing.text.MaskFormatter("##/##/####");
+        
+        } catch(java.text.ParseException e){
+        e.printStackTrace();
         }
-    }
-    );*/
-    
-    new Placeholder("example@gerenciavirtual.net",window.email);
-    new Placeholder("Your Name",window.name);
-    new Placeholder("Your Lastname",window.lastname);
-    new Placeholder("200.00",window.salary);
-  //  new Placeholder("dd/mm/yyyy",window.date);
+        return null;
+        }
+        }
+        );*/
+        
+        new Placeholder("example@gerenciavirtual.net",window.email);
+        new Placeholder("Your Name",window.name);
+        new Placeholder("Your Lastname",window.lastname);
+        new Placeholder("200.00",window.salary);
+        new Placeholder("*********",window.password);
+        
+        model.show.addMouseListener(this);
+        //  new Placeholder("dd/mm/yyyy",window.date);
 //    new Placeholder("8",(JTextField) window.hours);
+
+System.out.println("Nombre de Jtext: "+window.salary.getAccessibleContext().getAccessibleDescription());
+
+window.setLocationRelativeTo(null);
+
+window.addWindowListener(new java.awt.event.WindowAdapter() {
     
-    System.out.println("Nombre de Jtext: "+window.salary.getAccessibleContext().getAccessibleDescription());
-            
-    window.setLocationRelativeTo(null);
-            
-        window.addWindowListener(new java.awt.event.WindowAdapter() {
+    @Override
+    public void windowClosing(WindowEvent e) {    
+        
+        //view.menu.admin.personal.setEnabled(true);
+        super.windowClosing(e); //To change body of generated methods, choose Tools | Templates.
+    }
+});
 
-            @Override
-            public void windowClosing(WindowEvent e) {
-
-                //view.menu.admin.personal.setEnabled(true);
-                super.windowClosing(e); //To change body of generated methods, choose Tools | Templates.
-            }
-        });
-          
-    window.setVisible(true);    
+window.setVisible(true);
+    } catch (SQLException ex) {
+        Logger.getLogger(ExecutiveData.class.getName()).log(Level.SEVERE, null, ex);
+    }
         
     }
 
@@ -137,5 +186,42 @@ FormV form = new FormV(model.getContentPane());
             System.out.println("falta");
         }    
         
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        
+        if(e.getSource().equals(model.show)){ 
+                
+                if(model.password.getEchoChar() == '*'){
+                    model.password.setEchoChar((char)0);
+                    System.out.println("Mostrar");
+                } else {
+                    model.password.setEchoChar('*');
+                    System.out.println("Oculto");
+                }
+        }
+        
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

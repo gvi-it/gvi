@@ -1,19 +1,9 @@
-
 package view.form.admin;
-
-import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 public class addExecutive extends javax.swing.JFrame {
 
     public addExecutive() {
         initComponents();
-        role.setEditable(true);
-        role.addItem("Select");
-           role.addItem("uno");
-        role.addItem("dos");
-          role.addItem("tres");
-          
-          AutoCompleteDecorator.decorate(role);
 
     }
 
@@ -34,19 +24,19 @@ public class addExecutive extends javax.swing.JFrame {
         role = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        show = new javax.swing.JLabel();
         salary = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         email = new javax.swing.JTextField();
         JLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        password = new javax.swing.JTextField();
         hours = new javax.swing.JSpinner();
+        password = new javax.swing.JPasswordField();
         cancel = new javax.swing.JButton();
         Save = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(550, 290));
-        setPreferredSize(new java.awt.Dimension(490, 340));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -55,26 +45,31 @@ public class addExecutive extends javax.swing.JFrame {
         container.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         name.setName("require"); // NOI18N
-        container.add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 120, 30));
+        container.add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 120, 30));
 
         lastname.setName("require"); // NOI18N
-        container.add(lastname, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 120, 30));
+        container.add(lastname, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 120, 30));
 
         jLabel1.setText("Lastname :");
-        container.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 60, 20));
+        container.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 60, 20));
 
         jLabel2.setText("Name :");
-        container.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, 40, 20));
+        container.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 40, 20));
 
         role.setName("require"); // NOI18N
-        container.add(role, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, 90, 30));
+        container.add(role, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 140, 30));
         role.getAccessibleContext().setAccessibleName("Role");
 
         jLabel3.setText("Role :");
-        container.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 40, 20));
+        container.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 50, 40, 20));
 
         jLabel4.setText("Salary :");
-        container.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 90, 40, 30));
+        container.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 40, 30));
+
+        show.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        show.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/visibility.png"))); // NOI18N
+        show.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        container.add(show, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 170, 25, 30));
 
         salary.setName("require"); // NOI18N
         salary.addActionListener(new java.awt.event.ActionListener() {
@@ -82,32 +77,28 @@ public class addExecutive extends javax.swing.JFrame {
                 salaryActionPerformed(evt);
             }
         });
-        container.add(salary, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, 70, 30));
+        container.add(salary, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 90, 70, 30));
         salary.getAccessibleContext().setAccessibleName("");
         salary.getAccessibleContext().setAccessibleDescription("int");
 
         jLabel5.setText("Email :");
-        container.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 60, 20));
+        container.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 60, 20));
 
         email.setName("require"); // NOI18N
-        container.add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 120, 30));
+        container.add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 120, 30));
 
         JLabel1.setText("hours :");
-        container.add(JLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, 50, 20));
+        container.add(JLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 130, 50, 20));
 
         jLabel6.setText("Password : ");
-        container.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 70, 20));
-
-        password.setName("require"); // NOI18N
-        password.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordActionPerformed(evt);
-            }
-        });
-        container.add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 120, 30));
+        container.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 70, 20));
 
         hours.setName("require"); // NOI18N
-        container.add(hours, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 130, 40, 30));
+        container.add(hours, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 130, 40, 30));
+
+        password.setMargin(new java.awt.Insets(2, 2, 2, 25));
+        password.setMinimumSize(new java.awt.Dimension(6, 43));
+        container.add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 120, 30));
 
         getContentPane().add(container, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 440, 220));
 
@@ -119,10 +110,6 @@ public class addExecutive extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordActionPerformed
 
     private void salaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salaryActionPerformed
         // TODO add your handling code here:
@@ -178,8 +165,9 @@ public class addExecutive extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     public javax.swing.JTextField lastname;
     public javax.swing.JTextField name;
-    public javax.swing.JTextField password;
+    public javax.swing.JPasswordField password;
     public javax.swing.JComboBox<String> role;
     public javax.swing.JTextField salary;
+    public javax.swing.JLabel show;
     // End of variables declaration//GEN-END:variables
 }

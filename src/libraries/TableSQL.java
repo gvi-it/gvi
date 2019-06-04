@@ -19,6 +19,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.DefaultCellEditor;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -48,11 +49,18 @@ public class TableSQL {
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
             
             JLabel tmp = new JLabel();
+            
+            try{
+
             tmp.setText("");
-            tmp.setSize(10,10);
+            tmp.setSize(25,25);
             tmp.setHorizontalAlignment(CENTER);
-            tmp.setIcon(new ImageIcon(update.getImage().getScaledInstance(15,15,java.awt.Image.SCALE_SMOOTH)));
+            tmp.setIcon(new ImageIcon(update.getImage().getScaledInstance(20,20,java.awt.Image.SCALE_SMOOTH)));
     
+            } catch(Exception e){
+                
+            }
+            
             return tmp;
         }    
     }
@@ -78,9 +86,10 @@ public class TableSQL {
         if(Model){
            
         etiquetas = new String[last+2];
-        etiquetas[first] = "";    
+        etiquetas[first] = " X ";   
          
         lastrow = last+1;
+                etiquetas[lastrow] = "";
 
         etiquetas = this.setLabels(etiquetas, MetaData,2);
 
@@ -89,6 +98,7 @@ public class TableSQL {
                    @Override
                    public boolean isCellEditable(int rowIndex, int columnIndex) { return(columnIndex == first);  }
    
+                   @Override
                    public Class<?> getColumnClass(int column){
                        
                        if(column == lastrow){
@@ -103,11 +113,10 @@ public class TableSQL {
         } else  {
 
            etiquetas = new String[last+1];
-           etiquetas[first] = "";
+           etiquetas[first] = " X ";
 
            etiquetas = this.setLabels(etiquetas, MetaData, 1);
 
-           lastrow = last+1;
            modelo = new DefaultTableModel(){
 
                    @Override
@@ -124,8 +133,7 @@ public class TableSQL {
                 }                   
             };      
         }
-    
-        modelo.addColumn(new render());
+        
      modelo.setColumnIdentifiers(etiquetas);
 
      Table.setModel(modelo);
@@ -139,9 +147,10 @@ public class TableSQL {
             int difference = etiquetas.length - last;
                 
             if(difference == 2){
-            Table.getColumnModel().getColumn(etiquetas.length-1).setCellEditor(new DefaultCellEditor(new JCheckBox())); 
-            } 
-                 
+           // Table.getColumnModel().getColumn(etiquetas.length-1).setCellEditor(new DefaultCellEditor(new JCheckBox())); 
+            }  else { // Table.getColumnModel().getColumn(0).setCellEditor(new DefaultCellEditor(new JCheckBox())); 
+            }                 
+            
             modelo.addRow(data);         
             modelo.fireTableDataChanged();        
         }
@@ -207,9 +216,7 @@ public class TableSQL {
     public void TransferModel(JTable jTable, Object c) {
         
         jTable.setModel(Table.getModel()); 
-        
-        jTable.getColumnModel().getColumn(lastrow).setCellRenderer(new render());
-        
+                        
 //        jTable.getTableHeader().co
         
         jTable.addMouseMotionListener(new MouseMotionListener() {
@@ -240,8 +247,6 @@ public class TableSQL {
                             System.out.println("Eliminando");    
                             } else { System.out.println("cancelado"); }
                             }
-                            
-                            System.out.println("ok");
                            // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
                         }
 
@@ -308,18 +313,37 @@ public class TableSQL {
         if(remove){
             
         for(int x = 0; x < hidden.length; x++) {
-            
-        System.out.println("numero: "+hidden[x]);
-        
+          
         jTable.getTableHeader().getColumnModel().getColumn(hidden[x]).setMaxWidth(0);
+        
         
         jTable.getColumnModel().getColumn(hidden[x]).setPreferredWidth(0);
         jTable.getColumnModel().getColumn(hidden[x]).setWidth(0);
         jTable.getColumnModel().getColumn(hidden[x]).setMaxWidth(0);
         jTable.getColumnModel().getColumn(hidden[x]).setMinWidth(0);
-        
+        jTable.getTableHeader().getColumnModel().getColumn(hidden[x]).setMaxWidth(0);
         }    
-            
+           
+        if(lastrow > 0){
+        jTable.getColumnModel().getColumn(lastrow).setCellRenderer(new render());
+        jTable.getTableHeader().getColumnModel().getColumn(lastrow).setMaxWidth(25);
+        
+        jTable.getColumnModel().getColumn(lastrow).setPreferredWidth(15);
+        jTable.getColumnModel().getColumn(lastrow).setWidth(25);
+        jTable.getColumnModel().getColumn(lastrow).setMaxWidth(25);
+        jTable.getColumnModel().getColumn(lastrow).setMinWidth(25);
+        jTable.getTableHeader().getColumnModel().getColumn(lastrow).setMaxWidth(25);
+                jTable.setRowHeight(35);
+        }
+
+            jTable.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(25);
+
+            jTable.getColumnModel().getColumn(0).setPreferredWidth(25);
+            jTable.getColumnModel().getColumn(0).setWidth(25);
+            jTable.getColumnModel().getColumn(0).setMaxWidth(25);
+            jTable.getColumnModel().getColumn(0).setMinWidth(25);
+            jTable.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(25);
+         
         }
         
 /*        jTable.getTableHeader().getColumnModel().getColumn(1).setMaxWidth(0);
@@ -329,7 +353,7 @@ public class TableSQL {
                         jTable.getColumnModel().getColumn(1).setMaxWidth(0);
                                 jTable.getColumnModel().getColumn(1).setMinWidth(0);*/
     
-      if(resize){ this.AdjustCells(jTable,dimen); }
+    if(resize){ this.AdjustCells(jTable,dimen); }
     }
 
     public ListSelectionModel getList() {

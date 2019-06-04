@@ -71,6 +71,7 @@ public class ListExecutives extends javax.swing.JPanel {
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, -1));
 
+        jTable.setAutoCreateRowSorter(true);
         jTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -79,6 +80,8 @@ public class ListExecutives extends javax.swing.JPanel {
                 "Title 1"
             }
         ));
+        jTable.setRowSelectionAllowed(false);
+        jTable.setSurrendersFocusOnKeystroke(true);
         jScrollPane1.setViewportView(jTable);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 470, 320));
