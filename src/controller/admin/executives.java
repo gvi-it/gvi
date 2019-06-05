@@ -43,14 +43,15 @@ public class executives implements ActionListener, MouseListener, TableSQL.Liste
             
 //            table.Model(query, TableSQL.WITH_CONTROLS);
 
-            ImageIcon update = null;
+            ImageIcon update = null, delete = null;
               try {
-                  update = new ImageIcon(ImageIO.read(new File("src/resources/system/edit.png")).getScaledInstance(40,40, 100));
+                  update = new ImageIcon(ImageIO.read(new File("src/resources/system/edit.png")));
+                  delete = new ImageIcon(ImageIO.read(new File("src/resources/system/recyclebin.png")));
               } catch (IOException ex) {
                   Logger.getLogger(executives.class.getName()).log(Level.SEVERE, null, ex);
               }
 
-            table.Model(query,TableSQL.WITH_CONTROLS, update, update);
+            table.Model(query,TableSQL.WITH_CONTROLS,update,delete);
             
         //    int[] widthCell = {30,0,80,180,140,5};
             

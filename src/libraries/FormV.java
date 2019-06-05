@@ -54,7 +54,7 @@ public class FormV {
         boolean state = false;
         
           try {
-             
+
             switch(ClassComponent.get(component.getClass())){
                  
                  case 0: {

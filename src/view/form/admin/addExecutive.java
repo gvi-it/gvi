@@ -37,6 +37,7 @@ public class addExecutive extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(550, 290));
+        setPreferredSize(new java.awt.Dimension(490, 350));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -98,6 +99,7 @@ public class addExecutive extends javax.swing.JFrame {
 
         password.setMargin(new java.awt.Insets(2, 2, 2, 25));
         password.setMinimumSize(new java.awt.Dimension(6, 43));
+        password.setName("require"); // NOI18N
         container.add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 120, 30));
 
         getContentPane().add(container, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 440, 220));
@@ -107,6 +109,8 @@ public class addExecutive extends javax.swing.JFrame {
 
         Save.setText("Save");
         getContentPane().add(Save, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 270, 80, 30));
+
+        getAccessibleContext().setAccessibleDescription("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

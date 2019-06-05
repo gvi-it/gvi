@@ -1,5 +1,6 @@
 package libraries;
 
+import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.ResultSetMetaData;
@@ -15,16 +16,14 @@ import java.awt.event.MouseMotionListener;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.ImageIcon;
-import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
-import javax.swing.DefaultCellEditor;
 import javax.swing.ListSelectionModel;
-import javax.swing.SwingConstants;
+import static javax.swing.SwingConstants.CENTER;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
 
-public class TableSQL {
+public class TableSQL extends javax.swing.JPanel{
 
     private ResultSet SQL = null;
     private JTable Table,SecondTable;
@@ -65,6 +64,44 @@ public class TableSQL {
         }    
     }
     
+     private class HeaderRender extends DefaultTableCellRenderer{
+
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            
+            JLabel tmp = new JLabel();
+           
+            
+            table.getTableHeader().setPreferredSize(new Dimension(table.getPreferredSize().width,35));
+            table.getTableHeader().setBackground(new java.awt.Color(130,136,141));
+            table.getTableHeader().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+  
+            tmp.setForeground(Color.white);
+  
+            if(column == 0) {
+ 
+            try{
+
+            tmp.setText("");
+            tmp.setSize(5,5);
+            tmp.setHorizontalAlignment(CENTER);
+            tmp.setIcon(new ImageIcon(delete.getImage().getScaledInstance(20,25,java.awt.Image.SCALE_SMOOTH)));
+                      
+             return tmp;
+    
+            } catch(Exception e){
+                
+            }
+            } else if(column != lastrow) {
+  
+                tmp.setHorizontalAlignment(LEFT);
+                tmp.setText(" ↑↓ "+value.toString());
+            } 
+            
+           return tmp;
+        }    
+    }
+    
     public void Model(ResultSet query, Boolean WITH_CONTROLS, ImageIcon update, ImageIcon delete) throws SQLException {
         this.Model(query,WITH_CONTROLS); this.update = update; this.delete = delete;
     }
@@ -86,7 +123,7 @@ public class TableSQL {
         if(Model){
            
         etiquetas = new String[last+2];
-        etiquetas[first] = " X ";   
+        etiquetas[first] = " X";   
          
         lastrow = last+1;
                 etiquetas[lastrow] = "";
@@ -216,7 +253,22 @@ public class TableSQL {
     public void TransferModel(JTable jTable, Object c) {
         
         jTable.setModel(Table.getModel()); 
-                        
+        jTable.setAutoCreateRowSorter(true);
+       
+        jTable.getTableHeader().setOpaque(true);
+       
+        jTable.getTableHeader().setDefaultRenderer(new HeaderRender());
+        
+        jTable.getTableHeader().setReorderingAllowed(false); 
+        
+        jTable.setRowHeight(35);
+        
+//        jTable.
+
+        
+    //   jTable.getTableHeader().setForeground(new java.awt.Color(40,34,34));
+       //jTable.getTableHeader().setBackground(new java.awt.Color(39,105,164));
+              
 //        jTable.getTableHeader().co
         
         jTable.addMouseMotionListener(new MouseMotionListener() {
@@ -336,13 +388,13 @@ public class TableSQL {
                 jTable.setRowHeight(35);
         }
 
-            jTable.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(25);
+            jTable.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(30);
 
-            jTable.getColumnModel().getColumn(0).setPreferredWidth(25);
-            jTable.getColumnModel().getColumn(0).setWidth(25);
-            jTable.getColumnModel().getColumn(0).setMaxWidth(25);
-            jTable.getColumnModel().getColumn(0).setMinWidth(25);
-            jTable.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(25);
+            jTable.getColumnModel().getColumn(0).setPreferredWidth(35);
+            jTable.getColumnModel().getColumn(0).setWidth(35);
+            jTable.getColumnModel().getColumn(0).setMaxWidth(35);
+            jTable.getColumnModel().getColumn(0).setMinWidth(35);
+            jTable.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(35);
          
         }
         

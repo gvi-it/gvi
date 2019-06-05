@@ -18,6 +18,6 @@ public class DateFormat {
         
         d = (now.getDayOfMonth() < 10) ? "0"+now.getDayOfMonth(): ""+now.getDayOfMonth();
         m = (now.getMonthValue() < 10) ? "0"+now.getMonthValue() : ""+now.getMonthValue();
-        return  d+"-"+m+"-"+ now.getYear();  
+        return  d+"-"+m+"-"+ now.getYear();    
     }    
 }
